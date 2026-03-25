@@ -1,1 +1,82 @@
-{"exported_at":"","events":[],"prices":[]}
+{
+  "exported_at": "2026-03-25T18:57:24.055200+00:00",
+  "events": [
+    {
+      "id": 2,
+      "artist": "SIDEPIECE",
+      "venue": "Brooklyn Storehouse",
+      "city": "New York, NY",
+      "date": "2026-04-03",
+      "face": 30.0,
+      "listeners": 4900000,
+      "genre": "House",
+      "cap": "large",
+      "avail": "low",
+      "notes": "NYC sellout expected",
+      "url": "https://www.crowdvolt.com/event/sidepiece-presents-horny-house-brooklyn-storehouse"
+    },
+    {
+      "id": 3,
+      "artist": "Rebuke",
+      "venue": "99 Scott",
+      "city": "New York, NY",
+      "date": "2026-04-04",
+      "face": 30.0,
+      "listeners": 1400000,
+      "genre": "House",
+      "cap": "medium",
+      "avail": "low",
+      "notes": "",
+      "url": "https://www.crowdvolt.com/event/rebuke-99-scott-main-room-sat-apr-4-new-york"
+    },
+    {
+      "id": 1,
+      "artist": "Max Styler",
+      "venue": "Brooklyn Storehouse",
+      "city": "New York, NY",
+      "date": "2026-05-09",
+      "face": 38.94,
+      "listeners": 1500000,
+      "genre": "house",
+      "cap": "large",
+      "avail": "low",
+      "notes": "",
+      "url": "https://www.crowdvolt.com/event/teksupport-max-styler-brooklyn-storehouse-sat-may-9-new-york"
+    }
+  ],
+  "prices": [
+    {
+      "eventId": 2,
+      "date": "2026-03-25",
+      "price": 82.0,
+      "highestBid": 70.0,
+      "numAsks": null,
+      "numBids": null,
+      "lastSale": null,
+      "section": "GA",
+      "qty": 1
+    },
+    {
+      "eventId": 3,
+      "date": "2026-03-25",
+      "price": 32.0,
+      "highestBid": null,
+      "numAsks": null,
+      "numBids": null,
+      "lastSale": null,
+      "section": "GA",
+      "qty": 1
+    },
+    {
+      "eventId": 1,
+      "date": "2026-03-25",
+      "price": 60.0,
+      "highestBid": 53.0,
+      "numAsks": null,
+      "numBids": null,
+      "lastSale": null,
+      "section": "GA",
+      "qty": 1
+    }
+  ]
+}
