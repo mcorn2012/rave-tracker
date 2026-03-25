@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rave Resell Tracker</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=DM+Sans:wght@300;400;500;600&display=swap');
+  *{box-sizing:border-box;margin:0;padding:0}
+  :root{
+    --bg:#0a0a0f;--bg2:#111118;--bg3:#181820;--bg4:#1e1e28;
+    --accent:#7b5cf0;--accent2:#a78bfa;
+    --green:#22d3a0;--red:#f87171;--amber:#fbbf24;
+    --text:#e2e0f0;--muted:#6b6880;
+    --border:rgba(123,92,240,0.18);--border2:rgba(255,255,255,0.06);
+    --mono:'Space Mono',monospace;--sans:'DM Sans',sans-serif;
+  }
+  body{font-family:var(--sans);background:var(--bg);color:var(--text);font-size:14px;min-height:100vh}
+  .tabs-header{display:flex;border-bottom:1px solid var(--border);background:var(--bg2);padding:0 20px;position:sticky;top:0;z-index:100}
+  .tab-btn{font-family:var(--sans);font-size:13px;font-weight:500;color:var(--muted);background:none;border:none;padding:14px 18px;cursor:pointer;border-bottom:2px solid transparent;transition:color .2s,border-color .2s;letter-spacing:.02em}
+  .tab-btn.active{color:var(--accent2);border-bottom-color:var(--accent)}
+  .tab-btn:hover:not(.active){color:var(--text)}
+  .tab-content{display:none;padding:20px}
+  .tab-content.active{display:block}
+  .card{background:var(--bg3);border:1px solid var(--border2);border-radius:12px;padding:18px 20px;margin-bottom:14px}
+  .card-title{font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:14px}
+  .metric-row{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:14px}
+  .metric{background:var(--bg4);border-radius:10px;padding:14px 16px;border:1px solid var(--border2)}
+  .metric-label{font-size:11px;color:var(--muted);letter-spacing:.05em;text-transform:uppercase;margin-bottom:6px}
+  .metric-val{font-family:var(--mono);font-size:22px;font-weight:700}
+  .metric-val.green{color:var(--green)}.metric-val.red{color:var(--red)}.metric-val.amber{color:var(--amber)}.metric-val.purple{color:var(--accent2)}
+  label{font-size:12px;color:var(--muted);display:block;margin-bottom:5px}
+  input,select{width:100%;background:var(--bg4);border:1px solid var(--border2);border-radius:8px;color:var(--text);font-family:var(--sans);font-size:14px;padding:9px 12px;outline:none;transition:border-color .2s;appearance:none}
+  input:focus,select:focus{border-color:var(--accent)}
+  input::placeholder{color:var(--muted)}
+  select option{background:var(--bg3)}
+  .form-grid-2{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
+  .form-grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:12px}
+  .form-grid-4{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:12px;margin-bottom:12px}
+  .btn{font-family:var(--sans);font-size:13px;font-weight:600;padding:9px 18px;border-radius:8px;border:none;cursor:pointer;transition:all .15s;letter-spacing:.02em}
+  .btn-primary{background:var(--accent);color:#fff}
+  .btn-primary:hover{background:#6b4fe0;transform:translateY(-1px)}
+  .btn-ghost{background:transparent;color:var(--muted);border:1px solid var(--border2)}
+  .btn-ghost:hover{border-color:var(--accent);color:var(--accent2)}
+  .btn-danger{background:transparent;color:var(--red);border:1px solid rgba(248,113,113,0.2);font-size:11px;padding:5px 10px}
+  .btn-danger:hover{background:rgba(248,113,113,0.1)}
+  .btn-green{background:var(--green);color:#000;font-weight:700}
+  .btn-green:hover{background:#1ab990}
+  .score-badge{display:inline-flex;align-items:center;gap:6px;padding:4px 12px;border-radius:20px;font-family:var(--mono);font-size:13px;font-weight:700}
+  .score-hot{background:rgba(34,211,160,.15);color:var(--green);border:1px solid rgba(34,211,160,.3)}
+  .score-ok{background:rgba(251,191,36,.15);color:var(--amber);border:1px solid rgba(251,191,36,.3)}
+  .score-cold{background:rgba(248,113,113,.15);color:var(--red);border:1px solid rgba(248,113,113,.3)}
+  table{width:100%;border-collapse:collapse;font-size:13px}
+  th{color:var(--muted);font-weight:500;font-size:11px;text-transform:uppercase;letter-spacing:.07em;padding:8px 12px;border-bottom:1px solid var(--border2);text-align:left}
+  td{padding:10px 12px;border-bottom:1px solid rgba(255,255,255,.04);vertical-align:middle}
+  tr:last-child td{border-bottom:none}
+  tr:hover td{background:rgba(123,92,240,.04)}
+  .chart-wrap{position:relative;width:100%}
+  .signal-row{display:flex;align-items:center;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border2);font-size:13px}
+  .signal-row:last-child{border-bottom:none}
+  .signal-label{color:var(--muted)}
+  .signal-val{font-family:var(--mono);font-weight:700}
+  .signal-bar{height:4px;background:var(--bg4);border-radius:2px;margin-top:3px;overflow:hidden}
+  .signal-fill{height:100%;border-radius:2px;transition:width .6s cubic-bezier(.4,0,.2,1)}
+  .empty-state{text-align:center;padding:40px 20px;color:var(--muted)}
+  .empty-state .icon{font-size:32px;margin-bottom:10px;opacity:.4}
+  .empty-state p{font-size:13px}
+  .price-point{display:flex;align-items:center;gap:10px;padding:8px 10px;background:var(--bg4);border-radius:8px;margin-bottom:6px}
+  .price-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+  .event-row{display:flex;align-items:center;justify-content:space-between;padding:12px 14px;background:var(--bg4);border-radius:10px;margin-bottom:8px;border:1px solid var(--border2);cursor:pointer;transition:border-color .2s}
+  .event-row:hover,.event-row.selected{border-color:var(--accent);background:rgba(123,92,240,.07)}
+  .event-artist{font-weight:600;font-size:14px}
+  .event-venue{font-size:12px;color:var(--muted);margin-top:2px}
+  .two-col{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .divider{height:1px;background:var(--border2);margin:18px 0}
+  .tag{display:inline-block;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:600;background:rgba(123,92,240,.15);color:var(--accent2);border:1px solid rgba(123,92,240,.25)}
+  .flex{display:flex}.gap-10{gap:10px}.items-center{align-items:center}.justify-between{justify-content:space-between}
+  .mb-10{margin-bottom:10px}.mb-14{margin-bottom:14px}.mt-10{margin-top:10px}
+  .text-green{color:var(--green)}.text-red{color:var(--red)}.text-amber{color:var(--amber)}.text-muted{color:var(--muted)}
+  .mono{font-family:var(--mono)}.bold{font-weight:700}.full-width{width:100%}
+  .event-list-scroll{max-height:320px;overflow-y:auto}
+  .sync-bar{background:var(--bg2);border-bottom:1px solid var(--border2);padding:8px 20px;display:flex;align-items:center;justify-content:space-between;font-size:12px;color:var(--muted)}
+  .sync-dot{width:8px;height:8px;border-radius:50%;background:var(--muted);display:inline-block;margin-right:6px}
+  .sync-dot.live{background:var(--green);box-shadow:0 0 6px var(--green)}
+  .sync-dot.stale{background:var(--amber)}
+  input[type=range]{background:var(--bg4);border:none;height:4px;padding:0;accent-color:var(--accent)}
+
+  /* Mobile responsive */
+  @media(max-width:600px){
+    .metric-row{grid-template-columns:1fr 1fr}
+    .two-col{grid-template-columns:1fr}
+    .form-grid-2,.form-grid-3,.form-grid-4{grid-template-columns:1fr}
+    .tabs-header{overflow-x:auto}
+    .tab-btn{white-space:nowrap;padding:14px 12px;font-size:12px}
+  }
+</style>
+</head>
+<body>
+
+<div class="sync-bar">
+  <div style="display:flex;align-items:center;">
+    <span class="sync-dot" id="sync-dot"></span>
+    <span id="sync-status">Loading data...</span>
+  </div>
+  <div style="display:flex;align-items:center;gap:10px;">
+    <span id="sync-time"></span>
+    <label style="display:inline;margin:0;cursor:pointer;">
+      <input type="file" accept=".json" id="json-import" style="display:none" onchange="importJSON(this)">
+      <span style="color:var(--accent2);cursor:pointer;font-size:12px;" onclick="document.getElementById('json-import').click()">↑ Import JSON</span>
+    </label>
+  </div>
+</div>
+
+<div class="tabs-header">
+  <button class="tab-btn active" onclick="showTab('dashboard',this)">Dashboard</button>
+  <button class="tab-btn" onclick="showTab('events',this)">Events</button>
+  <button class="tab-btn" onclick="showTab('prices',this)">Price Tracker</button>
+  <button class="tab-btn" onclick="showTab('analyze',this)">Profit Analyzer</button>
+</div>
+
+<!-- DASHBOARD -->
+<div id="tab-dashboard" class="tab-content active">
+  <div class="metric-row">
+    <div class="metric"><div class="metric-label">Events Tracked</div><div class="metric-val purple" id="m-events">0</div></div>
+    <div class="metric"><div class="metric-label">Avg Resell Multiple</div><div class="metric-val green" id="m-mult">—</div></div>
+    <div class="metric"><div class="metric-label">Hottest Event</div><div class="metric-val amber" id="m-hot" style="font-size:14px;padding-top:4px;">—</div></div>
+    <div class="metric"><div class="metric-label">Avg Profit Score</div><div class="metric-val" id="m-score">—</div></div>
+  </div>
+  <div class="two-col">
+    <div class="card">
+      <div class="card-title">Top Events by Profit Score</div>
+      <div id="dash-top-events"><div class="empty-state"><div class="icon">🎪</div><p>No data yet</p></div></div>
+    </div>
+    <div class="card">
+      <div class="card-title">Recent Price Activity</div>
+      <div id="dash-price-activity"><div class="empty-state"><div class="icon">📈</div><p>No prices yet</p></div></div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-title">Resell Multiple vs Monthly Listeners</div>
+    <div class="chart-wrap" style="height:220px;"><canvas id="scatter-chart"></canvas></div>
+  </div>
+</div>
+
+<!-- EVENTS -->
+<div id="tab-events" class="tab-content">
+  <div class="two-col">
+    <div class="card">
+      <div class="card-title">Add New Event</div>
+      <div class="mb-10"><label>Artist / Headliner</label><input id="e-artist" type="text" placeholder="e.g. Charlotte de Witte"></div>
+      <div class="form-grid-2">
+        <div><label>Venue</label><input id="e-venue" type="text" placeholder="e.g. Brooklyn Mirage"></div>
+        <div><label>City</label><input id="e-city" type="text" placeholder="e.g. New York, NY"></div>
+      </div>
+      <div class="form-grid-2">
+        <div><label>Event Date</label><input id="e-date" type="date"></div>
+        <div><label>Face Value ($)</label><input id="e-face" type="number" placeholder="45" min="0"></div>
+      </div>
+      <div class="form-grid-2">
+        <div><label>US Monthly Listeners</label><input id="e-listeners" type="number" placeholder="500000" min="0"></div>
+        <div><label>Genre</label>
+          <select id="e-genre">
+            <option value="">Select genre</option>
+            <option>Techno</option><option>House</option><option>Trance</option>
+            <option>Drum & Bass</option><option>Ambient/Experimental</option><option>Other</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-grid-2">
+        <div><label>Venue Capacity</label>
+          <select id="e-cap">
+            <option value="">Unknown</option>
+            <option value="small">Small (&lt;500)</option><option value="medium">Medium (500–2000)</option>
+            <option value="large">Large (2000–5000)</option><option value="festival">Festival (5000+)</option>
+          </select>
+        </div>
+        <div><label>Ticket Availability</label>
+          <select id="e-avail">
+            <option value="">Unknown</option>
+            <option value="soldout">Sold Out</option><option value="low">Low (&lt;10%)</option>
+            <option value="medium">Medium (10–40%)</option><option value="high">High (40%+)</option>
+          </select>
+        </div>
+      </div>
+      <div class="mb-10"><label>Crowdvolt URL</label><input id="e-url" type="text" placeholder="https://www.crowdvolt.com/event/..."></div>
+      <div class="mb-10"><label>Notes</label><input id="e-notes" type="text" placeholder="e.g. NYE show, first US tour"></div>
+      <button class="btn btn-primary full-width" onclick="addEvent()">+ Add Event</button>
+    </div>
+    <div>
+      <div style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:12px;">Your Events</div>
+      <div class="event-list-scroll" id="event-list"><div class="empty-state"><div class="icon">🎵</div><p>No events yet.</p></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- PRICES -->
+<div id="tab-prices" class="tab-content">
+  <div class="two-col">
+    <div class="card">
+      <div class="card-title">Log Price Manually</div>
+      <div class="mb-10"><label>Select Event</label><select id="p-event"></select></div>
+      <div class="form-grid-2">
+        <div><label>Ask Price ($)</label><input id="p-price" type="number" placeholder="120" min="0"></div>
+        <div><label>Bid Price ($)</label><input id="p-bid" type="number" placeholder="90" min="0"></div>
+      </div>
+      <div class="form-grid-2">
+        <div><label>Date Observed</label><input id="p-date" type="date"></div>
+        <div><label>Section</label>
+          <select id="p-section">
+            <option value="GA">General Admission</option><option value="VIP">VIP</option>
+            <option value="Early Bird">Early Bird</option><option value="Other">Other</option>
+          </select>
+        </div>
+      </div>
+      <button class="btn btn-primary full-width" onclick="logPrice()">+ Log Price</button>
+    </div>
+    <div class="card">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;">
+        <span class="card-title" style="margin-bottom:0;">Price History</span>
+        <select id="ph-filter" style="width:auto;font-size:12px;padding:5px 8px;" onchange="renderPriceChart()">
+          <option value="">All events</option>
+        </select>
+      </div>
+      <div class="chart-wrap" style="height:180px;"><canvas id="price-chart"></canvas></div>
+      <div class="divider"></div>
+      <div id="price-log-list" style="max-height:200px;overflow-y:auto;"><div class="empty-state"><p>No prices logged yet.</p></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ANALYZE -->
+<div id="tab-analyze" class="tab-content">
+  <div class="mb-14">
+    <label>Select Event to Analyze</label>
+    <select id="a-event" onchange="runAnalysis()" style="font-size:15px;padding:11px 14px;"></select>
+  </div>
+  <div id="analysis-output"><div class="empty-state"><div class="icon">🔮</div><p>Select an event to run profit analysis</p></div></div>
+</div>
+
+<script>
+// ─── STATE ───────────────────────────────────────────────────────────────────
+let events = [], prices = [];
+let priceChart = null, scatterChart = null;
+let lastSync = null;
+
+// ─── AUTO-SYNC: fetch dashboard_data.json from same origin ───────────────────
+async function autoSync() {
+  try {
+    const r = await fetch('dashboard_data.json?t=' + Date.now());
+    if (!r.ok) throw new Error('Not found');
+    const data = await r.json();
+    ingestData(data);
+    lastSync = new Date();
+    setSyncStatus('live', 'Live — scraped daily at 9 AM');
+    document.getElementById('sync-time').textContent = 'Last sync: ' + lastSync.toLocaleTimeString();
+  } catch(e) {
+    setSyncStatus('stale', 'No auto-sync data found — import JSON manually');
+  }
+}
+
+function ingestData(data) {
+  if (!data) return;
+  // Merge scraped events with any manually added ones
+  if (data.events && data.events.length) {
+    const existingUrls = new Set(events.map(e => e.url));
+    data.events.forEach(ev => {
+      if (!existingUrls.has(ev.url)) {
+        events.push({ ...ev, id: ev.id || Date.now() + Math.random() });
+      } else {
+        // Update existing
+        const idx = events.findIndex(e => e.url === ev.url);
+        if (idx >= 0) events[idx] = { ...events[idx], ...ev };
+      }
+    });
+  }
+  if (data.prices && data.prices.length) {
+    // Add scraped prices, avoid duplicates by eventId+date
+    const existing = new Set(prices.map(p => p.eventId + '_' + p.date));
+    data.prices.forEach(p => {
+      const key = p.eventId + '_' + p.date;
+      if (!existing.has(key)) {
+        prices.push(p);
+        existing.add(key);
+      }
+    });
+  }
+  refreshAll();
+}
+
+function importJSON(input) {
+  const file = input.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = e => {
+    try {
+      const data = JSON.parse(e.target.result);
+      ingestData(data);
+      setSyncStatus('live', 'Imported from file');
+      document.getElementById('sync-time').textContent = 'Imported: ' + new Date().toLocaleTimeString();
+    } catch(err) {
+      alert('Could not parse JSON file: ' + err.message);
+    }
+  };
+  reader.readAsText(file);
+  input.value = '';
+}
+
+function setSyncStatus(state, msg) {
+  document.getElementById('sync-dot').className = 'sync-dot ' + state;
+  document.getElementById('sync-status').textContent = msg;
+}
+
+// ─── TABS ─────────────────────────────────────────────────────────────────────
+function showTab(id, btn) {
+  document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + id).classList.add('active');
+  if (btn) btn.classList.add('active');
+  if (id === 'dashboard') renderDashboard();
+  if (id === 'prices') { renderPriceChart(); renderPriceLog(); }
+  if (id === 'analyze') renderAnalysisDropdown();
+}
+
+// ─── EVENTS ──────────────────────────────────────────────────────────────────
+function addEvent() {
+  const artist = document.getElementById('e-artist').value.trim();
+  const face = parseFloat(document.getElementById('e-face').value);
+  if (!artist || !face) { alert('Artist and face value are required.'); return; }
+  events.push({
+    id: Date.now(),
+    artist,
+    venue: document.getElementById('e-venue').value.trim(),
+    city: document.getElementById('e-city').value.trim(),
+    date: document.getElementById('e-date').value,
+    face,
+    listeners: parseInt(document.getElementById('e-listeners').value) || 0,
+    genre: document.getElementById('e-genre').value,
+    cap: document.getElementById('e-cap').value,
+    avail: document.getElementById('e-avail').value,
+    url: document.getElementById('e-url').value.trim(),
+    notes: document.getElementById('e-notes').value.trim(),
+  });
+  ['e-artist','e-venue','e-city','e-date','e-face','e-listeners','e-notes','e-url'].forEach(id => document.getElementById(id).value = '');
+  refreshAll();
+}
+
+function deleteEvent(id) {
+  if (!confirm('Delete this event and all its price data?')) return;
+  events = events.filter(e => e.id !== id);
+  prices = prices.filter(p => p.eventId !== id);
+  refreshAll();
+}
+
+function renderEventList() {
+  const el = document.getElementById('event-list');
+  if (!events.length) { el.innerHTML = '<div class="empty-state"><div class="icon">🎵</div><p>No events yet.</p></div>'; return; }
+  el.innerHTML = events.map(ev => {
+    const score = getScore(ev), badge = scoreBadge(score), mult = getMultiplier(ev);
+    return `<div class="event-row" onclick="showTab('analyze',null);document.getElementById('a-event').value='${ev.id}';runAnalysis();">
+      <div>
+        <div class="event-artist">${ev.artist}</div>
+        <div class="event-venue">${[ev.venue,ev.city,ev.date].filter(Boolean).join(' · ')}</div>
+        ${ev.notes?`<div style="font-size:11px;color:var(--muted);margin-top:2px;">${ev.notes}</div>`:''}
+      </div>
+      <div style="display:flex;align-items:center;gap:10px;">
+        ${mult?`<span class="mono text-green" style="font-size:13px;">${mult.toFixed(2)}x</span>`:''}
+        <span class="score-badge ${badge.cls}">${badge.label}</span>
+        <button class="btn btn-danger" onclick="event.stopPropagation();deleteEvent(${ev.id})">✕</button>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+// ─── PRICES ──────────────────────────────────────────────────────────────────
+function logPrice() {
+  const eventId = parseInt(document.getElementById('p-event').value);
+  const price = parseFloat(document.getElementById('p-price').value);
+  const date = document.getElementById('p-date').value;
+  if (!eventId || !price || !date) { alert('Event, ask price, and date are required.'); return; }
+  prices.push({
+    id: Date.now(), eventId, price, date,
+    highestBid: parseFloat(document.getElementById('p-bid').value) || null,
+    section: document.getElementById('p-section').value,
+  });
+  ['p-price','p-bid'].forEach(id => document.getElementById(id).value = '');
+  renderPriceChart(); renderPriceLog(); renderDashboard();
+}
+
+function deletePrice(id) {
+  prices = prices.filter(p => p.id !== id);
+  renderPriceChart(); renderPriceLog(); renderDashboard();
+}
+
+function getPricesForEvent(eventId) {
+  return prices.filter(p => p.eventId == eventId).sort((a,b) => a.date.localeCompare(b.date));
+}
+
+function getMultiplier(ev) {
+  const pts = getPricesForEvent(ev.id);
+  if (!pts.length) return null;
+  const avg = pts.reduce((s,p) => s+p.price,0) / pts.length;
+  return avg / ev.face;
+}
+
+function renderPriceLog() {
+  const filterId = parseInt(document.getElementById('ph-filter').value) || null;
+  const el = document.getElementById('price-log-list');
+  let list = filterId ? prices.filter(p => p.eventId == filterId) : prices;
+  list = [...list].sort((a,b) => b.date.localeCompare(a.date));
+  if (!list.length) { el.innerHTML = '<div class="empty-state"><p>No prices logged yet.</p></div>'; return; }
+  el.innerHTML = list.map(p => {
+    const ev = events.find(e => e.id == p.eventId);
+    const mult = ev ? (p.price/ev.face).toFixed(2) : '?';
+    const multColor = parseFloat(mult)>=1.5?'var(--green)':parseFloat(mult)>=1.1?'var(--amber)':'var(--red)';
+    return `<div class="price-point">
+      <div class="price-dot" style="background:${multColor}"></div>
+      <div style="flex:1">
+        <span class="bold">${ev?ev.artist:'Unknown'}</span>
+        <span class="text-muted" style="font-size:11px;margin-left:6px;">${p.section||'GA'} · ${p.date}</span>
+      </div>
+      <span class="mono bold" style="color:${multColor}">$${p.price}</span>
+      ${p.highestBid?`<span class="mono text-muted" style="font-size:11px;margin-left:4px;">bid $${p.highestBid}</span>`:''}
+      <span class="mono text-muted" style="font-size:11px;margin-left:6px;">${mult}x</span>
+      <button class="btn btn-danger" onclick="deletePrice(${p.id})" style="margin-left:8px;">✕</button>
+    </div>`;
+  }).join('');
+}
+
+function renderPriceChart() {
+  const filterId = parseInt(document.getElementById('ph-filter').value) || null;
+  const canvas = document.getElementById('price-chart');
+  const relevant = filterId ? prices.filter(p => p.eventId == filterId) : prices;
+  const sorted = [...relevant].sort((a,b) => a.date.localeCompare(b.date));
+  const grouped = {};
+  sorted.forEach(p => {
+    const ev = events.find(e => e.id == p.eventId);
+    const key = ev ? ev.artist : 'Unknown';
+    if (!grouped[key]) grouped[key] = [];
+    grouped[key].push({x: p.date, y: p.price});
+  });
+  const colors = ['#7b5cf0','#22d3a0','#fbbf24','#f87171','#a78bfa','#34d399'];
+  const datasets = Object.entries(grouped).map(([k,v],i) => ({
+    label: k, data: v,
+    borderColor: colors[i%colors.length],
+    backgroundColor: colors[i%colors.length]+'22',
+    tension: 0.3, pointRadius: 4, fill: false, borderWidth: 2,
+  }));
+  if (priceChart) priceChart.destroy();
+  if (!datasets.length) return;
+  priceChart = new Chart(canvas, {
+    type: 'line', data: {datasets},
+    options: {
+      responsive:true, maintainAspectRatio:false,
+      plugins:{legend:{display:datasets.length>1,labels:{color:'#6b6880',font:{size:11},boxWidth:10}}},
+      scales:{
+        x:{type:'category',ticks:{color:'#6b6880',font:{size:10}},grid:{color:'rgba(255,255,255,0.04)'}},
+        y:{ticks:{color:'#6b6880',callback:v=>'$'+v,font:{size:10}},grid:{color:'rgba(255,255,255,0.06)'}}
+      }
+    }
+  });
+}
+
+// ─── SCORE ALGORITHM ─────────────────────────────────────────────────────────
+function getScore(ev) {
+  let score = 0;
+  const pts = getPricesForEvent(ev.id);
+  if (pts.length) {
+    const avg = pts.reduce((s,p)=>s+p.price,0)/pts.length;
+    score += Math.min(40, Math.max(0, (avg/ev.face - 1) * 25));
+  }
+  if (ev.listeners > 0) score += Math.max(0, Math.min(20, (Math.log10(ev.listeners)-3)/(Math.log10(2000000)-3)*20));
+  score += {small:15,medium:10,large:5,festival:2}[ev.cap] || 7;
+  score += {soldout:15,low:12,medium:6,high:1}[ev.avail] || 7;
+  if (ev.date) {
+    const days = Math.ceil((new Date(ev.date)-new Date())/86400000);
+    if (days>0&&days<60) score+=10; else if (days<120) score+=6; else score+=3;
+  }
+  return Math.round(Math.min(100, score));
+}
+
+function scoreBadge(score) {
+  if (score>=65) return {cls:'score-hot',label:`🔥 ${score}`};
+  if (score>=40) return {cls:'score-ok',label:`⚡ ${score}`};
+  return {cls:'score-cold',label:`❄️ ${score}`};
+}
+
+// ─── ANALYSIS ────────────────────────────────────────────────────────────────
+function renderAnalysisDropdown() {
+  const sel = document.getElementById('a-event');
+  const cur = sel.value;
+  sel.innerHTML = '<option value="">— Select event —</option>' + events.map(e=>`<option value="${e.id}">${e.artist}${e.date?' ('+e.date+')':''}</option>`).join('');
+  if (cur) { sel.value = cur; runAnalysis(); }
+}
+
+function runAnalysis() {
+  const eventId = document.getElementById('a-event').value;
+  const el = document.getElementById('analysis-output');
+  if (!eventId) { el.innerHTML = '<div class="empty-state"><div class="icon">🔮</div><p>Select an event to analyze</p></div>'; return; }
+  const ev = events.find(e => e.id == eventId);
+  if (!ev) return;
+  const pts = getPricesForEvent(eventId);
+  const score = getScore(ev), badge = scoreBadge(score);
+  const mult = getMultiplier(ev);
+  const avgResell = pts.length ? pts.reduce((s,p)=>s+p.price,0)/pts.length : null;
+  const maxResell = pts.length ? Math.max(...pts.map(p=>p.price)) : null;
+  const minResell = pts.length ? Math.min(...pts.map(p=>p.price)) : null;
+  const estProfit = avgResell ? avgResell - ev.face : null;
+  const avgBid = pts.filter(p=>p.highestBid).length ? pts.filter(p=>p.highestBid).reduce((s,p)=>s+p.highestBid,0)/pts.filter(p=>p.highestBid).length : null;
+  let trendTxt = '—';
+  if (pts.length>=3) {
+    const recentAvg = pts.slice(-3).reduce((a,b)=>a+b.price,0)/3;
+    const olderAvg = pts.slice(0,3).reduce((a,b)=>a+b.price,0)/3;
+    trendTxt = recentAvg>olderAvg*1.05?'📈 Rising':recentAvg<olderAvg*0.95?'📉 Falling':'➡️ Flat';
+  } else if (pts.length) trendTxt = 'Not enough data';
+  let rec='',recClass='';
+  if (score>=70){rec='Strong buy signal. High demand, limited supply.';recClass='text-green';}
+  else if (score>=55){rec='Moderate opportunity. Monitor prices closely.';recClass='text-amber';}
+  else if (score>=40){rec='Marginal. Proceed with caution.';recClass='text-amber';}
+  else{rec='Low priority. Better opportunities likely exist.';recClass='text-red';}
+  const listenerScore = ev.listeners>0?Math.min(100,Math.round((Math.log10(ev.listeners)-3)/(Math.log10(2000000)-3)*100)):null;
+  const multScore = mult?Math.min(100,Math.round((mult-1)*60)):null;
+  const capScore = {small:100,medium:65,large:35,festival:10}[ev.cap]||null;
+  const availScore = {soldout:100,low:80,medium:40,high:10}[ev.avail]||null;
+  el.innerHTML = `
+    <div style="display:grid;grid-template-columns:180px 1fr;gap:14px;margin-bottom:14px;">
+      <div class="card" style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;">
+        <div class="card-title" style="margin-bottom:0;">Profit Score</div>
+        ${renderScoreRing(score)}
+        <span class="score-badge ${badge.cls}" style="font-size:15px;">${badge.label}</span>
+      </div>
+      <div>
+        <div class="card" style="margin-bottom:14px;">
+          <div class="card-title">Event Details</div>
+          <div class="form-grid-3" style="font-size:13px;margin-bottom:0;">
+            <div><div class="text-muted" style="font-size:11px;margin-bottom:3px;">Artist</div><div class="bold">${ev.artist}</div></div>
+            <div><div class="text-muted" style="font-size:11px;margin-bottom:3px;">Venue</div><div>${ev.venue||'—'}</div></div>
+            <div><div class="text-muted" style="font-size:11px;margin-bottom:3px;">Date</div><div>${ev.date||'—'}</div></div>
+            <div><div class="text-muted" style="font-size:11px;margin-bottom:3px;">Face Value</div><div class="mono text-amber">$${ev.face}</div></div>
+            <div><div class="text-muted" style="font-size:11px;margin-bottom:3px;">US Listeners</div><div class="mono">${ev.listeners?ev.listeners.toLocaleString():'—'}</div></div>
+            <div><div class="text-muted" style="font-size:11px;margin-bottom:3px;">Genre</div><div>${ev.genre||'—'}</div></div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-title">Resell Performance</div>
+          <div class="form-grid-4" style="font-size:13px;margin-bottom:0;">
+            <div><div class="text-muted" style="font-size:11px;margin-bottom:3px;">Avg Ask</div><div class="mono bold text-green">${avgResell?'$'+avgResell.toFixed(0):'No data'}</div></div>
+            <div><div class="text-muted" style="font-size:11px;margin-bottom:3px;">Avg Bid</div><div class="mono bold text-amber">${avgBid?'$'+avgBid.toFixed(0):'—'}</div></div>
+            <div><div class="text-muted" style="font-size:11px;margin-bottom:3px;">Multiplier</div><div class="mono bold ${mult&&mult>=1.5?'text-green':mult&&mult>=1.1?'text-amber':'text-red'}">${mult?mult.toFixed(2)+'x':'—'}</div></div>
+            <div><div class="text-muted" style="font-size:11px;margin-bottom:3px;">Est. Profit</div><div class="mono bold ${estProfit&&estProfit>0?'text-green':'text-red'}">${estProfit?(estProfit>0?'+':'')+' $'+estProfit.toFixed(0):'—'}</div></div>
+          </div>
+          ${pts.length?`<div style="margin-top:10px;font-size:11px;color:var(--muted);">Range: $${minResell}–$${maxResell} · ${pts.length} snapshot${pts.length>1?'s':''} · Trend: ${trendTxt}</div>`:''}
+        </div>
+      </div>
+    </div>
+    <div class="two-col mb-14">
+      <div class="card">
+        <div class="card-title">Signal Breakdown</div>
+        ${renderSignal('Resell Multiplier',multScore,mult?mult.toFixed(2)+'x':'No data')}
+        ${renderSignal('US Monthly Listeners',listenerScore,ev.listeners?ev.listeners.toLocaleString():'Not set')}
+        ${renderSignal('Venue Scarcity',capScore,ev.cap||'Not set')}
+        ${renderSignal('Ticket Availability',availScore,ev.avail||'Not set')}
+      </div>
+      <div class="card">
+        <div class="card-title">Price Chart</div>
+        <div class="chart-wrap" style="height:160px;"><canvas id="analysis-chart-${eventId}"></canvas></div>
+      </div>
+    </div>
+    <div class="card" style="border-left:3px solid ${score>=65?'var(--green)':score>=40?'var(--amber)':'var(--red)'};">
+      <div class="card-title">Algorithm Recommendation</div>
+      <div class="bold ${recClass}" style="font-size:15px;margin-bottom:6px;">${score>=65?'BUY':score>=55?'WATCH':score>=40?'CAUTION':'SKIP'}</div>
+      <div style="font-size:13px;">${rec}</div>
+      ${ev.url?`<div style="margin-top:8px;"><a href="${ev.url}" target="_blank" style="color:var(--accent2);font-size:12px;">View on Crowdvolt →</a></div>`:''}
+    </div>`;
+  if (pts.length) {
+    setTimeout(() => {
+      const c = document.getElementById('analysis-chart-'+eventId);
+      if (!c) return;
+      new Chart(c, {
+        type:'line',
+        data:{
+          labels:pts.map(p=>p.date),
+          datasets:[
+            {data:pts.map(p=>p.price),borderColor:'#7b5cf0',backgroundColor:'rgba(123,92,240,0.12)',fill:true,tension:0.3,pointRadius:4,borderWidth:2,label:'Ask'},
+            ...(pts.some(p=>p.highestBid)?[{data:pts.map(p=>p.highestBid||null),borderColor:'#fbbf24',backgroundColor:'transparent',tension:0.3,pointRadius:3,borderWidth:1.5,borderDash:[4,3],label:'Bid'}]:[]),
+            {data:pts.map(()=>ev.face),borderColor:'#ffffff22',borderDash:[5,4],pointRadius:0,borderWidth:1.5,label:'Face'},
+          ]
+        },
+        options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},
+          scales:{x:{ticks:{color:'#6b6880',font:{size:10}},grid:{color:'rgba(255,255,255,0.04)'}},
+            y:{ticks:{color:'#6b6880',callback:v=>'$'+v,font:{size:10}},grid:{color:'rgba(255,255,255,0.06)'}}}}
+      });
+    },50);
+  }
+}
+
+function renderSignal(label, score, val) {
+  if (score===null) return `<div class="signal-row"><div style="flex:1;"><div class="flex justify-between items-center mb-4"><span class="signal-label">${label}</span><span class="signal-val text-muted">—</span></div><div class="signal-bar"><div class="signal-fill" style="width:0%;background:var(--muted);"></div></div></div></div>`;
+  const color = score>=70?'var(--green)':score>=40?'var(--amber)':'var(--red)';
+  return `<div class="signal-row"><div style="flex:1;"><div class="flex justify-between items-center" style="margin-bottom:4px;"><span class="signal-label">${label}</span><span class="signal-val" style="color:${color};font-size:12px;">${val}</span></div><div class="signal-bar"><div class="signal-fill" style="width:${Math.max(3,score)}%;background:${color};"></div></div></div></div>`;
+}
+
+function renderScoreRing(score) {
+  const r=44,cx=60,cy=60,circ=2*Math.PI*r;
+  const color=score>=65?'#22d3a0':score>=40?'#fbbf24':'#f87171';
+  return `<svg width="120" height="120" viewBox="0 0 120 120">
+    <circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="8"/>
+    <circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="${color}" stroke-width="8"
+      stroke-dasharray="${(circ*score/100).toFixed(1)} ${circ.toFixed(1)}"
+      stroke-linecap="round" transform="rotate(-90 ${cx} ${cy})"/>
+    <text x="${cx}" y="${cy+2}" text-anchor="middle" dominant-baseline="middle" fill="${color}" font-size="22" font-weight="700" font-family="Space Mono">${score}</text>
+    <text x="${cx}" y="${cy+22}" text-anchor="middle" dominant-baseline="middle" fill="#6b6880" font-size="10" font-family="DM Sans">/100</text>
+  </svg>`;
+}
+
+// ─── DASHBOARD ───────────────────────────────────────────────────────────────
+function renderDashboard() {
+  document.getElementById('m-events').textContent = events.length;
+  const evWP = events.filter(e=>getPricesForEvent(e.id).length>0);
+  if (evWP.length) {
+    const avg = evWP.reduce((s,e)=>s+getMultiplier(e),0)/evWP.length;
+    document.getElementById('m-mult').textContent = avg.toFixed(2)+'x';
+    const hot = evWP.reduce((b,e)=>getMultiplier(e)>getMultiplier(b)?e:b);
+    document.getElementById('m-hot').textContent = hot.artist;
+  }
+  const scores = events.map(e=>getScore(e));
+  if (scores.length) {
+    const avg = scores.reduce((a,b)=>a+b,0)/scores.length;
+    const el = document.getElementById('m-score');
+    el.textContent = Math.round(avg);
+    el.className = 'metric-val '+(avg>=65?'green':avg>=40?'amber':'red');
+  }
+  const topEl = document.getElementById('dash-top-events');
+  if (!events.length) { topEl.innerHTML = '<div class="empty-state"><div class="icon">🎪</div><p>No events yet</p></div>'; }
+  else {
+    const sorted = [...events].sort((a,b)=>getScore(b)-getScore(a)).slice(0,5);
+    topEl.innerHTML = sorted.map(ev => {
+      const score=getScore(ev),badge=scoreBadge(score),mult=getMultiplier(ev);
+      return `<div class="flex justify-between items-center" style="padding:8px 0;border-bottom:1px solid var(--border2);">
+        <div><div class="bold" style="font-size:13px;">${ev.artist}</div><div class="text-muted" style="font-size:11px;">${ev.date||''} ${ev.venue||''}</div></div>
+        <div class="flex items-center gap-10">
+          ${mult?`<span class="mono text-green" style="font-size:12px;">${mult.toFixed(2)}x</span>`:''}
+          <span class="score-badge ${badge.cls}" style="font-size:11px;">${badge.label}</span>
+        </div>
+      </div>`;
+    }).join('');
+  }
+  const actEl = document.getElementById('dash-price-activity');
+  const recent = [...prices].sort((a,b)=>b.date.localeCompare(a.date)).slice(0,6);
+  if (!recent.length) { actEl.innerHTML = '<div class="empty-state"><div class="icon">📈</div><p>No prices yet</p></div>'; }
+  else {
+    actEl.innerHTML = recent.map(p => {
+      const ev=events.find(e=>e.id==p.eventId);
+      const mult=ev?(p.price/ev.face):1;
+      const color=mult>=1.5?'var(--green)':mult>=1.1?'var(--amber)':'var(--red)';
+      return `<div class="flex justify-between items-center" style="padding:7px 0;border-bottom:1px solid var(--border2);">
+        <div><span class="bold" style="font-size:13px;">${ev?ev.artist:'Unknown'}</span><span class="text-muted" style="font-size:11px;margin-left:6px;">${p.date}</span></div>
+        <div class="flex items-center gap-10">
+          <span class="mono bold" style="color:${color};font-size:13px;">$${p.price}</span>
+          <span class="mono text-muted" style="font-size:11px;">${mult.toFixed(2)}x</span>
+        </div>
+      </div>`;
+    }).join('');
+  }
+  renderScatterChart();
+}
+
+function renderScatterChart() {
+  const canvas = document.getElementById('scatter-chart');
+  const data = events.filter(e=>e.listeners>0&&getPricesForEvent(e.id).length>0).map(e=>({
+    x:e.listeners, y:getMultiplier(e),
+    r:Math.max(5,Math.min(20,e.face/8)), label:e.artist,
+  }));
+  if (scatterChart) scatterChart.destroy();
+  if (!data.length) return;
+  scatterChart = new Chart(canvas, {
+    type:'bubble', data:{datasets:[{data, backgroundColor:data.map(d=>d.y>=1.5?'rgba(34,211,160,0.6)':d.y>=1.1?'rgba(251,191,36,0.6)':'rgba(248,113,113,0.6)'), borderColor:'transparent'}]},
+    options:{responsive:true,maintainAspectRatio:false,
+      plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>{const d=ctx.raw;return `${d.label}: ${d.x.toLocaleString()} listeners · ${d.y.toFixed(2)}x`;}}}},
+      scales:{
+        x:{ticks:{color:'#6b6880',callback:v=>v>=1000000?(v/1000000).toFixed(1)+'M':v>=1000?(v/1000)+'K':v,font:{size:10}},grid:{color:'rgba(255,255,255,0.04)'},title:{display:true,text:'US Monthly Listeners',color:'#6b6880',font:{size:11}}},
+        y:{ticks:{color:'#6b6880',callback:v=>v.toFixed(2)+'x',font:{size:10}},grid:{color:'rgba(255,255,255,0.06)'},title:{display:true,text:'Resell Multiple',color:'#6b6880',font:{size:11}}}
+      }
+    }
+  });
+}
+
+function refreshDropdowns() {
+  const opts = '<option value="">— Select event —</option>'+events.map(e=>`<option value="${e.id}">${e.artist}${e.date?' ('+e.date+')':''}</option>`).join('');
+  document.getElementById('p-event').innerHTML = opts;
+  const fOpts = '<option value="">All events</option>'+events.map(e=>`<option value="${e.id}">${e.artist}</option>`).join('');
+  document.getElementById('ph-filter').innerHTML = fOpts;
+}
+
+function refreshAll() {
+  refreshDropdowns();
+  renderEventList();
+  renderDashboard();
+  renderPriceLog();
+  renderPriceChart();
+}
+
+// ─── INIT ─────────────────────────────────────────────────────────────────────
+document.getElementById('p-date').value = new Date().toISOString().split('T')[0];
+autoSync();
+// Re-sync every 5 minutes
+setInterval(autoSync, 5 * 60 * 1000);
+</script>
+</body>
+</html>
