@@ -724,81 +724,83 @@ function exportEventsJSON() {
   URL.revokeObjectURL(a.href);
 }
 
-// ─── AI SUMMARY ──────────────────────────────────────────────────────────────
-const AI_CACHE_KEY = 'ai_summary_cache';
-
+// ─── MARKET SUMMARY ──────────────────────────────────────────────────────────
 async function generateAISummary(forceRefresh = false) {
   const el = document.getElementById('ai-summary');
   const tsEl = document.getElementById('ai-timestamp');
 
-  // Check cache — only regenerate once per day
-  if (!forceRefresh) {
-    const cached = JSON.parse(localStorage.getItem(AI_CACHE_KEY) || 'null');
-    if (cached && cached.date === new Date().toISOString().split('T')[0] && cached.text) {
-      el.textContent = cached.text;
-      tsEl.textContent = 'Updated ' + cached.time;
-      return;
-    }
-  }
-
   if (!events.length || !prices.length) {
-    el.textContent = 'Add events and price data to generate a market summary.';
+    el.textContent = 'Add events and price data to see your market summary.';
     return;
   }
 
-  el.innerHTML = '<span style="color:var(--muted);">Analyzing market data...</span>';
+  const lines = [];
 
-  // Build a data snapshot for Claude
-  const snapshot = events.map(ev => {
-    const pts = getPricesForEvent(ev.id).slice(-7); // last 7 days
+  // Build signal for each event with price data
+  const signals = events.map(ev => {
+    const pts = getPricesForEvent(ev.id).sort((a,b) => a.date.localeCompare(b.date));
+    if (!pts.length) return null;
     const latest = pts[pts.length - 1];
-    const prev = pts[pts.length - 2];
-    const mult = latest ? (latest.price / ev.face).toFixed(2) : null;
-    const change = latest && prev ? (latest.price - prev.price).toFixed(0) : null;
-    return {
-      artist: ev.artist,
-      face: ev.face,
-      date: ev.date,
-      latestAsk: latest?.price,
-      latestBid: latest?.highestBid,
-      priceChange: change ? (change > 0 ? '+$'+change : '$'+change) : null,
-      multiplier: mult,
-      score: getScore(ev),
-      daysUntil: ev.date ? Math.ceil((new Date(ev.date) - new Date()) / 86400000) : null,
-      snapshots: pts.length,
-    };
-  }).filter(e => e.latestAsk);
+    const prev = pts.length >= 2 ? pts[pts.length - 2] : null;
+    const weekAgo = pts.length >= 7 ? pts[pts.length - 7] : pts[0];
+    const mult = latest.price / ev.face;
+    const dayChange = prev ? latest.price - prev.price : 0;
+    const weekChange = latest.price - weekAgo.price;
+    const daysUntil = ev.date ? Math.ceil((new Date(ev.date) - new Date()) / 86400000) : null;
+    const score = getScore(ev);
+    return { ev, latest, mult, dayChange, weekChange, daysUntil, score, pts };
+  }).filter(Boolean).sort((a,b) => b.score - a.score);
 
-  const prompt = `You are a rave ticket reselling analyst. Here is today's market snapshot for a reseller tracking NYC events on Crowdvolt:
-
-${JSON.stringify(snapshot, null, 2)}
-
-Write a 3-4 sentence market summary covering: which events are showing the strongest price momentum, any notable price changes since yesterday, and 1-2 specific buy/watch/skip recommendations. Be direct and actionable. Use dollar amounts and multiples. No preamble, just the summary.`;
-
-  try {
-    const response = await fetch('https://api.anthropic.com/v1/messages', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        model: 'claude-sonnet-4-20250514',
-        max_tokens: 1000,
-        messages: [{ role: 'user', content: prompt }]
-      })
-    });
-    const data = await response.json();
-    const text = data.content?.[0]?.text || 'Unable to generate summary.';
-    el.textContent = text;
-    const now = new Date();
-    const timeStr = now.toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'});
-    tsEl.textContent = 'Updated ' + timeStr;
-    localStorage.setItem(AI_CACHE_KEY, JSON.stringify({
-      date: now.toISOString().split('T')[0],
-      time: timeStr,
-      text,
-    }));
-  } catch(e) {
-    el.textContent = 'Could not load summary — check your connection.';
+  if (!signals.length) {
+    el.textContent = 'Not enough price data yet — check back after a few days of scraping.';
+    return;
   }
+
+  // ── Top movers today ──
+  const moversUp = signals.filter(s => s.dayChange > 0).sort((a,b) => b.dayChange - a.dayChange);
+  const moversDown = signals.filter(s => s.dayChange < 0).sort((a,b) => a.dayChange - b.dayChange);
+
+  if (moversUp.length) {
+    const top = moversUp[0];
+    const others = moversUp.slice(1,3).map(s => s.ev.artist).join(', ');
+    lines.push(`📈 <strong>Rising today:</strong> ${top.ev.artist} +$${top.dayChange.toFixed(0)} → $${top.latest.price} (${top.mult.toFixed(2)}x)${others ? ` · also up: ${others}` : ''}`);
+  } else {
+    lines.push(`📊 <strong>No price increases today</strong> across tracked events`);
+  }
+
+  if (moversDown.length) {
+    const top = moversDown[0];
+    lines.push(`📉 <strong>Dropping:</strong> ${top.ev.artist} ${top.dayChange.toFixed(0)} → $${top.latest.price} (${top.mult.toFixed(2)}x)`);
+  }
+
+  // ── Urgent events (within 5 days) ──
+  const urgent = signals.filter(s => s.daysUntil !== null && s.daysUntil >= 0 && s.daysUntil <= 5);
+  if (urgent.length) {
+    urgent.forEach(s => {
+      const tag = s.daysUntil === 0 ? 'TODAY' : s.daysUntil === 1 ? 'TOMORROW' : `${s.daysUntil}d away`;
+      const action = s.mult >= 1.5 ? '🔥 SELL NOW' : s.mult >= 1.2 ? '⚡ WATCH' : '❄️ HOLD';
+      lines.push(`⏰ <strong>${s.ev.artist}</strong> is ${tag} — ask $${s.latest.price} (${s.mult.toFixed(2)}x) ${action}`);
+    });
+  }
+
+  // ── Best opportunity right now ──
+  const best = signals.filter(s => s.daysUntil === null || s.daysUntil > 5)[0];
+  if (best && best.mult >= 1.3) {
+    const weekTrend = best.weekChange > 0 ? `+$${best.weekChange.toFixed(0)} this week` : best.weekChange < 0 ? `$${best.weekChange.toFixed(0)} this week` : 'flat this week';
+    lines.push(`🎯 <strong>Best setup:</strong> ${best.ev.artist} at $${best.latest.price} (${best.mult.toFixed(2)}x face) — ${weekTrend}${best.daysUntil ? `, ${best.daysUntil}d out` : ''}`);
+  }
+
+  // ── Weak events to avoid ──
+  const weak = signals.filter(s => s.mult < 1.0 && (s.daysUntil === null || s.daysUntil > 3));
+  if (weak.length) {
+    lines.push(`⚠️ <strong>Below face value:</strong> ${weak.map(s => `${s.ev.artist} ($${s.latest.price} vs $${s.ev.face} face)`).join(', ')}`);
+  }
+
+  el.innerHTML = lines.map(l => `<div style="padding:4px 0;border-bottom:1px solid var(--border2);">${l}</div>`).join('');
+  el.lastElementChild.style.borderBottom = 'none';
+
+  const timeStr = new Date().toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'});
+  tsEl.textContent = 'Updated ' + timeStr;
 }
 
 function refreshDropdowns() {
