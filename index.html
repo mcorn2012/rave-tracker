@@ -372,10 +372,11 @@ function renderEventList() {
   if (!events.length) { el.innerHTML = '<div class="empty-state"><div class="icon">🎵</div><p>No events yet.</p></div>'; return; }
   el.innerHTML = events.map(ev => {
     const score = getScore(ev), badge = scoreBadge(score), mult = getMultiplier(ev);
+    const displayDate = ev.event_datetime_scraped || ev.date || '';
     return `<div class="event-row" onclick="showTab('analyze',null);document.getElementById('a-event').value='${ev.id}';runAnalysis();">
       <div>
         <div class="event-artist">${ev.artist}</div>
-        <div class="event-venue">${[ev.venue,ev.city,ev.date].filter(Boolean).join(' · ')}</div>
+        <div class="event-venue">${[displayDate, ev.venue, ev.city].filter(Boolean).join(' · ')}</div>
         ${ev.notes?`<div style="font-size:11px;color:var(--muted);margin-top:2px;">${ev.notes}</div>`:''}
       </div>
       <div style="display:flex;align-items:center;gap:10px;">
@@ -549,8 +550,8 @@ function runAnalysis() {
           <div class="card-title">Event Details</div>
           <div class="form-grid-3" style="font-size:13px;margin-bottom:0;">
             <div><div class="text-muted" style="font-size:11px;margin-bottom:3px;">Artist</div><div class="bold">${ev.artist}</div></div>
+            <div><div class="text-muted" style="font-size:11px;margin-bottom:3px;">Date & Time</div><div>${ev.event_datetime_scraped || ev.date || '—'}</div></div>
             <div><div class="text-muted" style="font-size:11px;margin-bottom:3px;">Venue</div><div>${ev.venue||'—'}</div></div>
-            <div><div class="text-muted" style="font-size:11px;margin-bottom:3px;">Date</div><div>${ev.date||'—'}</div></div>
             <div><div class="text-muted" style="font-size:11px;margin-bottom:3px;">Face Value</div><div class="mono text-amber">$${ev.face}</div></div>
             <div><div class="text-muted" style="font-size:11px;margin-bottom:3px;">US Listeners</div><div class="mono">${ev.listeners?ev.listeners.toLocaleString():'—'}</div></div>
             <div><div class="text-muted" style="font-size:11px;margin-bottom:3px;">Genre</div><div>${ev.genre||'—'}</div></div>
