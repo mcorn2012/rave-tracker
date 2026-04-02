@@ -1,5 +1,5 @@
 {
-  "exported_at": "2026-03-31T13:06:57.141866+00:00",
+  "exported_at": "2026-04-02T21:47:45.800249+00:00",
   "events": [
     {
       "id": 20,
@@ -13,7 +13,8 @@
       "cap": "large",
       "avail": "",
       "notes": "",
-      "url": "https://www.crowdvolt.com/event/solomun-may-23rd-may-fulton-fish-market-new-york"
+      "url": "https://www.crowdvolt.com/event/solomun-may-23rd-may-fulton-fish-market-new-york",
+      "event_datetime_scraped": "Sat, May 23 \u2022 3PM \u2022 Fulton Fish Market"
     },
     {
       "id": 23,
@@ -27,7 +28,8 @@
       "cap": "large",
       "avail": "",
       "notes": "",
-      "url": "https://www.crowdvolt.com/event/armin-van-buuren-industry-city-open-air-new-york-may-16-2026"
+      "url": "https://www.crowdvolt.com/event/armin-van-buuren-industry-city-open-air-new-york-may-16-2026",
+      "event_datetime_scraped": "Sat, May 16 \u2022 10PM \u2022 Industry City"
     },
     {
       "id": 26,
@@ -41,7 +43,8 @@
       "cap": "medium",
       "avail": "",
       "notes": "",
-      "url": "https://www.crowdvolt.com/event/agape-presents-rebekah-99-scott-new-york"
+      "url": "https://www.crowdvolt.com/event/agape-presents-rebekah-99-scott-new-york",
+      "event_datetime_scraped": "Fri, April 17 \u2022 10PM \u2022 99 Scott"
     },
     {
       "id": 27,
@@ -55,7 +58,8 @@
       "cap": "medium",
       "avail": "",
       "notes": "",
-      "url": "https://www.crowdvolt.com/event/cid-99-scott-new-york-april-25"
+      "url": "https://www.crowdvolt.com/event/cid-99-scott-new-york-april-25",
+      "event_datetime_scraped": "Sat, April 25 \u2022 10PM \u2022 99 Scott"
     },
     {
       "id": 28,
@@ -69,7 +73,8 @@
       "cap": "medium",
       "avail": "",
       "notes": "",
-      "url": "https://www.crowdvolt.com/event/stranger-than-x-zero-present-adam-ten-industry-city-fri-mar-27-new-york"
+      "url": "https://www.crowdvolt.com/event/stranger-than-x-zero-present-adam-ten-industry-city-fri-mar-27-new-york",
+      "event_datetime_scraped": "Fri, March 27 \u2022 10PM \u2022 Industry City"
     },
     {
       "id": 2,
@@ -83,7 +88,8 @@
       "cap": "large",
       "avail": "low",
       "notes": "NYC sellout expected",
-      "url": "https://www.crowdvolt.com/event/sidepiece-presents-horny-house-brooklyn-storehouse"
+      "url": "https://www.crowdvolt.com/event/sidepiece-presents-horny-house-brooklyn-storehouse",
+      "event_datetime_scraped": "Fri, April 3 \u2022 10PM \u2022 Brooklyn Storehouse"
     },
     {
       "id": 3,
@@ -97,7 +103,8 @@
       "cap": "medium",
       "avail": "low",
       "notes": "",
-      "url": "https://www.crowdvolt.com/event/rebuke-99-scott-main-room-sat-apr-4-new-york"
+      "url": "https://www.crowdvolt.com/event/rebuke-99-scott-main-room-sat-apr-4-new-york",
+      "event_datetime_scraped": "Sat, April 4 \u2022 10PM \u2022 99 Scott"
     },
     {
       "id": 22,
@@ -111,7 +118,8 @@
       "cap": "large",
       "avail": "",
       "notes": "",
-      "url": "https://www.crowdvolt.com/event/camelphat-brooklyn-storehouse-new-york-new-york-april-10-2026"
+      "url": "https://www.crowdvolt.com/event/camelphat-brooklyn-storehouse-new-york-new-york-april-10-2026",
+      "event_datetime_scraped": "Fri, April 10 \u2022 10PM \u2022 Brooklyn Storehouse"
     },
     {
       "id": 25,
@@ -125,7 +133,8 @@
       "cap": "medium",
       "avail": "",
       "notes": "",
-      "url": "https://www.crowdvolt.com/event/chasewest-new-york-elsewhere-april-11-brooklyn"
+      "url": "https://www.crowdvolt.com/event/chasewest-new-york-elsewhere-april-11-brooklyn",
+      "event_datetime_scraped": "Sat, April 11 \u2022 10PM \u2022 Elsewhere"
     },
     {
       "id": 1,
@@ -139,7 +148,8 @@
       "cap": "large",
       "avail": "low",
       "notes": "",
-      "url": "https://www.crowdvolt.com/event/teksupport-max-styler-brooklyn-storehouse-sat-may-9-new-york"
+      "url": "https://www.crowdvolt.com/event/teksupport-max-styler-brooklyn-storehouse-sat-may-9-new-york",
+      "event_datetime_scraped": "Sat, May 9 \u2022 10PM \u2022 Brooklyn Storehouse"
     },
     {
       "id": 29,
@@ -153,7 +163,8 @@
       "cap": "large",
       "avail": "",
       "notes": "",
-      "url": "https://www.crowdvolt.com/event/of-the-trees-capital-one-city-parks-foundation-summer-stage-sat-june-6-new-york"
+      "url": "https://www.crowdvolt.com/event/of-the-trees-capital-one-city-parks-foundation-summer-stage-sat-june-6-new-york",
+      "event_datetime_scraped": "Sat, June 6 \u2022 5PM \u2022 Summer Stage in Central Park"
     },
     {
       "id": 30,
@@ -167,7 +178,8 @@
       "cap": "festival",
       "avail": "",
       "notes": "",
-      "url": "https://www.crowdvolt.com/event/chris-lake-under-the-k-bridge-sat-jun-6-new-york"
+      "url": "https://www.crowdvolt.com/event/chris-lake-under-the-k-bridge-sat-jun-6-new-york",
+      "event_datetime_scraped": "Sat, June 6 \u2022 7PM \u2022 Under the K Bridge"
     },
     {
       "id": 19,
@@ -181,7 +193,8 @@
       "cap": "large",
       "avail": "",
       "notes": "",
-      "url": "https://www.crowdvolt.com/event/teksupport-beltran-all-night-long-jun-20-2026"
+      "url": "https://www.crowdvolt.com/event/teksupport-beltran-all-night-long-jun-20-2026",
+      "event_datetime_scraped": "Sat, June 20 \u2022 10PM \u2022 Brooklyn Storehouse"
     },
     {
       "id": 21,
@@ -195,7 +208,8 @@
       "cap": "large",
       "avail": "",
       "notes": "",
-      "url": "https://www.crowdvolt.com/event/chris-stussy-new-york-27th-jun-brooklyn-army-terminal-pier-4"
+      "url": "https://www.crowdvolt.com/event/chris-stussy-new-york-27th-jun-brooklyn-army-terminal-pier-4",
+      "event_datetime_scraped": "Sat, June 27 \u2022 4PM \u2022 Brooklyn Army Terminal"
     },
     {
       "id": 24,
@@ -209,7 +223,8 @@
       "cap": "large",
       "avail": "",
       "notes": "",
-      "url": "https://www.crowdvolt.com/event/riordan-jul-10-2026"
+      "url": "https://www.crowdvolt.com/event/riordan-jul-10-2026",
+      "event_datetime_scraped": "Fri, July 10 \u2022 10PM \u2022 Knockdown Center"
     }
   ],
   "prices": [
@@ -221,6 +236,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
+      "eventDatetime": null,
       "section": "GA",
       "qty": 1
     },
@@ -232,6 +248,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
+      "eventDatetime": null,
       "section": "GA",
       "qty": 1
     },
@@ -243,6 +260,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
+      "eventDatetime": null,
       "section": "GA",
       "qty": 1
     },
@@ -254,6 +272,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
+      "eventDatetime": null,
       "section": "GA",
       "qty": 1
     },
@@ -265,6 +284,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
+      "eventDatetime": "Sat, May 23 \u2022 3PM \u2022 Fulton Fish Market",
       "section": "GA",
       "qty": 1
     },
@@ -276,6 +296,19 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
+      "eventDatetime": null,
+      "section": "GA",
+      "qty": 1
+    },
+    {
+      "eventId": 20,
+      "date": "2026-04-02",
+      "price": 100.0,
+      "highestBid": 65.0,
+      "numAsks": null,
+      "numBids": null,
+      "lastSale": null,
+      "eventDatetime": "Sat, May 23 \u2022 3PM \u2022 Fulton Fish Market",
       "section": "GA",
       "qty": 1
     },
@@ -287,6 +320,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
+      "eventDatetime": null,
       "section": "GA",
       "qty": 1
     },
@@ -298,6 +332,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
+      "eventDatetime": null,
       "section": "GA",
       "qty": 1
     },
@@ -309,6 +344,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
+      "eventDatetime": null,
       "section": "GA",
       "qty": 1
     },
@@ -320,6 +356,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
+      "eventDatetime": null,
       "section": "GA",
       "qty": 1
     },
@@ -331,6 +368,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
+      "eventDatetime": "Sat, May 16 \u2022 10PM \u2022 Industry City",
       "section": "GA",
       "qty": 1
     },
@@ -342,6 +380,19 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
+      "eventDatetime": null,
+      "section": "GA",
+      "qty": 1
+    },
+    {
+      "eventId": 23,
+      "date": "2026-04-02",
+      "price": 93.0,
+      "highestBid": 80.0,
+      "numAsks": null,
+      "numBids": null,
+      "lastSale": null,
+      "eventDatetime": "Sat, May 16 \u2022 10PM \u2022 Industry City",
       "section": "GA",
       "qty": 1
     },
@@ -353,6 +404,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
+      "eventDatetime": null,
       "section": "GA",
       "qty": 1
     },
@@ -364,6 +416,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
+      "eventDatetime": null,
       "section": "GA",
       "qty": 1
     },
@@ -375,6 +428,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
+      "eventDatetime": null,
       "section": "GA",
       "qty": 1
     },
@@ -386,6 +440,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
+      "eventDatetime": null,
       "section": "GA",
       "qty": 1
     },
@@ -397,6 +452,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
+      "eventDatetime": "Fri, April 17 \u2022 10PM \u2022 99 Scott",
       "section": "GA",
       "qty": 1
     },
@@ -408,6 +464,19 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
+      "eventDatetime": null,
+      "section": "GA",
+      "qty": 1
+    },
+    {
+      "eventId": 26,
+      "date": "2026-04-02",
+      "price": 42.0,
+      "highestBid": null,
+      "numAsks": null,
+      "numBids": null,
+      "lastSale": null,
+      "eventDatetime": "Fri, April 17 \u2022 10PM \u2022 99 Scott",
       "section": "GA",
       "qty": 1
     },
@@ -419,6 +488,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
+      "eventDatetime": null,
       "section": "GA",
       "qty": 1
     },
@@ -430,6 +500,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
+      "eventDatetime": null,
       "section": "GA",
       "qty": 1
     },
@@ -441,6 +512,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
+      "eventDatetime": null,
       "section": "GA",
       "qty": 1
     },
@@ -452,6 +524,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
+      "eventDatetime": null,
       "section": "GA",
       "qty": 1
     },
@@ -463,6 +536,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
+      "eventDatetime": "Sat, April 25 \u2022 10PM \u2022 99 Scott",
       "section": "GA",
       "qty": 1
     },
@@ -474,6 +548,19 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
+      "eventDatetime": null,
+      "section": "GA",
+      "qty": 1
+    },
+    {
+      "eventId": 27,
+      "date": "2026-04-02",
+      "price": 36.0,
+      "highestBid": null,
+      "numAsks": null,
+      "numBids": null,
+      "lastSale": null,
+      "eventDatetime": "Sat, April 25 \u2022 10PM \u2022 99 Scott",
       "section": "GA",
       "qty": 1
     },
@@ -485,6 +572,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
+      "eventDatetime": null,
       "section": "GA",
       "qty": 1
     },
@@ -496,6 +584,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
+      "eventDatetime": null,
       "section": "GA",
       "qty": 1
     },
@@ -507,6 +596,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
+      "eventDatetime": null,
       "section": "GA",
       "qty": 1
     },
@@ -518,6 +608,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
+      "eventDatetime": null,
       "section": "GA",
       "qty": 1
     },
@@ -529,6 +620,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
+      "eventDatetime": "Fri, March 27 \u2022 10PM \u2022 Industry City",
       "section": "GA",
       "qty": 1
     },
@@ -540,6 +632,19 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
+      "eventDatetime": null,
+      "section": "GA",
+      "qty": 1
+    },
+    {
+      "eventId": 28,
+      "date": "2026-04-02",
+      "price": 120.0,
+      "highestBid": null,
+      "numAsks": null,
+      "numBids": null,
+      "lastSale": null,
+      "eventDatetime": "Fri, March 27 \u2022 10PM \u2022 Industry City",
       "section": "GA",
       "qty": 1
     },
@@ -551,6 +656,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
+      "eventDatetime": null,
       "section": "GA",
       "qty": 1
     },
@@ -562,6 +668,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
+      "eventDatetime": null,
       "section": "GA",
       "qty": 1
     },
@@ -573,6 +680,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
+      "eventDatetime": null,
       "section": "GA",
       "qty": 1
     },
@@ -584,6 +692,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
+      "eventDatetime": null,
       "section": "GA",
       "qty": 1
     },
@@ -595,6 +704,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
+      "eventDatetime": "Fri, April 3 \u2022 10PM \u2022 Brooklyn Storehouse",
       "section": "GA",
       "qty": 1
     },
@@ -606,6 +716,19 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
+      "eventDatetime": null,
+      "section": "GA",
+      "qty": 1
+    },
+    {
+      "eventId": 2,
+      "date": "2026-04-02",
+      "price": 83.0,
+      "highestBid": 71.0,
+      "numAsks": null,
+      "numBids": null,
+      "lastSale": null,
+      "eventDatetime": "Fri, April 3 \u2022 10PM \u2022 Brooklyn Storehouse",
       "section": "GA",
       "qty": 1
     },
@@ -617,6 +740,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
+      "eventDatetime": null,
       "section": "GA",
       "qty": 1
     },
@@ -628,6 +752,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
+      "eventDatetime": null,
       "section": "GA",
       "qty": 1
     },
@@ -639,6 +764,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
+      "eventDatetime": null,
       "section": "GA",
       "qty": 1
     },
@@ -650,6 +776,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
+      "eventDatetime": null,
       "section": "GA",
       "qty": 1
     },
@@ -661,6 +788,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
+      "eventDatetime": "Sat, April 4 \u2022 10PM \u2022 99 Scott",
       "section": "GA",
       "qty": 1
     },
@@ -672,6 +800,19 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
+      "eventDatetime": null,
+      "section": "GA",
+      "qty": 1
+    },
+    {
+      "eventId": 3,
+      "date": "2026-04-02",
+      "price": 31.0,
+      "highestBid": null,
+      "numAsks": null,
+      "numBids": null,
+      "lastSale": null,
+      "eventDatetime": "Sat, April 4 \u2022 10PM \u2022 99 Scott",
       "section": "GA",
       "qty": 1
     },
@@ -683,6 +824,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
+      "eventDatetime": null,
       "section": "GA",
       "qty": 1
     },
@@ -694,6 +836,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
+      "eventDatetime": null,
       "section": "GA",
       "qty": 1
     },
@@ -705,6 +848,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
+      "eventDatetime": null,
       "section": "GA",
       "qty": 1
     },
@@ -716,6 +860,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
+      "eventDatetime": null,
       "section": "GA",
       "qty": 1
     },
@@ -727,6 +872,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
+      "eventDatetime": "Fri, April 10 \u2022 10PM \u2022 Brooklyn Storehouse",
       "section": "GA",
       "qty": 1
     },
@@ -738,6 +884,19 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
+      "eventDatetime": null,
+      "section": "GA",
+      "qty": 1
+    },
+    {
+      "eventId": 22,
+      "date": "2026-04-02",
+      "price": 76.0,
+      "highestBid": 70.0,
+      "numAsks": null,
+      "numBids": null,
+      "lastSale": null,
+      "eventDatetime": "Fri, April 10 \u2022 10PM \u2022 Brooklyn Storehouse",
       "section": "GA",
       "qty": 1
     },
@@ -749,6 +908,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
+      "eventDatetime": null,
       "section": "GA",
       "qty": 1
     },
@@ -760,6 +920,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
+      "eventDatetime": null,
       "section": "GA",
       "qty": 1
     },
@@ -771,6 +932,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
+      "eventDatetime": null,
       "section": "GA",
       "qty": 1
     },
@@ -782,6 +944,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
+      "eventDatetime": "Sat, April 11 \u2022 10PM \u2022 Elsewhere",
       "section": "GA",
       "qty": 1
     },
@@ -793,6 +956,19 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
+      "eventDatetime": null,
+      "section": "GA",
+      "qty": 1
+    },
+    {
+      "eventId": 25,
+      "date": "2026-04-02",
+      "price": 49.0,
+      "highestBid": 36.0,
+      "numAsks": null,
+      "numBids": null,
+      "lastSale": null,
+      "eventDatetime": "Sat, April 11 \u2022 10PM \u2022 Elsewhere",
       "section": "GA",
       "qty": 1
     },
@@ -804,6 +980,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
+      "eventDatetime": null,
       "section": "GA",
       "qty": 1
     },
@@ -815,6 +992,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
+      "eventDatetime": null,
       "section": "GA",
       "qty": 1
     },
@@ -826,6 +1004,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
+      "eventDatetime": null,
       "section": "GA",
       "qty": 1
     },
@@ -837,6 +1016,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
+      "eventDatetime": null,
       "section": "GA",
       "qty": 1
     },
@@ -848,6 +1028,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
+      "eventDatetime": "Sat, May 9 \u2022 10PM \u2022 Brooklyn Storehouse",
       "section": "GA",
       "qty": 1
     },
@@ -859,6 +1040,19 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
+      "eventDatetime": null,
+      "section": "GA",
+      "qty": 1
+    },
+    {
+      "eventId": 1,
+      "date": "2026-04-02",
+      "price": 67.0,
+      "highestBid": 58.0,
+      "numAsks": null,
+      "numBids": null,
+      "lastSale": null,
+      "eventDatetime": "Sat, May 9 \u2022 10PM \u2022 Brooklyn Storehouse",
       "section": "GA",
       "qty": 1
     },
@@ -870,6 +1064,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
+      "eventDatetime": null,
       "section": "GA",
       "qty": 1
     },
@@ -881,6 +1076,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
+      "eventDatetime": null,
       "section": "GA",
       "qty": 1
     },
@@ -892,6 +1088,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
+      "eventDatetime": null,
       "section": "GA",
       "qty": 1
     },
@@ -903,6 +1100,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
+      "eventDatetime": "Sat, June 6 \u2022 7PM \u2022 Under the K Bridge",
       "section": "GA",
       "qty": 1
     },
@@ -914,6 +1112,19 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
+      "eventDatetime": null,
+      "section": "GA",
+      "qty": 1
+    },
+    {
+      "eventId": 30,
+      "date": "2026-04-02",
+      "price": 131.0,
+      "highestBid": 110.0,
+      "numAsks": null,
+      "numBids": null,
+      "lastSale": null,
+      "eventDatetime": "Sat, June 6 \u2022 7PM \u2022 Under the K Bridge",
       "section": "GA",
       "qty": 1
     },
@@ -925,6 +1136,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
+      "eventDatetime": null,
       "section": "GA",
       "qty": 1
     },
@@ -936,6 +1148,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
+      "eventDatetime": null,
       "section": "GA",
       "qty": 1
     },
@@ -947,6 +1160,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
+      "eventDatetime": null,
       "section": "GA",
       "qty": 1
     },
@@ -958,6 +1172,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
+      "eventDatetime": null,
       "section": "GA",
       "qty": 1
     },
@@ -969,6 +1184,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
+      "eventDatetime": "Sat, June 20 \u2022 10PM \u2022 Brooklyn Storehouse",
       "section": "GA",
       "qty": 1
     },
@@ -980,6 +1196,19 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
+      "eventDatetime": null,
+      "section": "GA",
+      "qty": 1
+    },
+    {
+      "eventId": 19,
+      "date": "2026-04-02",
+      "price": 80.0,
+      "highestBid": 70.0,
+      "numAsks": null,
+      "numBids": null,
+      "lastSale": null,
+      "eventDatetime": "Sat, June 20 \u2022 10PM \u2022 Brooklyn Storehouse",
       "section": "GA",
       "qty": 1
     },
@@ -991,6 +1220,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
+      "eventDatetime": null,
       "section": "GA",
       "qty": 1
     },
@@ -1002,6 +1232,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
+      "eventDatetime": null,
       "section": "GA",
       "qty": 1
     },
@@ -1013,6 +1244,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
+      "eventDatetime": null,
       "section": "GA",
       "qty": 1
     },
@@ -1024,6 +1256,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
+      "eventDatetime": null,
       "section": "GA",
       "qty": 1
     },
@@ -1035,6 +1268,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
+      "eventDatetime": "Sat, June 27 \u2022 4PM \u2022 Brooklyn Army Terminal",
       "section": "GA",
       "qty": 1
     },
@@ -1046,6 +1280,19 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
+      "eventDatetime": null,
+      "section": "GA",
+      "qty": 1
+    },
+    {
+      "eventId": 21,
+      "date": "2026-04-02",
+      "price": 103.0,
+      "highestBid": 90.0,
+      "numAsks": null,
+      "numBids": null,
+      "lastSale": null,
+      "eventDatetime": "Sat, June 27 \u2022 4PM \u2022 Brooklyn Army Terminal",
       "section": "GA",
       "qty": 1
     },
@@ -1057,6 +1304,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
+      "eventDatetime": null,
       "section": "GA",
       "qty": 1
     },
@@ -1068,6 +1316,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
+      "eventDatetime": null,
       "section": "GA",
       "qty": 1
     },
@@ -1079,6 +1328,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
+      "eventDatetime": null,
       "section": "GA",
       "qty": 1
     },
@@ -1090,6 +1340,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
+      "eventDatetime": null,
       "section": "GA",
       "qty": 1
     },
@@ -1101,6 +1352,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
+      "eventDatetime": "Fri, July 10 \u2022 10PM \u2022 Knockdown Center",
       "section": "GA",
       "qty": 1
     },
@@ -1112,6 +1364,19 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
+      "eventDatetime": null,
+      "section": "GA",
+      "qty": 1
+    },
+    {
+      "eventId": 24,
+      "date": "2026-04-02",
+      "price": 46.0,
+      "highestBid": 35.0,
+      "numAsks": null,
+      "numBids": null,
+      "lastSale": null,
+      "eventDatetime": "Fri, July 10 \u2022 10PM \u2022 Knockdown Center",
       "section": "GA",
       "qty": 1
     }
