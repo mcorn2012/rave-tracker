@@ -1,5 +1,5 @@
 {
-  "exported_at": "2026-04-07T20:03:20.870423+00:00",
+  "exported_at": "2026-04-07T21:23:37.991096+00:00",
   "events": [
     {
       "id": 20,
@@ -1093,6 +1093,18 @@
       "qty": 1
     },
     {
+      "eventId": 25,
+      "date": "2026-04-07",
+      "price": 35.0,
+      "highestBid": 36.0,
+      "numAsks": null,
+      "numBids": null,
+      "lastSale": null,
+      "eventDatetime": "Sat, April 11 \u2022 10PM \u2022 Elsewhere",
+      "section": "GA",
+      "qty": 1
+    },
+    {
       "eventId": 1,
       "date": "2026-03-25",
       "price": 60.0,
@@ -1189,6 +1201,18 @@
       "qty": 1
     },
     {
+      "eventId": 1,
+      "date": "2026-04-07",
+      "price": 65.0,
+      "highestBid": 52.0,
+      "numAsks": null,
+      "numBids": null,
+      "lastSale": null,
+      "eventDatetime": "Sat, May 9 \u2022 10PM \u2022 Brooklyn Storehouse",
+      "section": "GA",
+      "qty": 1
+    },
+    {
       "eventId": 30,
       "date": "2026-03-25",
       "price": 128.0,
@@ -1265,6 +1289,18 @@
       "date": "2026-04-03",
       "price": 131.0,
       "highestBid": 110.0,
+      "numAsks": null,
+      "numBids": null,
+      "lastSale": null,
+      "eventDatetime": "Sat, June 6 \u2022 7PM \u2022 Under the K Bridge",
+      "section": "GA",
+      "qty": 1
+    },
+    {
+      "eventId": 30,
+      "date": "2026-04-07",
+      "price": 129.0,
+      "highestBid": 115.0,
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
@@ -1564,6 +1600,18 @@
       "eventId": 24,
       "date": "2026-04-02",
       "price": 45.0,
+      "highestBid": 35.0,
+      "numAsks": null,
+      "numBids": null,
+      "lastSale": null,
+      "eventDatetime": "Fri, July 10 \u2022 10PM \u2022 Knockdown Center",
+      "section": "GA",
+      "qty": 1
+    },
+    {
+      "eventId": 24,
+      "date": "2026-04-07",
+      "price": 44.0,
       "highestBid": 35.0,
       "numAsks": null,
       "numBids": null,
