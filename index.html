@@ -188,7 +188,7 @@ input[type=range]{background:var(--bg4);border:none;height:3px;padding:0;accent-
     <div class="hero-chart-header">
       <div>
         <div class="hero-chart-title">Price Trends — When to Sell</div>
-        <div class="hero-chart-sub">Ask price over time · hover for exact values</div>
+        <div class="hero-chart-sub">Soonest events first · past events dimmed at end · hover for values</div>
       </div>
       <div class="chart-controls" id="event-toggles"></div>
     </div>
@@ -212,23 +212,10 @@ input[type=range]{background:var(--bg4);border:none;height:3px;padding:0;accent-
     </div>
   </div>
 
-  <!-- Past Events Section -->
-  <div class="past-header">
-    <div class="section-label">Past Events</div>
-    <div class="past-toggle" onclick="togglePast()">
-      <span id="past-toggle-label">Show ▾</span>
-    </div>
-  </div>
-  <div id="past-events-wrap" style="display:none;">
-    <div class="hero-chart-wrap" style="margin-bottom:14px;">
-      <div class="hero-chart-header">
-        <div>
-          <div class="hero-chart-title">Past Event Price History</div>
-          <div class="hero-chart-sub">How prices moved leading up to the event</div>
-        </div>
-        <div class="chart-controls" id="past-event-toggles"></div>
-      </div>
-      <div class="chart-wrap" style="height:240px;"><canvas id="past-chart"></canvas></div>
+  <!-- Past Events List (compact, below ranking) -->
+  <div id="past-section" style="display:none;margin-top:6px;">
+    <div class="past-header" style="margin-top:4px;">
+      <div class="section-label">Past Events — Price History</div>
     </div>
     <div id="past-event-list"></div>
   </div>
@@ -399,52 +386,76 @@ function scorePill(score,past=false){
 // ─── MAIN CHART ───────────────────────────────────────────────────────────────
 let activeChartEvents=new Set();
 function buildMainChart(){
-  const canvas=document.getElementById('main-chart');
-  const active=activeEvents();
-  const evWithData=active.filter(e=>getPrices(e.id).length>0);
+  // Sort: active events by days until (soonest first), then past events
+  const now=new Date();
+  const allWithData=events.filter(e=>getPrices(e.id).length>0).sort((a,b)=>{
+    const pa=isPast(a), pb=isPast(b);
+    if(pa&&!pb) return 1;
+    if(!pa&&pb) return -1;
+    const da=a.date?Math.ceil((new Date(a.date)-now)/86400000):9999;
+    const db=b.date?Math.ceil((new Date(b.date)-now)/86400000):9999;
+    return da-db;
+  });
 
-  // Build toggles
+  // Default: toggle on all active events (first 8), keep past off
+  if(activeChartEvents.size===0){
+    allWithData.filter(e=>!isPast(e)).slice(0,8).forEach(e=>activeChartEvents.add(e.id));
+  }
+
   const toggleWrap=document.getElementById('event-toggles');
-  toggleWrap.innerHTML=evWithData.map((ev,i)=>{
-    const on=activeChartEvents.has(ev.id)||activeChartEvents.size===0;
-    if(activeChartEvents.size===0&&i<6) activeChartEvents.add(ev.id);
-    return `<button class="chart-toggle ${activeChartEvents.has(ev.id)?'active':''}" 
-      style="${activeChartEvents.has(ev.id)?'background:'+COLORS[i%COLORS.length]+';border-color:'+COLORS[i%COLORS.length]+';color:#000':''}"
-      onclick="toggleChartEvent(${ev.id},${i},this)">${ev.artist}</button>`;
+  toggleWrap.innerHTML=allWithData.map((ev,i)=>{
+    const past=isPast(ev);
+    const on=activeChartEvents.has(ev.id);
+    const col=COLORS[i%COLORS.length];
+    const days=ev.date?Math.ceil((new Date(ev.date)-now)/86400000):null;
+    const label=past?`${ev.artist} ✓`:days!==null&&days<=5?`${ev.artist} (${days}d)`:ev.artist;
+    return `<button class="chart-toggle ${on?'active':''}"
+      style="${on?`background:${col};border-color:${col};color:#000;`:''}${past?'opacity:.5':''}"
+      onclick="toggleChartEvent(${ev.id},${i},this)">${label}</button>`;
   }).join('');
 
-  renderMainChart();
+  renderMainChart(allWithData);
 }
 
 function toggleChartEvent(id,colorIdx,btn){
-  if(activeChartEvents.has(id)){activeChartEvents.delete(id);btn.classList.remove('active');btn.style.background='';btn.style.borderColor='';btn.style.color='';}
-  else{activeChartEvents.add(id);btn.classList.add('active');btn.style.background=COLORS[colorIdx%COLORS.length];btn.style.borderColor=COLORS[colorIdx%COLORS.length];btn.style.color='#000';}
+  if(activeChartEvents.has(id)){
+    activeChartEvents.delete(id);
+    btn.classList.remove('active');
+    btn.style.background='';btn.style.borderColor='';btn.style.color='';
+  } else {
+    activeChartEvents.add(id);
+    btn.classList.add('active');
+    const col=COLORS[colorIdx%COLORS.length];
+    btn.style.background=col;btn.style.borderColor=col;btn.style.color='#000';
+  }
   renderMainChart();
 }
 
-function renderMainChart(){
+function renderMainChart(sortedEvs){
   const canvas=document.getElementById('main-chart');
-  const active=activeEvents().filter(e=>activeChartEvents.has(e.id)&&getPrices(e.id).length>0);
+  if(!sortedEvs) sortedEvs=events.filter(e=>getPrices(e.id).length>0);
+  const toRender=sortedEvs.filter(e=>activeChartEvents.has(e.id)&&getPrices(e.id).length>0);
 
   const datasets=[];
-  active.forEach((ev,i)=>{
+  toRender.forEach((ev,i)=>{
     const pts=getPrices(ev.id);
-    const col=COLORS[activeEvents().indexOf(ev)%COLORS.length];
-
-    // Price line
+    const globalIdx=events.filter(e=>getPrices(e.id).length>0).indexOf(ev);
+    const col=COLORS[sortedEvs.indexOf(ev)%COLORS.length];
+    const past=isPast(ev);
     datasets.push({
       label:ev.artist,
       data:pts.map(p=>({x:p.date,y:p.price})),
-      borderColor:col,backgroundColor:col+'22',
-      tension:0.3,pointRadius:4,pointHoverRadius:7,
-      fill:false,borderWidth:2.5,
+      borderColor:past?col+'99':col,
+      backgroundColor:col+'18',
+      tension:0.3,pointRadius:3,pointHoverRadius:6,
+      fill:false,borderWidth:past?1.5:2.5,
+      borderDash:past?[4,3]:[],
     });
-    // Face value dashed line
     datasets.push({
       label:ev.artist+' face',
       data:pts.map(p=>({x:p.date,y:ev.face})),
-      borderColor:col+'55',borderDash:[5,4],
-      pointRadius:0,borderWidth:1.5,fill:false,
+      borderColor:col+'33',borderDash:[5,4],
+      pointRadius:0,borderWidth:1,fill:false,
     });
   });
 
@@ -462,12 +473,14 @@ function renderMainChart(){
         tooltip:{
           backgroundColor:'#0d1117',borderColor:'rgba(255,255,255,.1)',borderWidth:1,
           titleColor:'#e6edf3',bodyColor:'#7d8590',
+          filter:item=>!item.dataset.label.includes('face'),
           callbacks:{
             label:ctx=>{
               if(ctx.dataset.label.includes('face')) return null;
-              const ev=activeEvents().find(e=>e.artist===ctx.dataset.label);
+              const ev=events.find(e=>e.artist===ctx.dataset.label);
               const mult=ev?(ctx.raw.y/ev.face).toFixed(2)+'x':'';
-              return ` ${ctx.dataset.label}: $${ctx.raw.y} ${mult}`;
+              const tag=ev&&isPast(ev)?'(past)':'';
+              return ` ${ctx.dataset.label} ${tag}: $${ctx.raw.y} ${mult}`;
             }
           }
         }
@@ -481,58 +494,26 @@ function renderMainChart(){
   });
 }
 
-// ─── PAST CHART ───────────────────────────────────────────────────────────────
-let activePastEvents=new Set();
-function buildPastChart(){
+// ─── PAST EVENTS (inline list only) ─────────────────────────────────────────
+function renderPastList(){
   const past=pastEvents();
-  const evWithData=past.filter(e=>getPrices(e.id).length>0);
-  if(!evWithData.length) return;
-
-  const toggleWrap=document.getElementById('past-event-toggles');
-  if(activePastEvents.size===0) evWithData.slice(0,4).forEach(e=>activePastEvents.add(e.id));
-
-  toggleWrap.innerHTML=evWithData.map((ev,i)=>`
-    <button class="chart-toggle ${activePastEvents.has(ev.id)?'active':''}"
-      style="${activePastEvents.has(ev.id)?'background:'+COLORS[i%COLORS.length]+';border-color:'+COLORS[i%COLORS.length]+';color:#000':''}"
-      onclick="togglePastEvent(${ev.id},${i},this)">${ev.artist}</button>
-  `).join('');
-
-  renderPastChart();
-}
-
-function togglePastEvent(id,colorIdx,btn){
-  if(activePastEvents.has(id)){activePastEvents.delete(id);btn.classList.remove('active');btn.style.background='';btn.style.borderColor='';btn.style.color='';}
-  else{activePastEvents.add(id);btn.classList.add('active');btn.style.background=COLORS[colorIdx%COLORS.length];btn.style.borderColor=COLORS[colorIdx%COLORS.length];btn.style.color='#000';}
-  renderPastChart();
-}
-
-function renderPastChart(){
-  const canvas=document.getElementById('past-chart');
-  const past=pastEvents().filter(e=>activePastEvents.has(e.id)&&getPrices(e.id).length>0);
-  const datasets=past.map((ev,i)=>{
+  const sec=document.getElementById('past-section');
+  const el=document.getElementById('past-event-list');
+  if(!past.length){sec.style.display='none';return;}
+  sec.style.display='block';
+  el.innerHTML=past.map(ev=>{
     const pts=getPrices(ev.id);
-    const col=COLORS[pastEvents().indexOf(ev)%COLORS.length];
-    return{label:ev.artist,data:pts.map(p=>({x:p.date,y:p.price})),
-      borderColor:col,backgroundColor:col+'22',tension:0.3,pointRadius:3,fill:false,borderWidth:2};
-  });
-  if(pastChart) pastChart.destroy();
-  if(!datasets.length) return;
-  pastChart=new Chart(canvas,{
-    type:'line',data:{datasets},
-    options:{responsive:true,maintainAspectRatio:false,
-      plugins:{legend:{display:false},tooltip:{backgroundColor:'#0d1117',borderColor:'rgba(255,255,255,.1)',borderWidth:1,titleColor:'#e6edf3',bodyColor:'#7d8590'}},
-      scales:{x:{type:'category',ticks:{color:'#7d8590',font:{size:10}},grid:{color:'rgba(255,255,255,.04)'}},
-        y:{ticks:{color:'#7d8590',callback:v=>'$'+v,font:{size:10}},grid:{color:'rgba(255,255,255,.06)'}}}
-    }
-  });
-}
-
-let pastVisible=false;
-function togglePast(){
-  pastVisible=!pastVisible;
-  document.getElementById('past-events-wrap').style.display=pastVisible?'block':'none';
-  document.getElementById('past-toggle-label').textContent=pastVisible?'Hide ▴':'Show ▾';
-  if(pastVisible) buildPastChart();
+    const maxAsk=pts.length?Math.max(...pts.map(p=>p.price)):null;
+    const mult=getMultiplier(ev);
+    return`<div class="event-row" style="opacity:.65" onclick="showTab('analyze',null);document.getElementById('a-event').value='${ev.id}';runAnalysis();">
+      <div><div class="event-name">${ev.artist}</div><div class="event-meta">${ev.event_datetime_scraped||ev.date||''} ${ev.venue||''}</div></div>
+      <div style="display:flex;align-items:center;gap:8px;">
+        ${mult?`<span style="font-family:var(--mono);font-size:12px;color:var(--muted)">${mult.toFixed(2)}x avg</span>`:''}
+        ${maxAsk?`<span style="font-family:var(--mono);font-size:11px;color:var(--muted)">peak $${maxAsk}</span>`:''}
+        <span class="score-pill pill-past">PAST</span>
+      </div>
+    </div>`;
+  }).join('');
 }
 
 // ─── AI MARKET SUMMARY (rule-based) ──────────────────────────────────────────
@@ -652,27 +633,9 @@ function renderDashboard(){
     }).join('');
   }
 
-  // Past events list
-  const pastEl=document.getElementById('past-event-list');
-  const past=pastEvents();
-  if(past.length){
-    pastEl.innerHTML=past.map(ev=>{
-      const pts=getPrices(ev.id);
-      const maxAsk=pts.length?Math.max(...pts.map(p=>p.price)):null;
-      const mult=getMultiplier(ev);
-      return`<div class="event-row" style="opacity:.7">
-        <div><div class="event-name">${ev.artist}</div><div class="event-meta">${ev.event_datetime_scraped||ev.date||''} ${ev.venue||''}</div></div>
-        <div style="display:flex;align-items:center;gap:8px;">
-          ${mult?`<span style="font-family:var(--mono);font-size:12px;color:var(--muted)">${mult.toFixed(2)}x avg</span>`:''}
-          ${maxAsk?`<span style="font-family:var(--mono);font-size:12px;color:var(--muted)">peak $${maxAsk}</span>`:''}
-          ${scorePill(0,true)}
-        </div>
-      </div>`;
-    }).join('');
-  } else {pastEl.innerHTML='';}
-
   buildMarketSummary();
   buildMainChart();
+  renderPastList();
 }
 
 // ─── EVENTS ───────────────────────────────────────────────────────────────────
