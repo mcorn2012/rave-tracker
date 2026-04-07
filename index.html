@@ -4,826 +4,923 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Rave Resell Tracker</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=DM+Sans:wght@300;400;500;600&display=swap');
-  *{box-sizing:border-box;margin:0;padding:0}
-  :root{
-    --bg:#0a0a0f;--bg2:#111118;--bg3:#181820;--bg4:#1e1e28;
-    --accent:#7b5cf0;--accent2:#a78bfa;
-    --green:#22d3a0;--red:#f87171;--amber:#fbbf24;
-    --text:#e2e0f0;--muted:#6b6880;
-    --border:rgba(123,92,240,0.18);--border2:rgba(255,255,255,0.06);
-    --mono:'Space Mono',monospace;--sans:'DM Sans',sans-serif;
-  }
-  body{font-family:var(--sans);background:var(--bg);color:var(--text);font-size:14px;min-height:100vh}
-  .tabs-header{display:flex;border-bottom:1px solid var(--border);background:var(--bg2);padding:0 20px;position:sticky;top:0;z-index:100}
-  .tab-btn{font-family:var(--sans);font-size:13px;font-weight:500;color:var(--muted);background:none;border:none;padding:14px 18px;cursor:pointer;border-bottom:2px solid transparent;transition:color .2s,border-color .2s;letter-spacing:.02em}
-  .tab-btn.active{color:var(--accent2);border-bottom-color:var(--accent)}
-  .tab-btn:hover:not(.active){color:var(--text)}
-  .tab-content{display:none;padding:20px}
-  .tab-content.active{display:block}
-  .card{background:var(--bg3);border:1px solid var(--border2);border-radius:12px;padding:18px 20px;margin-bottom:14px}
-  .card-title{font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:14px}
-  .metric-row{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:14px}
-  .metric{background:var(--bg4);border-radius:10px;padding:14px 16px;border:1px solid var(--border2)}
-  .metric-label{font-size:11px;color:var(--muted);letter-spacing:.05em;text-transform:uppercase;margin-bottom:6px}
-  .metric-val{font-family:var(--mono);font-size:22px;font-weight:700}
-  .metric-val.green{color:var(--green)}.metric-val.red{color:var(--red)}.metric-val.amber{color:var(--amber)}.metric-val.purple{color:var(--accent2)}
-  label{font-size:12px;color:var(--muted);display:block;margin-bottom:5px}
-  input,select{width:100%;background:var(--bg4);border:1px solid var(--border2);border-radius:8px;color:var(--text);font-family:var(--sans);font-size:14px;padding:9px 12px;outline:none;transition:border-color .2s;appearance:none}
-  input:focus,select:focus{border-color:var(--accent)}
-  input::placeholder{color:var(--muted)}
-  select option{background:var(--bg3)}
-  .form-grid-2{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
-  .form-grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:12px}
-  .form-grid-4{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:12px;margin-bottom:12px}
-  .btn{font-family:var(--sans);font-size:13px;font-weight:600;padding:9px 18px;border-radius:8px;border:none;cursor:pointer;transition:all .15s;letter-spacing:.02em}
-  .btn-primary{background:var(--accent);color:#fff}
-  .btn-primary:hover{background:#6b4fe0;transform:translateY(-1px)}
-  .btn-ghost{background:transparent;color:var(--muted);border:1px solid var(--border2)}
-  .btn-ghost:hover{border-color:var(--accent);color:var(--accent2)}
-  .btn-danger{background:transparent;color:var(--red);border:1px solid rgba(248,113,113,0.2);font-size:11px;padding:5px 10px}
-  .btn-danger:hover{background:rgba(248,113,113,0.1)}
-  .btn-green{background:var(--green);color:#000;font-weight:700}
-  .btn-green:hover{background:#1ab990}
-  .score-badge{display:inline-flex;align-items:center;gap:6px;padding:4px 12px;border-radius:20px;font-family:var(--mono);font-size:13px;font-weight:700}
-  .score-hot{background:rgba(34,211,160,.15);color:var(--green);border:1px solid rgba(34,211,160,.3)}
-  .score-ok{background:rgba(251,191,36,.15);color:var(--amber);border:1px solid rgba(251,191,36,.3)}
-  .score-cold{background:rgba(248,113,113,.15);color:var(--red);border:1px solid rgba(248,113,113,.3)}
-  table{width:100%;border-collapse:collapse;font-size:13px}
-  th{color:var(--muted);font-weight:500;font-size:11px;text-transform:uppercase;letter-spacing:.07em;padding:8px 12px;border-bottom:1px solid var(--border2);text-align:left}
-  td{padding:10px 12px;border-bottom:1px solid rgba(255,255,255,.04);vertical-align:middle}
-  tr:last-child td{border-bottom:none}
-  tr:hover td{background:rgba(123,92,240,.04)}
-  .chart-wrap{position:relative;width:100%}
-  .signal-row{display:flex;align-items:center;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border2);font-size:13px}
-  .signal-row:last-child{border-bottom:none}
-  .signal-label{color:var(--muted)}
-  .signal-val{font-family:var(--mono);font-weight:700}
-  .signal-bar{height:4px;background:var(--bg4);border-radius:2px;margin-top:3px;overflow:hidden}
-  .signal-fill{height:100%;border-radius:2px;transition:width .6s cubic-bezier(.4,0,.2,1)}
-  .empty-state{text-align:center;padding:40px 20px;color:var(--muted)}
-  .empty-state .icon{font-size:32px;margin-bottom:10px;opacity:.4}
-  .empty-state p{font-size:13px}
-  .price-point{display:flex;align-items:center;gap:10px;padding:8px 10px;background:var(--bg4);border-radius:8px;margin-bottom:6px}
-  .price-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
-  .event-row{display:flex;align-items:center;justify-content:space-between;padding:12px 14px;background:var(--bg4);border-radius:10px;margin-bottom:8px;border:1px solid var(--border2);cursor:pointer;transition:border-color .2s}
-  .event-row:hover,.event-row.selected{border-color:var(--accent);background:rgba(123,92,240,.07)}
-  .event-artist{font-weight:600;font-size:14px}
-  .event-venue{font-size:12px;color:var(--muted);margin-top:2px}
-  .two-col{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-  .divider{height:1px;background:var(--border2);margin:18px 0}
-  .tag{display:inline-block;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:600;background:rgba(123,92,240,.15);color:var(--accent2);border:1px solid rgba(123,92,240,.25)}
-  .flex{display:flex}.gap-10{gap:10px}.items-center{align-items:center}.justify-between{justify-content:space-between}
-  .mb-10{margin-bottom:10px}.mb-14{margin-bottom:14px}.mt-10{margin-top:10px}
-  .text-green{color:var(--green)}.text-red{color:var(--red)}.text-amber{color:var(--amber)}.text-muted{color:var(--muted)}
-  .mono{font-family:var(--mono)}.bold{font-weight:700}.full-width{width:100%}
-  .event-list-scroll{max-height:320px;overflow-y:auto}
-  .sync-bar{background:var(--bg2);border-bottom:1px solid var(--border2);padding:8px 20px;display:flex;align-items:center;justify-content:space-between;font-size:12px;color:var(--muted)}
-  .sync-dot{width:8px;height:8px;border-radius:50%;background:var(--muted);display:inline-block;margin-right:6px}
-  .sync-dot.live{background:var(--green);box-shadow:0 0 6px var(--green)}
-  .sync-dot.stale{background:var(--amber)}
-  input[type=range]{background:var(--bg4);border:none;height:4px;padding:0;accent-color:var(--accent)}
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#080b10;--bg2:#0d1117;--bg3:#161b22;--bg4:#1c2230;
+  --accent:#00e5ff;--accent2:#0099aa;--green:#39d98a;--red:#ff5c7c;--amber:#ffb930;--purple:#9b6dff;
+  --text:#e6edf3;--muted:#7d8590;--border:rgba(255,255,255,0.07);
+  --mono:'JetBrains Mono',monospace;--sans:'Syne',sans-serif;
+}
+body{font-family:var(--sans);background:var(--bg);color:var(--text);min-height:100vh;font-size:14px}
 
-  /* Mobile responsive */
-  @media(max-width:600px){
-    .metric-row{grid-template-columns:1fr 1fr}
-    .two-col{grid-template-columns:1fr}
-    .form-grid-2,.form-grid-3,.form-grid-4{grid-template-columns:1fr}
-    .tabs-header{overflow-x:auto}
-    .tab-btn{white-space:nowrap;padding:14px 12px;font-size:12px}
-  }
+/* NAV */
+.nav{display:flex;align-items:center;justify-content:space-between;padding:0 24px;height:52px;background:var(--bg2);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100}
+.nav-logo{font-size:15px;font-weight:800;letter-spacing:.05em;color:var(--accent)}
+.nav-tabs{display:flex;gap:0}
+.nav-tab{font-family:var(--sans);font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);background:none;border:none;padding:0 16px;height:52px;cursor:pointer;border-bottom:2px solid transparent;transition:all .2s}
+.nav-tab.active{color:var(--accent);border-bottom-color:var(--accent)}
+.nav-tab:hover:not(.active){color:var(--text)}
+.nav-right{display:flex;align-items:center;gap:12px;font-size:11px;color:var(--muted)}
+.sync-dot{width:7px;height:7px;border-radius:50%;background:var(--muted);display:inline-block}
+.sync-dot.live{background:var(--green);box-shadow:0 0 8px var(--green)}
+
+/* TABS */
+.tab{display:none;padding:20px 24px}
+.tab.active{display:block}
+
+/* SECTION LABELS */
+.section-label{font-size:10px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin-bottom:12px}
+
+/* CARDS */
+.card{background:var(--bg3);border:1px solid var(--border);border-radius:10px;padding:16px 18px;margin-bottom:14px}
+.card-title{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:12px}
+
+/* METRICS */
+.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:14px}
+.metric{background:var(--bg4);border-radius:8px;padding:12px 14px;border:1px solid var(--border)}
+.metric-label{font-size:10px;color:var(--muted);letter-spacing:.06em;text-transform:uppercase;margin-bottom:5px}
+.metric-val{font-family:var(--mono);font-size:20px;font-weight:700}
+.c-green{color:var(--green)}.c-red{color:var(--red)}.c-amber{color:var(--amber)}.c-purple{color:var(--purple)}.c-cyan{color:var(--accent)}
+
+/* HERO CHART */
+.hero-chart-wrap{background:var(--bg3);border:1px solid var(--border);border-radius:10px;padding:18px;margin-bottom:14px}
+.hero-chart-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap;gap:10px}
+.hero-chart-title{font-size:16px;font-weight:700;color:var(--text)}
+.hero-chart-sub{font-size:11px;color:var(--muted);margin-top:2px}
+.chart-controls{display:flex;gap:8px;flex-wrap:wrap}
+.chart-toggle{font-family:var(--sans);font-size:11px;font-weight:600;padding:5px 12px;border-radius:20px;border:1px solid var(--border);background:transparent;color:var(--muted);cursor:pointer;transition:all .15s;letter-spacing:.03em}
+.chart-toggle.active{background:var(--accent);color:#000;border-color:var(--accent)}
+.chart-toggle:hover:not(.active){border-color:var(--accent);color:var(--accent)}
+.chart-wrap{position:relative;width:100%}
+
+/* SELL WINDOW ANNOTATION */
+.sell-legend{display:flex;gap:16px;flex-wrap:wrap;margin-top:10px;font-size:11px}
+.sell-legend-item{display:flex;align-items:center;gap:6px;color:var(--muted)}
+.sell-legend-dot{width:10px;height:3px;border-radius:2px}
+
+/* AI SUMMARY */
+.ai-card{background:var(--bg3);border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:10px;padding:16px 18px;margin-bottom:14px}
+.ai-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+.ai-signals{display:flex;flex-direction:column;gap:6px}
+.ai-signal{display:flex;align-items:center;justify-content:space-between;padding:8px 10px;background:var(--bg4);border-radius:7px;font-size:13px}
+.ai-signal-left{display:flex;align-items:center;gap:8px}
+.ai-icon{font-size:14px}
+.ai-bar-wrap{flex:1;margin:0 10px;height:3px;background:var(--bg);border-radius:2px;overflow:hidden}
+.ai-bar{height:100%;border-radius:2px;transition:width .6s}
+
+/* EVENT ROWS */
+.event-row{display:flex;align-items:center;justify-content:space-between;padding:11px 14px;background:var(--bg4);border-radius:8px;margin-bottom:7px;border:1px solid var(--border);cursor:pointer;transition:border-color .2s}
+.event-row:hover,.event-row.active{border-color:var(--accent)}
+.event-name{font-weight:700;font-size:13px}
+.event-meta{font-size:11px;color:var(--muted);margin-top:2px}
+.score-pill{display:inline-flex;align-items:center;gap:5px;padding:3px 10px;border-radius:20px;font-family:var(--mono);font-size:12px;font-weight:700}
+.pill-hot{background:rgba(57,217,138,.12);color:var(--green);border:1px solid rgba(57,217,138,.25)}
+.pill-ok{background:rgba(255,185,48,.12);color:var(--amber);border:1px solid rgba(255,185,48,.25)}
+.pill-cold{background:rgba(255,92,124,.12);color:var(--red);border:1px solid rgba(255,92,124,.25)}
+.pill-past{background:rgba(125,133,144,.1);color:var(--muted);border:1px solid rgba(125,133,144,.2)}
+
+/* FORMS */
+label{font-size:11px;color:var(--muted);display:block;margin-bottom:4px;letter-spacing:.04em}
+input,select{width:100%;background:var(--bg4);border:1px solid var(--border);border-radius:7px;color:var(--text);font-family:var(--sans);font-size:13px;padding:8px 11px;outline:none;transition:border-color .2s;appearance:none}
+input:focus,select:focus{border-color:var(--accent)}
+input::placeholder{color:var(--muted)}
+select option{background:var(--bg3)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px}
+.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:10px}
+.grid4{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:10px;margin-bottom:10px}
+.mb10{margin-bottom:10px}
+
+/* BUTTONS */
+.btn{font-family:var(--sans);font-size:12px;font-weight:700;letter-spacing:.05em;padding:8px 16px;border-radius:7px;border:none;cursor:pointer;transition:all .15s;text-transform:uppercase}
+.btn-primary{background:var(--accent);color:#000}
+.btn-primary:hover{background:#33eeff}
+.btn-ghost{background:transparent;color:var(--muted);border:1px solid var(--border)}
+.btn-ghost:hover{border-color:var(--accent);color:var(--accent)}
+.btn-danger{background:transparent;color:var(--red);border:1px solid rgba(255,92,124,.2);font-size:10px;padding:4px 8px}
+.btn-sm{padding:5px 10px;font-size:11px}
+.fw{width:100%}
+
+/* PRICE LOG */
+.price-point{display:flex;align-items:center;gap:8px;padding:7px 10px;background:var(--bg4);border-radius:7px;margin-bottom:5px}
+.pdot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+
+/* SIGNAL BAR */
+.sig-row{padding:8px 0;border-bottom:1px solid var(--border)}
+.sig-row:last-child{border-bottom:none}
+.sig-bar-bg{height:3px;background:var(--bg4);border-radius:2px;margin-top:4px;overflow:hidden}
+.sig-fill{height:100%;border-radius:2px}
+
+/* SCORE RING */
+.score-ring-wrap{display:flex;flex-direction:column;align-items:center;gap:8px}
+
+/* TWO COL */
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.three-col{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px}
+
+/* PAST EVENTS SECTION */
+.past-header{display:flex;align-items:center;justify-content:space-between;margin:20px 0 10px}
+.past-toggle{font-size:11px;color:var(--muted);cursor:pointer;display:flex;align-items:center;gap:5px}
+.past-toggle:hover{color:var(--accent)}
+
+/* EMPTY */
+.empty{text-align:center;padding:36px;color:var(--muted);font-size:13px}
+
+/* MOBILE */
+@media(max-width:640px){
+  .metrics{grid-template-columns:1fr 1fr}
+  .two-col,.three-col{grid-template-columns:1fr}
+  .grid2,.grid3,.grid4{grid-template-columns:1fr}
+  .nav-tabs{overflow-x:auto}
+  .nav-tab{white-space:nowrap;font-size:11px;padding:0 12px}
+}
+
+input[type=range]{background:var(--bg4);border:none;height:3px;padding:0;accent-color:var(--accent)}
 </style>
 </head>
 <body>
 
-<div class="sync-bar">
-  <div style="display:flex;align-items:center;">
-    <span class="sync-dot" id="sync-dot"></span>
-    <span id="sync-status">Loading data...</span>
+<div class="nav">
+  <div class="nav-logo">⚡ RAVE TRACKER</div>
+  <div class="nav-tabs">
+    <button class="nav-tab active" onclick="showTab('dashboard',this)">Dashboard</button>
+    <button class="nav-tab" onclick="showTab('events',this)">Events</button>
+    <button class="nav-tab" onclick="showTab('prices',this)">Prices</button>
+    <button class="nav-tab" onclick="showTab('analyze',this)">Analyze</button>
   </div>
-  <div style="display:flex;align-items:center;gap:10px;">
-    <span id="sync-time"></span>
-    <label style="display:inline;margin:0;cursor:pointer;">
+  <div class="nav-right">
+    <span class="sync-dot" id="sync-dot"></span>
+    <span id="sync-status">Loading...</span>
+    <label style="display:inline;margin:0;cursor:pointer;color:var(--accent)">
       <input type="file" accept=".json" id="json-import" style="display:none" onchange="importJSON(this)">
-      <span style="color:var(--accent2);cursor:pointer;font-size:12px;" onclick="document.getElementById('json-import').click()">↑ Import JSON</span>
+      <span onclick="document.getElementById('json-import').click()" style="cursor:pointer">↑ Import</span>
     </label>
   </div>
 </div>
 
-<div class="tabs-header">
-  <button class="tab-btn active" onclick="showTab('dashboard',this)">Dashboard</button>
-  <button class="tab-btn" onclick="showTab('events',this)">Events</button>
-  <button class="tab-btn" onclick="showTab('prices',this)">Price Tracker</button>
-  <button class="tab-btn" onclick="showTab('analyze',this)">Profit Analyzer</button>
-</div>
+<!-- ══════════════════════ DASHBOARD ══════════════════════ -->
+<div id="tab-dashboard" class="tab active">
 
-<!-- DASHBOARD -->
-<div id="tab-dashboard" class="tab-content active">
-  <div class="metric-row">
-    <div class="metric"><div class="metric-label">Events Tracked</div><div class="metric-val purple" id="m-events">0</div></div>
-    <div class="metric"><div class="metric-label">Avg Resell Multiple</div><div class="metric-val green" id="m-mult">—</div></div>
-    <div class="metric"><div class="metric-label">Hottest Event</div><div class="metric-val amber" id="m-hot" style="font-size:14px;padding-top:4px;">—</div></div>
-    <div class="metric"><div class="metric-label">Avg Profit Score</div><div class="metric-val" id="m-score">—</div></div>
+  <!-- Metrics -->
+  <div class="metrics">
+    <div class="metric"><div class="metric-label">Active Events</div><div class="metric-val c-cyan" id="m-events">0</div></div>
+    <div class="metric"><div class="metric-label">Avg Multiple</div><div class="metric-val c-green" id="m-mult">—</div></div>
+    <div class="metric"><div class="metric-label">Hottest</div><div class="metric-val c-amber" id="m-hot" style="font-size:14px;padding-top:3px;">—</div></div>
+    <div class="metric"><div class="metric-label">Avg Score</div><div class="metric-val" id="m-score">—</div></div>
   </div>
 
-  <div class="card" style="border-left:3px solid var(--accent);margin-bottom:14px;">
-    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;">
-      <span class="card-title" style="margin-bottom:0;">AI Market Summary</span>
+  <!-- AI Market Summary -->
+  <div class="ai-card">
+    <div class="ai-header">
+      <span class="card-title" style="margin-bottom:0;">Market Summary</span>
       <div style="display:flex;align-items:center;gap:10px;">
-        <span id="ai-timestamp" style="font-size:11px;color:var(--muted);"></span>
-        <button class="btn btn-ghost" style="padding:5px 12px;font-size:11px;" onclick="generateAISummary(true)">↻ Refresh</button>
+        <span id="ai-ts" style="font-size:10px;color:var(--muted);"></span>
+        <button class="btn btn-ghost btn-sm" onclick="buildMarketSummary()">↻</button>
       </div>
     </div>
-    <div id="ai-summary" style="font-size:14px;line-height:1.7;color:var(--text);">
-      <span style="color:var(--muted);">Loading market summary...</span>
+    <div id="ai-summary" class="ai-signals"><div class="empty" style="padding:16px;">Loading...</div></div>
+  </div>
+
+  <!-- HERO: Sell Timing Chart -->
+  <div class="hero-chart-wrap">
+    <div class="hero-chart-header">
+      <div>
+        <div class="hero-chart-title">Price Trends — When to Sell</div>
+        <div class="hero-chart-sub">Ask price over time · hover for exact values</div>
+      </div>
+      <div class="chart-controls" id="event-toggles"></div>
+    </div>
+    <div class="chart-wrap" style="height:320px;"><canvas id="main-chart"></canvas></div>
+    <div class="sell-legend">
+      <div class="sell-legend-item"><div class="sell-legend-dot" style="background:var(--green)"></div>Rising — good sell window</div>
+      <div class="sell-legend-item"><div class="sell-legend-dot" style="background:var(--red)"></div>Falling — sell soon</div>
+      <div class="sell-legend-item"><div class="sell-legend-dot" style="background:var(--amber)"></div>Face value reference</div>
     </div>
   </div>
 
+  <!-- Active events ranking -->
   <div class="two-col">
     <div class="card">
-      <div class="card-title">Top Events by Profit Score</div>
-      <div id="dash-top-events"><div class="empty-state"><div class="icon">🎪</div><p>No data yet</p></div></div>
+      <div class="card-title">Top Active Events</div>
+      <div id="dash-ranking"><div class="empty">No data yet</div></div>
     </div>
     <div class="card">
       <div class="card-title">Recent Price Activity</div>
-      <div id="dash-price-activity"><div class="empty-state"><div class="icon">📈</div><p>No prices yet</p></div></div>
+      <div id="dash-activity"><div class="empty">No prices yet</div></div>
     </div>
   </div>
-  <div class="card">
-    <div class="card-title">Resell Multiple vs Monthly Listeners</div>
-    <div class="chart-wrap" style="height:220px;"><canvas id="scatter-chart"></canvas></div>
+
+  <!-- Past Events Section -->
+  <div class="past-header">
+    <div class="section-label">Past Events</div>
+    <div class="past-toggle" onclick="togglePast()">
+      <span id="past-toggle-label">Show ▾</span>
+    </div>
+  </div>
+  <div id="past-events-wrap" style="display:none;">
+    <div class="hero-chart-wrap" style="margin-bottom:14px;">
+      <div class="hero-chart-header">
+        <div>
+          <div class="hero-chart-title">Past Event Price History</div>
+          <div class="hero-chart-sub">How prices moved leading up to the event</div>
+        </div>
+        <div class="chart-controls" id="past-event-toggles"></div>
+      </div>
+      <div class="chart-wrap" style="height:240px;"><canvas id="past-chart"></canvas></div>
+    </div>
+    <div id="past-event-list"></div>
   </div>
 </div>
 
-<!-- EVENTS -->
-<div id="tab-events" class="tab-content">
+<!-- ══════════════════════ EVENTS ══════════════════════ -->
+<div id="tab-events" class="tab">
   <div class="two-col">
     <div class="card">
       <div class="card-title">Add New Event</div>
-      <div class="mb-10"><label>Artist / Headliner</label><input id="e-artist" type="text" placeholder="e.g. Charlotte de Witte"></div>
-      <div class="form-grid-2">
-        <div><label>Venue</label><input id="e-venue" type="text" placeholder="e.g. Brooklyn Mirage"></div>
-        <div><label>City</label><input id="e-city" type="text" placeholder="e.g. New York, NY"></div>
+      <div class="mb10"><label>Artist / Headliner</label><input id="e-artist" type="text" placeholder="e.g. Charlotte de Witte"></div>
+      <div class="grid2">
+        <div><label>Venue</label><input id="e-venue" type="text" placeholder="Brooklyn Mirage"></div>
+        <div><label>City</label><input id="e-city" type="text" placeholder="New York, NY"></div>
       </div>
-      <div class="form-grid-2">
+      <div class="grid2">
         <div><label>Event Date</label><input id="e-date" type="date"></div>
         <div><label>Face Value ($)</label><input id="e-face" type="number" placeholder="45" min="0"></div>
       </div>
-      <div class="form-grid-2">
-        <div><label>US Monthly Listeners</label><input id="e-listeners" type="number" placeholder="500000" min="0"></div>
+      <div class="grid2">
+        <div><label>US Monthly Listeners</label><input id="e-listeners" type="number" placeholder="500000"></div>
         <div><label>Genre</label>
-          <select id="e-genre">
-            <option value="">Select genre</option>
-            <option>Techno</option><option>House</option><option>Trance</option>
-            <option>Drum & Bass</option><option>Ambient/Experimental</option><option>Other</option>
-          </select>
+          <select id="e-genre"><option value="">Select</option><option>Techno</option><option>House</option><option>Trance</option><option>Drum & Bass</option><option>Ambient</option><option>Other</option></select>
         </div>
       </div>
-      <div class="form-grid-2">
+      <div class="grid2">
         <div><label>Venue Capacity</label>
-          <select id="e-cap">
-            <option value="">Unknown</option>
-            <option value="small">Small (&lt;500)</option><option value="medium">Medium (500–2000)</option>
-            <option value="large">Large (2000–5000)</option><option value="festival">Festival (5000+)</option>
-          </select>
+          <select id="e-cap"><option value="">Unknown</option><option value="small">Small (&lt;500)</option><option value="medium">Medium (500–2k)</option><option value="large">Large (2k–5k)</option><option value="festival">Festival (5k+)</option></select>
         </div>
-        <div><label>Ticket Availability</label>
-          <select id="e-avail">
-            <option value="">Unknown</option>
-            <option value="soldout">Sold Out</option><option value="low">Low (&lt;10%)</option>
-            <option value="medium">Medium (10–40%)</option><option value="high">High (40%+)</option>
-          </select>
+        <div><label>Availability</label>
+          <select id="e-avail"><option value="">Unknown</option><option value="soldout">Sold Out</option><option value="low">Low</option><option value="medium">Medium</option><option value="high">High</option></select>
         </div>
       </div>
-      <div class="mb-10"><label>Crowdvolt URL</label><input id="e-url" type="text" placeholder="https://www.crowdvolt.com/event/..."></div>
-      <div class="mb-10"><label>Notes</label><input id="e-notes" type="text" placeholder="e.g. NYE show, first US tour"></div>
-      <button class="btn btn-primary full-width" onclick="addEvent()">+ Add Event</button>
-      <button class="btn btn-ghost full-width" style="margin-top:8px;" onclick="exportEventsJSON()">↓ Export events.json for scraper</button>
+      <div class="grid2">
+        <div><label>Crowdvolt URL</label><input id="e-url" type="text" placeholder="https://crowdvolt.com/event/..."></div>
+        <div><label>Notes</label><input id="e-notes" type="text" placeholder="NYE show, first US tour..."></div>
+      </div>
+      <div style="display:flex;gap:8px;">
+        <button class="btn btn-primary fw" onclick="addEvent()">+ Add Event</button>
+        <button class="btn btn-ghost" onclick="exportEventsJSON()" title="Export events.json for scraper">↓ Export</button>
+      </div>
     </div>
     <div>
-      <div style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:12px;">Your Events</div>
-      <div class="event-list-scroll" id="event-list"><div class="empty-state"><div class="icon">🎵</div><p>No events yet.</p></div></div>
+      <div class="card-title">Your Events</div>
+      <div id="event-list" style="max-height:500px;overflow-y:auto;"><div class="empty">No events yet.</div></div>
     </div>
   </div>
 </div>
 
-<!-- PRICES -->
-<div id="tab-prices" class="tab-content">
+<!-- ══════════════════════ PRICES ══════════════════════ -->
+<div id="tab-prices" class="tab">
   <div class="two-col">
     <div class="card">
       <div class="card-title">Log Price Manually</div>
-      <div class="mb-10"><label>Select Event</label><select id="p-event"></select></div>
-      <div class="form-grid-2">
-        <div><label>Ask Price ($)</label><input id="p-price" type="number" placeholder="120" min="0"></div>
-        <div><label>Bid Price ($)</label><input id="p-bid" type="number" placeholder="90" min="0"></div>
+      <div class="mb10"><label>Event</label><select id="p-event"></select></div>
+      <div class="grid2">
+        <div><label>Ask Price ($)</label><input id="p-price" type="number" placeholder="120"></div>
+        <div><label>Bid Price ($)</label><input id="p-bid" type="number" placeholder="90"></div>
       </div>
-      <div class="form-grid-2">
-        <div><label>Date Observed</label><input id="p-date" type="date"></div>
+      <div class="grid2">
+        <div><label>Date</label><input id="p-date" type="date"></div>
         <div><label>Section</label>
-          <select id="p-section">
-            <option value="GA">General Admission</option><option value="VIP">VIP</option>
-            <option value="Early Bird">Early Bird</option><option value="Other">Other</option>
-          </select>
+          <select id="p-section"><option value="GA">GA</option><option value="VIP">VIP</option><option value="Early Bird">Early Bird</option><option value="Other">Other</option></select>
         </div>
       </div>
-      <button class="btn btn-primary full-width" onclick="logPrice()">+ Log Price</button>
+      <button class="btn btn-primary fw" onclick="logPrice()">+ Log Price</button>
     </div>
     <div class="card">
-      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;">
         <span class="card-title" style="margin-bottom:0;">Price History</span>
-        <select id="ph-filter" style="width:auto;font-size:12px;padding:5px 8px;" onchange="renderPriceChart()">
+        <select id="ph-filter" style="width:auto;font-size:11px;padding:4px 8px;" onchange="renderPriceChart();renderPriceLog()">
           <option value="">All events</option>
         </select>
       </div>
-      <div class="chart-wrap" style="height:180px;"><canvas id="price-chart"></canvas></div>
-      <div class="divider"></div>
-      <div id="price-log-list" style="max-height:200px;overflow-y:auto;"><div class="empty-state"><p>No prices logged yet.</p></div></div>
+      <div class="chart-wrap" style="height:160px;"><canvas id="price-chart"></canvas></div>
+      <div style="margin-top:10px;max-height:200px;overflow-y:auto;" id="price-log-list"><div class="empty">No prices yet.</div></div>
     </div>
   </div>
 </div>
 
-<!-- ANALYZE -->
-<div id="tab-analyze" class="tab-content">
-  <div class="mb-14">
-    <label>Select Event to Analyze</label>
-    <select id="a-event" onchange="runAnalysis()" style="font-size:15px;padding:11px 14px;"></select>
+<!-- ══════════════════════ ANALYZE ══════════════════════ -->
+<div id="tab-analyze" class="tab">
+  <div class="mb10">
+    <label>Select Event</label>
+    <select id="a-event" onchange="runAnalysis()" style="font-size:14px;padding:10px 12px;"></select>
   </div>
-  <div id="analysis-output"><div class="empty-state"><div class="icon">🔮</div><p>Select an event to run profit analysis</p></div></div>
+  <div id="analysis-output"><div class="empty">Select an event to analyze</div></div>
 </div>
 
 <script>
 // ─── STATE ───────────────────────────────────────────────────────────────────
-let events = [], prices = [];
-let priceChart = null, scatterChart = null;
-let lastSync = null;
+let events=[], prices=[];
+let mainChart=null, pastChart=null, priceChart=null;
+const COLORS=['#00e5ff','#39d98a','#ffb930','#ff5c7c','#9b6dff','#ff8c42','#00d4aa','#f062a4'];
 
-// ─── AUTO-SYNC: fetch dashboard_data.json from same origin ───────────────────
-async function autoSync() {
-  try {
-    const r = await fetch('dashboard_data.json?t=' + Date.now());
-    if (!r.ok) throw new Error('Not found');
-    const data = await r.json();
-    ingestData(data);
-    lastSync = new Date();
-    setSyncStatus('live', 'Live — scraped daily at 9 AM');
-    document.getElementById('sync-time').textContent = 'Last sync: ' + lastSync.toLocaleTimeString();
-  } catch(e) {
-    setSyncStatus('stale', 'No auto-sync data found — import JSON manually');
-  }
+// ─── SYNC ────────────────────────────────────────────────────────────────────
+async function autoSync(){
+  try{
+    const r=await fetch('dashboard_data.json?t='+Date.now());
+    if(!r.ok) throw new Error();
+    ingestData(await r.json());
+    setSyncStatus('live','Live');
+    document.getElementById('sync-dot').className='sync-dot live';
+  }catch(e){setSyncStatus('stale','Import JSON to sync');}
 }
-
-function ingestData(data) {
-  if (!data) return;
-  // Merge scraped events with any manually added ones
-  if (data.events && data.events.length) {
-    const existingUrls = new Set(events.map(e => e.url));
-    data.events.forEach(ev => {
-      if (!existingUrls.has(ev.url)) {
-        events.push({ ...ev, id: ev.id || Date.now() + Math.random() });
-      } else {
-        // Update existing
-        const idx = events.findIndex(e => e.url === ev.url);
-        if (idx >= 0) events[idx] = { ...events[idx], ...ev };
-      }
+function ingestData(data){
+  if(!data) return;
+  if(data.events?.length){
+    const existing=new Set(events.map(e=>e.url));
+    data.events.forEach(ev=>{
+      if(!existing.has(ev.url)) events.push({...ev,id:ev.id||Date.now()+Math.random()});
+      else{const i=events.findIndex(e=>e.url===ev.url);if(i>=0)events[i]={...events[i],...ev};}
     });
   }
-  if (data.prices && data.prices.length) {
-    // Add scraped prices, avoid duplicates by eventId+date
-    const existing = new Set(prices.map(p => p.eventId + '_' + p.date));
-    data.prices.forEach(p => {
-      const key = p.eventId + '_' + p.date;
-      if (!existing.has(key)) {
-        prices.push(p);
-        existing.add(key);
-      }
-    });
+  if(data.prices?.length){
+    const ex=new Set(prices.map(p=>p.eventId+'_'+p.date));
+    data.prices.forEach(p=>{const k=p.eventId+'_'+p.date;if(!ex.has(k)){prices.push(p);ex.add(k);}});
   }
   refreshAll();
 }
-
-function importJSON(input) {
-  const file = input.files[0];
-  if (!file) return;
-  const reader = new FileReader();
-  reader.onload = e => {
-    try {
-      const data = JSON.parse(e.target.result);
-      ingestData(data);
-      setSyncStatus('live', 'Imported from file');
-      document.getElementById('sync-time').textContent = 'Imported: ' + new Date().toLocaleTimeString();
-    } catch(err) {
-      alert('Could not parse JSON file: ' + err.message);
-    }
-  };
-  reader.readAsText(file);
-  input.value = '';
+function importJSON(input){
+  const file=input.files[0]; if(!file) return;
+  const reader=new FileReader();
+  reader.onload=e=>{try{ingestData(JSON.parse(e.target.result));setSyncStatus('live','Imported');}catch(err){alert('Bad JSON');}};
+  reader.readAsText(file); input.value='';
 }
-
-function setSyncStatus(state, msg) {
-  document.getElementById('sync-dot').className = 'sync-dot ' + state;
-  document.getElementById('sync-status').textContent = msg;
-}
+function setSyncStatus(state,msg){document.getElementById('sync-status').textContent=msg;}
 
 // ─── TABS ─────────────────────────────────────────────────────────────────────
-function showTab(id, btn) {
-  document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
-  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-  document.getElementById('tab-' + id).classList.add('active');
-  if (btn) btn.classList.add('active');
-  if (id === 'dashboard') renderDashboard();
-  if (id === 'prices') { renderPriceChart(); renderPriceLog(); }
-  if (id === 'analyze') renderAnalysisDropdown();
+function showTab(id,btn){
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.nav-tab').forEach(b=>b.classList.remove('active'));
+  document.getElementById('tab-'+id).classList.add('active');
+  if(btn) btn.classList.add('active');
+  if(id==='dashboard') renderDashboard();
+  if(id==='prices'){renderPriceChart();renderPriceLog();}
+  if(id==='analyze') renderAnalysisDropdown();
 }
 
-// ─── EVENTS ──────────────────────────────────────────────────────────────────
-function addEvent() {
-  const artist = document.getElementById('e-artist').value.trim();
-  const face = parseFloat(document.getElementById('e-face').value);
-  if (!artist || !face) { alert('Artist and face value are required.'); return; }
-  events.push({
-    id: Date.now(),
-    artist,
-    venue: document.getElementById('e-venue').value.trim(),
-    city: document.getElementById('e-city').value.trim(),
-    date: document.getElementById('e-date').value,
-    face,
-    listeners: parseInt(document.getElementById('e-listeners').value) || 0,
-    genre: document.getElementById('e-genre').value,
-    cap: document.getElementById('e-cap').value,
-    avail: document.getElementById('e-avail').value,
-    url: document.getElementById('e-url').value.trim(),
-    notes: document.getElementById('e-notes').value.trim(),
-  });
-  ['e-artist','e-venue','e-city','e-date','e-face','e-listeners','e-notes','e-url'].forEach(id => document.getElementById(id).value = '');
-  refreshAll();
+// ─── HELPERS ─────────────────────────────────────────────────────────────────
+function isPast(ev){
+  if(!ev.date) return false;
+  const d=new Date(ev.date);
+  d.setHours(d.getHours()+32); // event ends ~8hrs after start, give buffer
+  return d < new Date();
+}
+function activeEvents(){return events.filter(e=>!isPast(e));}
+function pastEvents(){return events.filter(e=>isPast(e));}
+function getPrices(eventId){return prices.filter(p=>p.eventId==eventId).sort((a,b)=>a.date.localeCompare(b.date));}
+function getMultiplier(ev){const pts=getPrices(ev.id);if(!pts.length)return null;return pts.reduce((s,p)=>s+p.price,0)/pts.length/ev.face;}
+function getScore(ev){
+  let s=0;
+  const pts=getPrices(ev.id);
+  if(pts.length){const avg=pts.reduce((a,p)=>a+p.price,0)/pts.length;s+=Math.min(40,Math.max(0,(avg/ev.face-1)*25));}
+  if(ev.listeners>0) s+=Math.max(0,Math.min(20,(Math.log10(ev.listeners)-3)/(Math.log10(2000000)-3)*20));
+  s+={small:15,medium:10,large:5,festival:2}[ev.cap]||7;
+  s+={soldout:15,low:12,medium:6,high:1}[ev.avail]||7;
+  if(ev.date){const days=Math.ceil((new Date(ev.date)-new Date())/86400000);if(days>0&&days<60)s+=10;else if(days<120)s+=6;else s+=3;}
+  return Math.round(Math.min(100,s));
+}
+function scorePill(score,past=false){
+  if(past) return `<span class="score-pill pill-past">PAST</span>`;
+  if(score>=65) return `<span class="score-pill pill-hot">🔥 ${score}</span>`;
+  if(score>=40) return `<span class="score-pill pill-ok">⚡ ${score}</span>`;
+  return `<span class="score-pill pill-cold">❄️ ${score}</span>`;
 }
 
-function deleteEvent(id) {
-  if (!confirm('Delete this event and all its price data?')) return;
-  events = events.filter(e => e.id !== id);
-  prices = prices.filter(p => p.eventId !== id);
-  refreshAll();
-}
+// ─── MAIN CHART ───────────────────────────────────────────────────────────────
+let activeChartEvents=new Set();
+function buildMainChart(){
+  const canvas=document.getElementById('main-chart');
+  const active=activeEvents();
+  const evWithData=active.filter(e=>getPrices(e.id).length>0);
 
-function renderEventList() {
-  const el = document.getElementById('event-list');
-  if (!events.length) { el.innerHTML = '<div class="empty-state"><div class="icon">🎵</div><p>No events yet.</p></div>'; return; }
-  el.innerHTML = events.map(ev => {
-    const score = getScore(ev), badge = scoreBadge(score), mult = getMultiplier(ev);
-    const displayDate = ev.event_datetime_scraped || ev.date || '';
-    return `<div class="event-row" onclick="showTab('analyze',null);document.getElementById('a-event').value='${ev.id}';runAnalysis();">
-      <div>
-        <div class="event-artist">${ev.artist}</div>
-        <div class="event-venue">${[displayDate, ev.venue, ev.city].filter(Boolean).join(' · ')}</div>
-        ${ev.notes?`<div style="font-size:11px;color:var(--muted);margin-top:2px;">${ev.notes}</div>`:''}
-      </div>
-      <div style="display:flex;align-items:center;gap:10px;">
-        ${mult?`<span class="mono text-green" style="font-size:13px;">${mult.toFixed(2)}x</span>`:''}
-        <span class="score-badge ${badge.cls}">${badge.label}</span>
-        <button class="btn btn-danger" onclick="event.stopPropagation();deleteEvent(${ev.id})">✕</button>
-      </div>
-    </div>`;
+  // Build toggles
+  const toggleWrap=document.getElementById('event-toggles');
+  toggleWrap.innerHTML=evWithData.map((ev,i)=>{
+    const on=activeChartEvents.has(ev.id)||activeChartEvents.size===0;
+    if(activeChartEvents.size===0&&i<6) activeChartEvents.add(ev.id);
+    return `<button class="chart-toggle ${activeChartEvents.has(ev.id)?'active':''}" 
+      style="${activeChartEvents.has(ev.id)?'background:'+COLORS[i%COLORS.length]+';border-color:'+COLORS[i%COLORS.length]+';color:#000':''}"
+      onclick="toggleChartEvent(${ev.id},${i},this)">${ev.artist}</button>`;
   }).join('');
+
+  renderMainChart();
 }
 
-// ─── PRICES ──────────────────────────────────────────────────────────────────
-function logPrice() {
-  const eventId = parseInt(document.getElementById('p-event').value);
-  const price = parseFloat(document.getElementById('p-price').value);
-  const date = document.getElementById('p-date').value;
-  if (!eventId || !price || !date) { alert('Event, ask price, and date are required.'); return; }
-  prices.push({
-    id: Date.now(), eventId, price, date,
-    highestBid: parseFloat(document.getElementById('p-bid').value) || null,
-    section: document.getElementById('p-section').value,
+function toggleChartEvent(id,colorIdx,btn){
+  if(activeChartEvents.has(id)){activeChartEvents.delete(id);btn.classList.remove('active');btn.style.background='';btn.style.borderColor='';btn.style.color='';}
+  else{activeChartEvents.add(id);btn.classList.add('active');btn.style.background=COLORS[colorIdx%COLORS.length];btn.style.borderColor=COLORS[colorIdx%COLORS.length];btn.style.color='#000';}
+  renderMainChart();
+}
+
+function renderMainChart(){
+  const canvas=document.getElementById('main-chart');
+  const active=activeEvents().filter(e=>activeChartEvents.has(e.id)&&getPrices(e.id).length>0);
+
+  const datasets=[];
+  active.forEach((ev,i)=>{
+    const pts=getPrices(ev.id);
+    const col=COLORS[activeEvents().indexOf(ev)%COLORS.length];
+
+    // Price line
+    datasets.push({
+      label:ev.artist,
+      data:pts.map(p=>({x:p.date,y:p.price})),
+      borderColor:col,backgroundColor:col+'22',
+      tension:0.3,pointRadius:4,pointHoverRadius:7,
+      fill:false,borderWidth:2.5,
+    });
+    // Face value dashed line
+    datasets.push({
+      label:ev.artist+' face',
+      data:pts.map(p=>({x:p.date,y:ev.face})),
+      borderColor:col+'55',borderDash:[5,4],
+      pointRadius:0,borderWidth:1.5,fill:false,
+    });
   });
-  ['p-price','p-bid'].forEach(id => document.getElementById(id).value = '');
-  renderPriceChart(); renderPriceLog(); renderDashboard();
-}
 
-function deletePrice(id) {
-  prices = prices.filter(p => p.id !== id);
-  renderPriceChart(); renderPriceLog(); renderDashboard();
-}
+  if(mainChart) mainChart.destroy();
+  if(!datasets.length){canvas.getContext('2d').clearRect(0,0,canvas.width,canvas.height);return;}
 
-function getPricesForEvent(eventId) {
-  return prices.filter(p => p.eventId == eventId).sort((a,b) => a.date.localeCompare(b.date));
-}
-
-function getMultiplier(ev) {
-  const pts = getPricesForEvent(ev.id);
-  if (!pts.length) return null;
-  const avg = pts.reduce((s,p) => s+p.price,0) / pts.length;
-  return avg / ev.face;
-}
-
-function renderPriceLog() {
-  const filterId = parseInt(document.getElementById('ph-filter').value) || null;
-  const el = document.getElementById('price-log-list');
-  let list = filterId ? prices.filter(p => p.eventId == filterId) : prices;
-  list = [...list].sort((a,b) => b.date.localeCompare(a.date));
-  if (!list.length) { el.innerHTML = '<div class="empty-state"><p>No prices logged yet.</p></div>'; return; }
-  el.innerHTML = list.map(p => {
-    const ev = events.find(e => e.id == p.eventId);
-    const mult = ev ? (p.price/ev.face).toFixed(2) : '?';
-    const multColor = parseFloat(mult)>=1.5?'var(--green)':parseFloat(mult)>=1.1?'var(--amber)':'var(--red)';
-    return `<div class="price-point">
-      <div class="price-dot" style="background:${multColor}"></div>
-      <div style="flex:1">
-        <span class="bold">${ev?ev.artist:'Unknown'}</span>
-        <span class="text-muted" style="font-size:11px;margin-left:6px;">${p.section||'GA'} · ${p.date}</span>
-      </div>
-      <span class="mono bold" style="color:${multColor}">$${p.price}</span>
-      ${p.highestBid?`<span class="mono text-muted" style="font-size:11px;margin-left:4px;">bid $${p.highestBid}</span>`:''}
-      <span class="mono text-muted" style="font-size:11px;margin-left:6px;">${mult}x</span>
-      <button class="btn btn-danger" onclick="deletePrice(${p.id})" style="margin-left:8px;">✕</button>
-    </div>`;
-  }).join('');
-}
-
-function renderPriceChart() {
-  const filterId = parseInt(document.getElementById('ph-filter').value) || null;
-  const canvas = document.getElementById('price-chart');
-  const relevant = filterId ? prices.filter(p => p.eventId == filterId) : prices;
-  const sorted = [...relevant].sort((a,b) => a.date.localeCompare(b.date));
-  const grouped = {};
-  sorted.forEach(p => {
-    const ev = events.find(e => e.id == p.eventId);
-    const key = ev ? ev.artist : 'Unknown';
-    if (!grouped[key]) grouped[key] = [];
-    grouped[key].push({x: p.date, y: p.price});
-  });
-  const colors = ['#7b5cf0','#22d3a0','#fbbf24','#f87171','#a78bfa','#34d399'];
-  const datasets = Object.entries(grouped).map(([k,v],i) => ({
-    label: k, data: v,
-    borderColor: colors[i%colors.length],
-    backgroundColor: colors[i%colors.length]+'22',
-    tension: 0.3, pointRadius: 4, fill: false, borderWidth: 2,
-  }));
-  if (priceChart) priceChart.destroy();
-  if (!datasets.length) return;
-  priceChart = new Chart(canvas, {
-    type: 'line', data: {datasets},
-    options: {
-      responsive:true, maintainAspectRatio:false,
-      plugins:{legend:{display:datasets.length>1,labels:{color:'#6b6880',font:{size:11},boxWidth:10}}},
+  mainChart=new Chart(canvas,{
+    type:'line',
+    data:{datasets},
+    options:{
+      responsive:true,maintainAspectRatio:false,
+      interaction:{mode:'index',intersect:false},
+      plugins:{
+        legend:{display:false},
+        tooltip:{
+          backgroundColor:'#0d1117',borderColor:'rgba(255,255,255,.1)',borderWidth:1,
+          titleColor:'#e6edf3',bodyColor:'#7d8590',
+          callbacks:{
+            label:ctx=>{
+              if(ctx.dataset.label.includes('face')) return null;
+              const ev=activeEvents().find(e=>e.artist===ctx.dataset.label);
+              const mult=ev?(ctx.raw.y/ev.face).toFixed(2)+'x':'';
+              return ` ${ctx.dataset.label}: $${ctx.raw.y} ${mult}`;
+            }
+          }
+        }
+      },
       scales:{
-        x:{type:'category',ticks:{color:'#6b6880',font:{size:10}},grid:{color:'rgba(255,255,255,0.04)'}},
-        y:{ticks:{color:'#6b6880',callback:v=>'$'+v,font:{size:10}},grid:{color:'rgba(255,255,255,0.06)'}}
+        x:{type:'category',ticks:{color:'#7d8590',font:{size:10},maxRotation:45},grid:{color:'rgba(255,255,255,.04)'}},
+        y:{ticks:{color:'#7d8590',callback:v=>'$'+v,font:{size:10}},grid:{color:'rgba(255,255,255,.06)'},
+          title:{display:true,text:'Ask Price',color:'#7d8590',font:{size:10}}}
       }
     }
   });
 }
 
-// ─── SCORE ALGORITHM ─────────────────────────────────────────────────────────
-function getScore(ev) {
-  let score = 0;
-  const pts = getPricesForEvent(ev.id);
-  if (pts.length) {
-    const avg = pts.reduce((s,p)=>s+p.price,0)/pts.length;
-    score += Math.min(40, Math.max(0, (avg/ev.face - 1) * 25));
+// ─── PAST CHART ───────────────────────────────────────────────────────────────
+let activePastEvents=new Set();
+function buildPastChart(){
+  const past=pastEvents();
+  const evWithData=past.filter(e=>getPrices(e.id).length>0);
+  if(!evWithData.length) return;
+
+  const toggleWrap=document.getElementById('past-event-toggles');
+  if(activePastEvents.size===0) evWithData.slice(0,4).forEach(e=>activePastEvents.add(e.id));
+
+  toggleWrap.innerHTML=evWithData.map((ev,i)=>`
+    <button class="chart-toggle ${activePastEvents.has(ev.id)?'active':''}"
+      style="${activePastEvents.has(ev.id)?'background:'+COLORS[i%COLORS.length]+';border-color:'+COLORS[i%COLORS.length]+';color:#000':''}"
+      onclick="togglePastEvent(${ev.id},${i},this)">${ev.artist}</button>
+  `).join('');
+
+  renderPastChart();
+}
+
+function togglePastEvent(id,colorIdx,btn){
+  if(activePastEvents.has(id)){activePastEvents.delete(id);btn.classList.remove('active');btn.style.background='';btn.style.borderColor='';btn.style.color='';}
+  else{activePastEvents.add(id);btn.classList.add('active');btn.style.background=COLORS[colorIdx%COLORS.length];btn.style.borderColor=COLORS[colorIdx%COLORS.length];btn.style.color='#000';}
+  renderPastChart();
+}
+
+function renderPastChart(){
+  const canvas=document.getElementById('past-chart');
+  const past=pastEvents().filter(e=>activePastEvents.has(e.id)&&getPrices(e.id).length>0);
+  const datasets=past.map((ev,i)=>{
+    const pts=getPrices(ev.id);
+    const col=COLORS[pastEvents().indexOf(ev)%COLORS.length];
+    return{label:ev.artist,data:pts.map(p=>({x:p.date,y:p.price})),
+      borderColor:col,backgroundColor:col+'22',tension:0.3,pointRadius:3,fill:false,borderWidth:2};
+  });
+  if(pastChart) pastChart.destroy();
+  if(!datasets.length) return;
+  pastChart=new Chart(canvas,{
+    type:'line',data:{datasets},
+    options:{responsive:true,maintainAspectRatio:false,
+      plugins:{legend:{display:false},tooltip:{backgroundColor:'#0d1117',borderColor:'rgba(255,255,255,.1)',borderWidth:1,titleColor:'#e6edf3',bodyColor:'#7d8590'}},
+      scales:{x:{type:'category',ticks:{color:'#7d8590',font:{size:10}},grid:{color:'rgba(255,255,255,.04)'}},
+        y:{ticks:{color:'#7d8590',callback:v=>'$'+v,font:{size:10}},grid:{color:'rgba(255,255,255,.06)'}}}
+    }
+  });
+}
+
+let pastVisible=false;
+function togglePast(){
+  pastVisible=!pastVisible;
+  document.getElementById('past-events-wrap').style.display=pastVisible?'block':'none';
+  document.getElementById('past-toggle-label').textContent=pastVisible?'Hide ▴':'Show ▾';
+  if(pastVisible) buildPastChart();
+}
+
+// ─── AI MARKET SUMMARY (rule-based) ──────────────────────────────────────────
+function buildMarketSummary(){
+  const el=document.getElementById('ai-summary');
+  const ts=document.getElementById('ai-ts');
+  const active=activeEvents();
+  if(!active.length||!prices.length){el.innerHTML='<div class="empty">Add events and prices to see summary</div>';return;}
+
+  const signals=active.map(ev=>{
+    const pts=getPrices(ev.id).sort((a,b)=>a.date.localeCompare(b.date));
+    if(!pts.length) return null;
+    const latest=pts[pts.length-1];
+    const prev=pts.length>=2?pts[pts.length-2]:null;
+    const week=pts.length>=7?pts[pts.length-7]:pts[0];
+    const mult=latest.price/ev.face;
+    const dayChg=prev?latest.price-prev.price:0;
+    const weekChg=latest.price-week.price;
+    const days=ev.date?Math.ceil((new Date(ev.date)-new Date())/86400000):null;
+    return{ev,latest,mult,dayChg,weekChg,days,score:getScore(ev),pts};
+  }).filter(Boolean).sort((a,b)=>b.score-a.score);
+
+  if(!signals.length){el.innerHTML='<div class="empty">No price data yet</div>';return;}
+
+  const rows=[];
+
+  // Rising today
+  const rising=signals.filter(s=>s.dayChg>0).sort((a,b)=>b.dayChg-a.dayChg);
+  if(rising.length){
+    const t=rising[0];
+    const barPct=Math.min(100,Math.round((t.mult-1)*80));
+    const col=t.mult>=1.5?'var(--green)':t.mult>=1.2?'var(--amber)':'var(--red)';
+    rows.push(`<div class="ai-signal"><div class="ai-signal-left"><span class="ai-icon">📈</span><span><strong>${t.ev.artist}</strong> up $${t.dayChg.toFixed(0)} today → $${t.latest.price} (${t.mult.toFixed(2)}x)</span></div><div class="ai-bar-wrap"><div class="ai-bar" style="width:${barPct}%;background:${col}"></div></div></div>`);
   }
-  if (ev.listeners > 0) score += Math.max(0, Math.min(20, (Math.log10(ev.listeners)-3)/(Math.log10(2000000)-3)*20));
-  score += {small:15,medium:10,large:5,festival:2}[ev.cap] || 7;
-  score += {soldout:15,low:12,medium:6,high:1}[ev.avail] || 7;
-  if (ev.date) {
-    const days = Math.ceil((new Date(ev.date)-new Date())/86400000);
-    if (days>0&&days<60) score+=10; else if (days<120) score+=6; else score+=3;
+
+  // Dropping
+  const drop=signals.filter(s=>s.dayChg<0).sort((a,b)=>a.dayChg-b.dayChg);
+  if(drop.length){
+    const t=drop[0];
+    rows.push(`<div class="ai-signal"><div class="ai-signal-left"><span class="ai-icon">📉</span><span><strong>${t.ev.artist}</strong> down $${Math.abs(t.dayChg).toFixed(0)} today → $${t.latest.price} (${t.mult.toFixed(2)}x) — consider selling</span></div><div class="ai-bar-wrap"><div class="ai-bar" style="width:${Math.min(100,Math.round(t.mult*50))}%;background:var(--red)"></div></div></div>`);
   }
-  return Math.round(Math.min(100, score));
+
+  // Urgent (within 5 days)
+  const urgent=signals.filter(s=>s.days!==null&&s.days>=0&&s.days<=5);
+  urgent.forEach(s=>{
+    const tag=s.days===0?'TODAY':s.days===1?'TOMORROW':`${s.days}d away`;
+    const action=s.mult>=1.5?'🔥 SELL NOW':s.mult>=1.2?'⚡ SELL SOON':'❄️ HOLD';
+    rows.push(`<div class="ai-signal"><div class="ai-signal-left"><span class="ai-icon">⏰</span><span><strong>${s.ev.artist}</strong> is <strong>${tag}</strong> — $${s.latest.price} (${s.mult.toFixed(2)}x) ${action}</span></div></div>`);
+  });
+
+  // Best opportunity
+  const best=signals.filter(s=>!s.days||s.days>5)[0];
+  if(best&&best.mult>=1.3){
+    const trend=best.weekChg>0?`+$${best.weekChg.toFixed(0)} this week`:best.weekChg<0?`$${best.weekChg.toFixed(0)} this week`:'flat';
+    rows.push(`<div class="ai-signal"><div class="ai-signal-left"><span class="ai-icon">🎯</span><span><strong>Best hold:</strong> ${best.ev.artist} at $${best.latest.price} (${best.mult.toFixed(2)}x) — ${trend}${best.days?', '+best.days+'d out':''}</span></div><div class="ai-bar-wrap"><div class="ai-bar" style="width:${Math.min(100,Math.round((best.mult-1)*80))}%;background:var(--green)"></div></div></div>`);
+  }
+
+  // Below face
+  const weak=signals.filter(s=>s.mult<1.0);
+  if(weak.length) rows.push(`<div class="ai-signal"><div class="ai-signal-left"><span class="ai-icon">⚠️</span><span><strong>Below face:</strong> ${weak.map(s=>`${s.ev.artist} ($${s.latest.price} vs $${s.ev.face})`).join(', ')}</span></div></div>`);
+
+  if(!rows.length) rows.push(`<div class="ai-signal"><div class="ai-signal-left"><span class="ai-icon">📊</span><span>No major signals today — prices stable</span></div></div>`);
+
+  el.innerHTML=rows.join('');
+  ts.textContent='Updated '+new Date().toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'});
 }
 
-function scoreBadge(score) {
-  if (score>=65) return {cls:'score-hot',label:`🔥 ${score}`};
-  if (score>=40) return {cls:'score-ok',label:`⚡ ${score}`};
-  return {cls:'score-cold',label:`❄️ ${score}`};
+// ─── DASHBOARD ────────────────────────────────────────────────────────────────
+function renderDashboard(){
+  const active=activeEvents();
+  document.getElementById('m-events').textContent=active.length;
+
+  const evWP=active.filter(e=>getPrices(e.id).length>0);
+  if(evWP.length){
+    const avg=evWP.reduce((s,e)=>s+getMultiplier(e),0)/evWP.length;
+    document.getElementById('m-mult').textContent=avg.toFixed(2)+'x';
+    const hot=evWP.reduce((b,e)=>getMultiplier(e)>getMultiplier(b)?e:b);
+    document.getElementById('m-hot').textContent=hot.artist;
+  }
+  const scores=active.map(e=>getScore(e));
+  if(scores.length){
+    const avg=scores.reduce((a,b)=>a+b,0)/scores.length;
+    const el=document.getElementById('m-score');
+    el.textContent=Math.round(avg);
+    el.className='metric-val '+(avg>=65?'c-green':avg>=40?'c-amber':'c-red');
+  }
+
+  // Ranking
+  const rankEl=document.getElementById('dash-ranking');
+  if(!active.length){rankEl.innerHTML='<div class="empty">No active events</div>';}
+  else{
+    rankEl.innerHTML=[...active].sort((a,b)=>getScore(b)-getScore(a)).slice(0,5).map(ev=>{
+      const score=getScore(ev),mult=getMultiplier(ev);
+      return`<div class="event-row" onclick="showTab('analyze',null);document.getElementById('a-event').value='${ev.id}';runAnalysis();">
+        <div><div class="event-name">${ev.artist}</div><div class="event-meta">${ev.event_datetime_scraped||ev.date||''} ${ev.venue||''}</div></div>
+        <div style="display:flex;align-items:center;gap:8px;">
+          ${mult?`<span style="font-family:var(--mono);font-size:12px;color:var(--green)">${mult.toFixed(2)}x</span>`:''}
+          ${scorePill(score)}
+        </div>
+      </div>`;
+    }).join('');
+  }
+
+  // Activity
+  const actEl=document.getElementById('dash-activity');
+  const recent=[...prices].sort((a,b)=>b.date.localeCompare(a.date)).slice(0,6);
+  if(!recent.length){actEl.innerHTML='<div class="empty">No prices yet</div>';}
+  else{
+    actEl.innerHTML=recent.map(p=>{
+      const ev=events.find(e=>e.id==p.eventId);
+      const mult=ev?(p.price/ev.face):1;
+      const col=mult>=1.5?'var(--green)':mult>=1.1?'var(--amber)':'var(--red)';
+      return`<div style="display:flex;justify-content:space-between;align-items:center;padding:7px 0;border-bottom:1px solid var(--border);">
+        <div><span style="font-weight:700;font-size:13px">${ev?ev.artist:'?'}</span><span style="font-size:11px;color:var(--muted);margin-left:6px">${p.date}</span></div>
+        <span style="font-family:var(--mono);font-weight:700;color:${col}">$${p.price} <span style="font-size:10px;opacity:.7">${mult.toFixed(2)}x</span></span>
+      </div>`;
+    }).join('');
+  }
+
+  // Past events list
+  const pastEl=document.getElementById('past-event-list');
+  const past=pastEvents();
+  if(past.length){
+    pastEl.innerHTML=past.map(ev=>{
+      const pts=getPrices(ev.id);
+      const maxAsk=pts.length?Math.max(...pts.map(p=>p.price)):null;
+      const mult=getMultiplier(ev);
+      return`<div class="event-row" style="opacity:.7">
+        <div><div class="event-name">${ev.artist}</div><div class="event-meta">${ev.event_datetime_scraped||ev.date||''} ${ev.venue||''}</div></div>
+        <div style="display:flex;align-items:center;gap:8px;">
+          ${mult?`<span style="font-family:var(--mono);font-size:12px;color:var(--muted)">${mult.toFixed(2)}x avg</span>`:''}
+          ${maxAsk?`<span style="font-family:var(--mono);font-size:12px;color:var(--muted)">peak $${maxAsk}</span>`:''}
+          ${scorePill(0,true)}
+        </div>
+      </div>`;
+    }).join('');
+  } else {pastEl.innerHTML='';}
+
+  buildMarketSummary();
+  buildMainChart();
 }
 
-// ─── ANALYSIS ────────────────────────────────────────────────────────────────
-function renderAnalysisDropdown() {
-  const sel = document.getElementById('a-event');
-  const cur = sel.value;
-  sel.innerHTML = '<option value="">— Select event —</option>' + events.map(e=>`<option value="${e.id}">${e.artist}${e.date?' ('+e.date+')':''}</option>`).join('');
-  if (cur) { sel.value = cur; runAnalysis(); }
+// ─── EVENTS ───────────────────────────────────────────────────────────────────
+function addEvent(){
+  const artist=document.getElementById('e-artist').value.trim();
+  const face=parseFloat(document.getElementById('e-face').value);
+  if(!artist||!face){alert('Artist and face value required.');return;}
+  events.push({id:Date.now(),artist,venue:document.getElementById('e-venue').value.trim(),
+    city:document.getElementById('e-city').value.trim(),date:document.getElementById('e-date').value,
+    face,listeners:parseInt(document.getElementById('e-listeners').value)||0,
+    genre:document.getElementById('e-genre').value,cap:document.getElementById('e-cap').value,
+    avail:document.getElementById('e-avail').value,url:document.getElementById('e-url').value.trim(),
+    notes:document.getElementById('e-notes').value.trim()});
+  ['e-artist','e-venue','e-city','e-date','e-face','e-listeners','e-notes','e-url'].forEach(id=>document.getElementById(id).value='');
+  refreshAll();
 }
 
-function runAnalysis() {
-  const eventId = document.getElementById('a-event').value;
-  const el = document.getElementById('analysis-output');
-  if (!eventId) { el.innerHTML = '<div class="empty-state"><div class="icon">🔮</div><p>Select an event to analyze</p></div>'; return; }
-  const ev = events.find(e => e.id == eventId);
-  if (!ev) return;
-  const pts = getPricesForEvent(eventId);
-  const score = getScore(ev), badge = scoreBadge(score);
-  const mult = getMultiplier(ev);
-  const avgResell = pts.length ? pts.reduce((s,p)=>s+p.price,0)/pts.length : null;
-  const maxResell = pts.length ? Math.max(...pts.map(p=>p.price)) : null;
-  const minResell = pts.length ? Math.min(...pts.map(p=>p.price)) : null;
-  const estProfit = avgResell ? avgResell - ev.face : null;
-  const avgBid = pts.filter(p=>p.highestBid).length ? pts.filter(p=>p.highestBid).reduce((s,p)=>s+p.highestBid,0)/pts.filter(p=>p.highestBid).length : null;
-  let trendTxt = '—';
-  if (pts.length>=3) {
-    const recentAvg = pts.slice(-3).reduce((a,b)=>a+b.price,0)/3;
-    const olderAvg = pts.slice(0,3).reduce((a,b)=>a+b.price,0)/3;
-    trendTxt = recentAvg>olderAvg*1.05?'📈 Rising':recentAvg<olderAvg*0.95?'📉 Falling':'➡️ Flat';
-  } else if (pts.length) trendTxt = 'Not enough data';
-  let rec='',recClass='';
-  if (score>=70){rec='Strong buy signal. High demand, limited supply.';recClass='text-green';}
-  else if (score>=55){rec='Moderate opportunity. Monitor prices closely.';recClass='text-amber';}
-  else if (score>=40){rec='Marginal. Proceed with caution.';recClass='text-amber';}
-  else{rec='Low priority. Better opportunities likely exist.';recClass='text-red';}
-  const listenerScore = ev.listeners>0?Math.min(100,Math.round((Math.log10(ev.listeners)-3)/(Math.log10(2000000)-3)*100)):null;
-  const multScore = mult?Math.min(100,Math.round((mult-1)*60)):null;
-  const capScore = {small:100,medium:65,large:35,festival:10}[ev.cap]||null;
-  const availScore = {soldout:100,low:80,medium:40,high:10}[ev.avail]||null;
-  el.innerHTML = `
-    <div style="display:grid;grid-template-columns:180px 1fr;gap:14px;margin-bottom:14px;">
-      <div class="card" style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;">
-        <div class="card-title" style="margin-bottom:0;">Profit Score</div>
-        ${renderScoreRing(score)}
-        <span class="score-badge ${badge.cls}" style="font-size:15px;">${badge.label}</span>
+function deleteEvent(id){
+  if(!confirm('Delete event and all price data?')) return;
+  events=events.filter(e=>e.id!==id); prices=prices.filter(p=>p.eventId!==id); refreshAll();
+}
+
+function renderEventList(){
+  const el=document.getElementById('event-list');
+  if(!events.length){el.innerHTML='<div class="empty">No events yet.</div>';return;}
+  const sorted=[...events].sort((a,b)=>{
+    if(isPast(a)&&!isPast(b)) return 1;
+    if(!isPast(a)&&isPast(b)) return -1;
+    return getScore(b)-getScore(a);
+  });
+  el.innerHTML=sorted.map(ev=>{
+    const past=isPast(ev),score=getScore(ev),mult=getMultiplier(ev);
+    return`<div class="event-row ${past?'':''}">
+      <div onclick="showTab('analyze',null);document.getElementById('a-event').value='${ev.id}';runAnalysis();" style="flex:1;cursor:pointer">
+        <div class="event-name" style="${past?'opacity:.6':''}">${ev.artist}${past?' <span style="font-size:10px;color:var(--muted)">(past)</span>':''}</div>
+        <div class="event-meta">${ev.event_datetime_scraped||ev.date||''} ${ev.venue||''}</div>
+      </div>
+      <div style="display:flex;align-items:center;gap:8px;">
+        ${mult?`<span style="font-family:var(--mono);font-size:12px;color:var(--green)">${mult.toFixed(2)}x</span>`:''}
+        ${scorePill(score,past)}
+        <button class="btn btn-danger" onclick="deleteEvent(${ev.id})">✕</button>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function exportEventsJSON(){
+  if(!events.length){alert('No events to export.');return;}
+  const out=events.map(ev=>({url:ev.url||'',artist:ev.artist,venue:ev.venue||'',city:ev.city||'',
+    event_date:ev.date||'',face_value:ev.face,us_listeners:ev.listeners||0,genre:ev.genre||'',
+    cap:ev.cap||'',avail:ev.avail||'',notes:ev.notes||''}));
+  const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([JSON.stringify(out,null,2)],{type:'application/json'}));
+  a.download='events.json';a.click();URL.revokeObjectURL(a.href);
+}
+
+// ─── PRICES ───────────────────────────────────────────────────────────────────
+function logPrice(){
+  const eventId=parseInt(document.getElementById('p-event').value);
+  const price=parseFloat(document.getElementById('p-price').value);
+  const date=document.getElementById('p-date').value;
+  if(!eventId||!price||!date){alert('Event, ask price, and date required.');return;}
+  prices.push({id:Date.now(),eventId,price,date,highestBid:parseFloat(document.getElementById('p-bid').value)||null,section:document.getElementById('p-section').value});
+  ['p-price','p-bid'].forEach(id=>document.getElementById(id).value='');
+  renderPriceChart();renderPriceLog();renderDashboard();
+}
+
+function deletePrice(id){prices=prices.filter(p=>p.id!==id);renderPriceChart();renderPriceLog();renderDashboard();}
+
+function renderPriceLog(){
+  const fid=parseInt(document.getElementById('ph-filter').value)||null;
+  const el=document.getElementById('price-log-list');
+  let list=fid?prices.filter(p=>p.eventId==fid):prices;
+  list=[...list].sort((a,b)=>b.date.localeCompare(a.date));
+  if(!list.length){el.innerHTML='<div class="empty">No prices yet.</div>';return;}
+  el.innerHTML=list.map(p=>{
+    const ev=events.find(e=>e.id==p.eventId);
+    const mult=ev?(p.price/ev.face).toFixed(2):'?';
+    const col=parseFloat(mult)>=1.5?'var(--green)':parseFloat(mult)>=1.1?'var(--amber)':'var(--red)';
+    return`<div class="price-point"><div class="pdot" style="background:${col}"></div>
+      <div style="flex:1"><span style="font-weight:700">${ev?ev.artist:'?'}</span><span style="font-size:10px;color:var(--muted);margin-left:5px">${p.section||'GA'} · ${p.date}</span></div>
+      <span style="font-family:var(--mono);font-weight:700;color:${col}">$${p.price}</span>
+      <span style="font-family:var(--mono);font-size:10px;color:var(--muted);margin-left:5px">${mult}x</span>
+      <button class="btn btn-danger" onclick="deletePrice(${p.id})" style="margin-left:6px">✕</button>
+    </div>`;
+  }).join('');
+}
+
+function renderPriceChart(){
+  const fid=parseInt(document.getElementById('ph-filter').value)||null;
+  const canvas=document.getElementById('price-chart');
+  const relevant=fid?prices.filter(p=>p.eventId==fid):prices;
+  const grouped={};
+  [...relevant].sort((a,b)=>a.date.localeCompare(b.date)).forEach(p=>{
+    const ev=events.find(e=>e.id==p.eventId);
+    const k=ev?ev.artist:'?';
+    if(!grouped[k]) grouped[k]=[];
+    grouped[k].push({x:p.date,y:p.price});
+  });
+  const datasets=Object.entries(grouped).map(([k,v],i)=>({label:k,data:v,borderColor:COLORS[i%COLORS.length],backgroundColor:COLORS[i%COLORS.length]+'22',tension:0.3,pointRadius:3,fill:false,borderWidth:2}));
+  if(priceChart) priceChart.destroy();
+  if(!datasets.length) return;
+  priceChart=new Chart(canvas,{type:'line',data:{datasets},options:{responsive:true,maintainAspectRatio:false,
+    plugins:{legend:{display:datasets.length>1,labels:{color:'#7d8590',font:{size:10},boxWidth:8}}},
+    scales:{x:{type:'category',ticks:{color:'#7d8590',font:{size:9}},grid:{color:'rgba(255,255,255,.04)'}},
+      y:{ticks:{color:'#7d8590',callback:v=>'$'+v,font:{size:9}},grid:{color:'rgba(255,255,255,.06)'}}}}});
+}
+
+// ─── ANALYZE ─────────────────────────────────────────────────────────────────
+function renderAnalysisDropdown(){
+  const sel=document.getElementById('a-event');
+  const cur=sel.value;
+  const active=activeEvents(),past=pastEvents();
+  let opts='<option value="">— Select event —</option>';
+  if(active.length) opts+='<optgroup label="Active">'+active.map(e=>`<option value="${e.id}">${e.artist}${e.date?' ('+e.date+')':''}</option>`).join('')+'</optgroup>';
+  if(past.length) opts+='<optgroup label="Past">'+past.map(e=>`<option value="${e.id}">${e.artist} (past)</option>`).join('')+'</optgroup>';
+  sel.innerHTML=opts;
+  if(cur){sel.value=cur;runAnalysis();}
+}
+
+function runAnalysis(){
+  const eventId=document.getElementById('a-event').value;
+  const el=document.getElementById('analysis-output');
+  if(!eventId){el.innerHTML='<div class="empty">Select an event to analyze</div>';return;}
+  const ev=events.find(e=>e.id==eventId);
+  if(!ev) return;
+  const pts=getPrices(eventId);
+  const past=isPast(ev);
+  const score=getScore(ev),mult=getMultiplier(ev);
+  const avgAsk=pts.length?pts.reduce((s,p)=>s+p.price,0)/pts.length:null;
+  const maxAsk=pts.length?Math.max(...pts.map(p=>p.price)):null;
+  const minAsk=pts.length?Math.min(...pts.map(p=>p.price)):null;
+  const estProfit=avgAsk?avgAsk-ev.face:null;
+  const avgBid=pts.filter(p=>p.highestBid).length?pts.filter(p=>p.highestBid).reduce((s,p)=>s+p.highestBid,0)/pts.filter(p=>p.highestBid).length:null;
+  let trend='—';
+  if(pts.length>=3){const r=pts.slice(-3).reduce((a,b)=>a+b.price,0)/3,o=pts.slice(0,3).reduce((a,b)=>a+b.price,0)/3;trend=r>o*1.05?'📈 Rising':r<o*0.95?'📉 Falling':'➡️ Flat';}
+
+  const listScore=ev.listeners>0?Math.min(100,Math.round((Math.log10(ev.listeners)-3)/(Math.log10(2000000)-3)*100)):null;
+  const multScore=mult?Math.min(100,Math.round((mult-1)*60)):null;
+  const capScore={small:100,medium:65,large:35,festival:10}[ev.cap]||null;
+  const availScore={soldout:100,low:80,medium:40,high:10}[ev.avail]||null;
+
+  let rec='',recCol='';
+  if(past){rec='This event has passed. Review price history to refine your sell timing strategy for future events.';recCol='var(--muted)';}
+  else if(score>=70){rec='Strong buy signal. High demand, limited supply. Price likely to increase closer to event.';recCol='var(--green)';}
+  else if(score>=55){rec='Moderate opportunity. Monitor prices — buy if trend continues upward.';recCol='var(--amber)';}
+  else if(score>=40){rec='Marginal. Proceed with caution.';recCol='var(--amber)';}
+  else{rec='Low priority. Better opportunities likely exist.';recCol='var(--red)';}
+
+  el.innerHTML=`
+    <div style="display:grid;grid-template-columns:160px 1fr;gap:14px;margin-bottom:14px;">
+      <div class="card" style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;">
+        <div class="card-title" style="margin-bottom:0;">${past?'Final Score':'Profit Score'}</div>
+        ${renderRing(past?0:score,past)}
+        ${scorePill(score,past)}
       </div>
       <div>
         <div class="card" style="margin-bottom:14px;">
           <div class="card-title">Event Details</div>
-          <div class="form-grid-3" style="font-size:13px;margin-bottom:0;">
-            <div><div class="text-muted" style="font-size:11px;margin-bottom:3px;">Artist</div><div class="bold">${ev.artist}</div></div>
-            <div><div class="text-muted" style="font-size:11px;margin-bottom:3px;">Date & Time</div><div>${ev.event_datetime_scraped || ev.date || '—'}</div></div>
-            <div><div class="text-muted" style="font-size:11px;margin-bottom:3px;">Venue</div><div>${ev.venue||'—'}</div></div>
-            <div><div class="text-muted" style="font-size:11px;margin-bottom:3px;">Face Value</div><div class="mono text-amber">$${ev.face}</div></div>
-            <div><div class="text-muted" style="font-size:11px;margin-bottom:3px;">US Listeners</div><div class="mono">${ev.listeners?ev.listeners.toLocaleString():'—'}</div></div>
-            <div><div class="text-muted" style="font-size:11px;margin-bottom:3px;">Genre</div><div>${ev.genre||'—'}</div></div>
+          <div class="grid3" style="margin-bottom:0;font-size:12px;">
+            <div><div style="font-size:10px;color:var(--muted);margin-bottom:3px;">Artist</div><div style="font-weight:700">${ev.artist}</div></div>
+            <div><div style="font-size:10px;color:var(--muted);margin-bottom:3px;">Date & Time</div><div>${ev.event_datetime_scraped||ev.date||'—'}</div></div>
+            <div><div style="font-size:10px;color:var(--muted);margin-bottom:3px;">Venue</div><div>${ev.venue||'—'}</div></div>
+            <div><div style="font-size:10px;color:var(--muted);margin-bottom:3px;">Face Value</div><div style="font-family:var(--mono);color:var(--amber)">$${ev.face}</div></div>
+            <div><div style="font-size:10px;color:var(--muted);margin-bottom:3px;">US Listeners</div><div style="font-family:var(--mono)">${ev.listeners?ev.listeners.toLocaleString():'—'}</div></div>
+            <div><div style="font-size:10px;color:var(--muted);margin-bottom:3px;">Genre</div><div>${ev.genre||'—'}</div></div>
           </div>
         </div>
         <div class="card">
           <div class="card-title">Resell Performance</div>
-          <div class="form-grid-4" style="font-size:13px;margin-bottom:0;">
-            <div><div class="text-muted" style="font-size:11px;margin-bottom:3px;">Avg Ask</div><div class="mono bold text-green">${avgResell?'$'+avgResell.toFixed(0):'No data'}</div></div>
-            <div><div class="text-muted" style="font-size:11px;margin-bottom:3px;">Avg Bid</div><div class="mono bold text-amber">${avgBid?'$'+avgBid.toFixed(0):'—'}</div></div>
-            <div><div class="text-muted" style="font-size:11px;margin-bottom:3px;">Multiplier</div><div class="mono bold ${mult&&mult>=1.5?'text-green':mult&&mult>=1.1?'text-amber':'text-red'}">${mult?mult.toFixed(2)+'x':'—'}</div></div>
-            <div><div class="text-muted" style="font-size:11px;margin-bottom:3px;">Est. Profit</div><div class="mono bold ${estProfit&&estProfit>0?'text-green':'text-red'}">${estProfit?(estProfit>0?'+':'')+' $'+estProfit.toFixed(0):'—'}</div></div>
+          <div class="grid4" style="margin-bottom:0;font-size:12px;">
+            <div><div style="font-size:10px;color:var(--muted);margin-bottom:3px;">Avg Ask</div><div style="font-family:var(--mono);font-weight:700;color:var(--green)">${avgAsk?'$'+avgAsk.toFixed(0):'No data'}</div></div>
+            <div><div style="font-size:10px;color:var(--muted);margin-bottom:3px;">Avg Bid</div><div style="font-family:var(--mono);font-weight:700;color:var(--amber)">${avgBid?'$'+avgBid.toFixed(0):'—'}</div></div>
+            <div><div style="font-size:10px;color:var(--muted);margin-bottom:3px;">Multiple</div><div style="font-family:var(--mono);font-weight:700;color:${mult&&mult>=1.5?'var(--green)':mult&&mult>=1.1?'var(--amber)':'var(--red)'}">${mult?mult.toFixed(2)+'x':'—'}</div></div>
+            <div><div style="font-size:10px;color:var(--muted);margin-bottom:3px;">Est. Profit</div><div style="font-family:var(--mono);font-weight:700;color:${estProfit&&estProfit>0?'var(--green)':'var(--red)'}">${estProfit?(estProfit>0?'+':'')+' $'+estProfit.toFixed(0):'—'}</div></div>
           </div>
-          ${pts.length?`<div style="margin-top:10px;font-size:11px;color:var(--muted);">Range: $${minResell}–$${maxResell} · ${pts.length} snapshot${pts.length>1?'s':''} · Trend: ${trendTxt}</div>`:''}
+          ${pts.length?`<div style="margin-top:8px;font-size:10px;color:var(--muted);">Range $${minAsk}–$${maxAsk} · ${pts.length} snapshot${pts.length>1?'s':''} · ${trend}</div>`:''}
         </div>
       </div>
     </div>
-    <div class="two-col mb-14">
+    <div class="two-col" style="margin-bottom:14px;">
       <div class="card">
         <div class="card-title">Signal Breakdown</div>
-        ${renderSignal('Resell Multiplier',multScore,mult?mult.toFixed(2)+'x':'No data')}
-        ${renderSignal('US Monthly Listeners',listenerScore,ev.listeners?ev.listeners.toLocaleString():'Not set')}
-        ${renderSignal('Venue Scarcity',capScore,ev.cap||'Not set')}
-        ${renderSignal('Ticket Availability',availScore,ev.avail||'Not set')}
+        ${renderSig('Resell Multiplier',multScore,mult?mult.toFixed(2)+'x':'No data')}
+        ${renderSig('US Monthly Listeners',listScore,ev.listeners?ev.listeners.toLocaleString():'Not set')}
+        ${renderSig('Venue Scarcity',capScore,ev.cap||'Not set')}
+        ${renderSig('Ticket Availability',availScore,ev.avail||'Not set')}
       </div>
       <div class="card">
         <div class="card-title">Price Chart</div>
-        <div class="chart-wrap" style="height:160px;"><canvas id="analysis-chart-${eventId}"></canvas></div>
+        <div class="chart-wrap" style="height:160px;"><canvas id="analysis-canvas-${eventId}"></canvas></div>
       </div>
     </div>
-    <div class="card" style="border-left:3px solid ${score>=65?'var(--green)':score>=40?'var(--amber)':'var(--red)'};">
-      <div class="card-title">Algorithm Recommendation</div>
-      <div class="bold ${recClass}" style="font-size:15px;margin-bottom:6px;">${score>=65?'BUY':score>=55?'WATCH':score>=40?'CAUTION':'SKIP'}</div>
-      <div style="font-size:13px;">${rec}</div>
-      ${ev.url?`<div style="margin-top:8px;"><a href="${ev.url}" target="_blank" style="color:var(--accent2);font-size:12px;">View on Crowdvolt →</a></div>`:''}
+    <div class="card" style="border-left:3px solid ${past?'var(--muted)':score>=65?'var(--green)':score>=40?'var(--amber)':'var(--red)'};">
+      <div class="card-title">${past?'Post-Event Analysis':'Algorithm Recommendation'}</div>
+      <div style="font-weight:700;font-size:14px;margin-bottom:6px;color:${recCol}">${past?'COMPLETED':score>=65?'BUY':score>=55?'WATCH':score>=40?'CAUTION':'SKIP'}</div>
+      <div style="font-size:13px;color:var(--text)">${rec}</div>
+      ${ev.url?`<div style="margin-top:8px"><a href="${ev.url}" target="_blank" style="color:var(--accent);font-size:11px">View on Crowdvolt →</a></div>`:''}
     </div>`;
-  if (pts.length) {
-    setTimeout(() => {
-      const c = document.getElementById('analysis-chart-'+eventId);
-      if (!c) return;
-      new Chart(c, {
-        type:'line',
-        data:{
-          labels:pts.map(p=>p.date),
-          datasets:[
-            {data:pts.map(p=>p.price),borderColor:'#7b5cf0',backgroundColor:'rgba(123,92,240,0.12)',fill:true,tension:0.3,pointRadius:4,borderWidth:2,label:'Ask'},
-            ...(pts.some(p=>p.highestBid)?[{data:pts.map(p=>p.highestBid||null),borderColor:'#fbbf24',backgroundColor:'transparent',tension:0.3,pointRadius:3,borderWidth:1.5,borderDash:[4,3],label:'Bid'}]:[]),
-            {data:pts.map(()=>ev.face),borderColor:'#ffffff22',borderDash:[5,4],pointRadius:0,borderWidth:1.5,label:'Face'},
-          ]
-        },
-        options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},
-          scales:{x:{ticks:{color:'#6b6880',font:{size:10}},grid:{color:'rgba(255,255,255,0.04)'}},
-            y:{ticks:{color:'#6b6880',callback:v=>'$'+v,font:{size:10}},grid:{color:'rgba(255,255,255,0.06)'}}}}
-      });
+
+  if(pts.length){
+    setTimeout(()=>{
+      const c=document.getElementById('analysis-canvas-'+eventId);
+      if(!c) return;
+      new Chart(c,{type:'line',data:{labels:pts.map(p=>p.date),datasets:[
+        {data:pts.map(p=>p.price),borderColor:'#00e5ff',backgroundColor:'rgba(0,229,255,.1)',fill:true,tension:0.3,pointRadius:3,borderWidth:2,label:'Ask'},
+        ...(pts.some(p=>p.highestBid)?[{data:pts.map(p=>p.highestBid||null),borderColor:'#ffb93066',borderDash:[4,3],pointRadius:0,borderWidth:1.5,label:'Bid'}]:[]),
+        {data:pts.map(()=>ev.face),borderColor:'rgba(255,255,255,.15)',borderDash:[5,4],pointRadius:0,borderWidth:1.5,label:'Face'},
+      ]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},
+        scales:{x:{ticks:{color:'#7d8590',font:{size:9}},grid:{color:'rgba(255,255,255,.04)'}},
+          y:{ticks:{color:'#7d8590',callback:v=>'$'+v,font:{size:9}},grid:{color:'rgba(255,255,255,.06)'}}}}});
     },50);
   }
 }
 
-function renderSignal(label, score, val) {
-  if (score===null) return `<div class="signal-row"><div style="flex:1;"><div class="flex justify-between items-center mb-4"><span class="signal-label">${label}</span><span class="signal-val text-muted">—</span></div><div class="signal-bar"><div class="signal-fill" style="width:0%;background:var(--muted);"></div></div></div></div>`;
-  const color = score>=70?'var(--green)':score>=40?'var(--amber)':'var(--red)';
-  return `<div class="signal-row"><div style="flex:1;"><div class="flex justify-between items-center" style="margin-bottom:4px;"><span class="signal-label">${label}</span><span class="signal-val" style="color:${color};font-size:12px;">${val}</span></div><div class="signal-bar"><div class="signal-fill" style="width:${Math.max(3,score)}%;background:${color};"></div></div></div></div>`;
-}
-
-function renderScoreRing(score) {
-  const r=44,cx=60,cy=60,circ=2*Math.PI*r;
-  const color=score>=65?'#22d3a0':score>=40?'#fbbf24':'#f87171';
-  return `<svg width="120" height="120" viewBox="0 0 120 120">
-    <circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="8"/>
-    <circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="${color}" stroke-width="8"
+function renderRing(score,past){
+  const r=42,cx=56,cy=56,circ=2*Math.PI*r;
+  const col=past?'#7d8590':score>=65?'#39d98a':score>=40?'#ffb930':'#ff5c7c';
+  return`<svg width="112" height="112" viewBox="0 0 112 112">
+    <circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="rgba(255,255,255,.06)" stroke-width="7"/>
+    <circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="${col}" stroke-width="7"
       stroke-dasharray="${(circ*score/100).toFixed(1)} ${circ.toFixed(1)}"
       stroke-linecap="round" transform="rotate(-90 ${cx} ${cy})"/>
-    <text x="${cx}" y="${cy+2}" text-anchor="middle" dominant-baseline="middle" fill="${color}" font-size="22" font-weight="700" font-family="Space Mono">${score}</text>
-    <text x="${cx}" y="${cy+22}" text-anchor="middle" dominant-baseline="middle" fill="#6b6880" font-size="10" font-family="DM Sans">/100</text>
+    <text x="${cx}" y="${cy+2}" text-anchor="middle" dominant-baseline="middle" fill="${col}" font-size="20" font-weight="700" font-family="JetBrains Mono">${past?'—':score}</text>
+    <text x="${cx}" y="${cy+20}" text-anchor="middle" dominant-baseline="middle" fill="#7d8590" font-size="9" font-family="Syne">/100</text>
   </svg>`;
 }
 
-// ─── DASHBOARD ───────────────────────────────────────────────────────────────
-function renderDashboard() {
-  document.getElementById('m-events').textContent = events.length;
-  const evWP = events.filter(e=>getPricesForEvent(e.id).length>0);
-  if (evWP.length) {
-    const avg = evWP.reduce((s,e)=>s+getMultiplier(e),0)/evWP.length;
-    document.getElementById('m-mult').textContent = avg.toFixed(2)+'x';
-    const hot = evWP.reduce((b,e)=>getMultiplier(e)>getMultiplier(b)?e:b);
-    document.getElementById('m-hot').textContent = hot.artist;
-  }
-  const scores = events.map(e=>getScore(e));
-  if (scores.length) {
-    const avg = scores.reduce((a,b)=>a+b,0)/scores.length;
-    const el = document.getElementById('m-score');
-    el.textContent = Math.round(avg);
-    el.className = 'metric-val '+(avg>=65?'green':avg>=40?'amber':'red');
-  }
-  const topEl = document.getElementById('dash-top-events');
-  if (!events.length) { topEl.innerHTML = '<div class="empty-state"><div class="icon">🎪</div><p>No events yet</p></div>'; }
-  else {
-    const sorted = [...events].sort((a,b)=>getScore(b)-getScore(a)).slice(0,5);
-    topEl.innerHTML = sorted.map(ev => {
-      const score=getScore(ev),badge=scoreBadge(score),mult=getMultiplier(ev);
-      return `<div class="flex justify-between items-center" style="padding:8px 0;border-bottom:1px solid var(--border2);">
-        <div><div class="bold" style="font-size:13px;">${ev.artist}</div><div class="text-muted" style="font-size:11px;">${ev.date||''} ${ev.venue||''}</div></div>
-        <div class="flex items-center gap-10">
-          ${mult?`<span class="mono text-green" style="font-size:12px;">${mult.toFixed(2)}x</span>`:''}
-          <span class="score-badge ${badge.cls}" style="font-size:11px;">${badge.label}</span>
-        </div>
-      </div>`;
-    }).join('');
-  }
-  const actEl = document.getElementById('dash-price-activity');
-  const recent = [...prices].sort((a,b)=>b.date.localeCompare(a.date)).slice(0,6);
-  if (!recent.length) { actEl.innerHTML = '<div class="empty-state"><div class="icon">📈</div><p>No prices yet</p></div>'; }
-  else {
-    actEl.innerHTML = recent.map(p => {
-      const ev=events.find(e=>e.id==p.eventId);
-      const mult=ev?(p.price/ev.face):1;
-      const color=mult>=1.5?'var(--green)':mult>=1.1?'var(--amber)':'var(--red)';
-      return `<div class="flex justify-between items-center" style="padding:7px 0;border-bottom:1px solid var(--border2);">
-        <div><span class="bold" style="font-size:13px;">${ev?ev.artist:'Unknown'}</span><span class="text-muted" style="font-size:11px;margin-left:6px;">${p.date}</span></div>
-        <div class="flex items-center gap-10">
-          <span class="mono bold" style="color:${color};font-size:13px;">$${p.price}</span>
-          <span class="mono text-muted" style="font-size:11px;">${mult.toFixed(2)}x</span>
-        </div>
-      </div>`;
-    }).join('');
-  }
-  renderScatterChart();
-  generateAISummary();
+function renderSig(label,score,val){
+  if(score===null) return`<div class="sig-row"><div style="display:flex;justify-content:space-between;font-size:12px;"><span style="color:var(--muted)">${label}</span><span style="font-family:var(--mono);color:var(--muted)">—</span></div></div>`;
+  const col=score>=70?'var(--green)':score>=40?'var(--amber)':'var(--red)';
+  return`<div class="sig-row"><div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:4px;"><span style="color:var(--muted)">${label}</span><span style="font-family:var(--mono);color:${col}">${val}</span></div><div class="sig-bar-bg"><div class="sig-fill" style="width:${Math.max(3,score)}%;background:${col}"></div></div></div>`;
 }
 
-function renderScatterChart() {
-  const canvas = document.getElementById('scatter-chart');
-  const data = events.filter(e=>e.listeners>0&&getPricesForEvent(e.id).length>0).map(e=>({
-    x:e.listeners, y:getMultiplier(e),
-    r:Math.max(5,Math.min(20,e.face/8)), label:e.artist,
-  }));
-  if (scatterChart) scatterChart.destroy();
-  if (!data.length) return;
-  scatterChart = new Chart(canvas, {
-    type:'bubble', data:{datasets:[{data, backgroundColor:data.map(d=>d.y>=1.5?'rgba(34,211,160,0.6)':d.y>=1.1?'rgba(251,191,36,0.6)':'rgba(248,113,113,0.6)'), borderColor:'transparent'}]},
-    options:{responsive:true,maintainAspectRatio:false,
-      plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>{const d=ctx.raw;return `${d.label}: ${d.x.toLocaleString()} listeners · ${d.y.toFixed(2)}x`;}}}},
-      scales:{
-        x:{ticks:{color:'#6b6880',callback:v=>v>=1000000?(v/1000000).toFixed(1)+'M':v>=1000?(v/1000)+'K':v,font:{size:10}},grid:{color:'rgba(255,255,255,0.04)'},title:{display:true,text:'US Monthly Listeners',color:'#6b6880',font:{size:11}}},
-        y:{ticks:{color:'#6b6880',callback:v=>v.toFixed(2)+'x',font:{size:10}},grid:{color:'rgba(255,255,255,0.06)'},title:{display:true,text:'Resell Multiple',color:'#6b6880',font:{size:11}}}
-      }
-    }
-  });
-}
-
-function exportEventsJSON() {
-  if (!events.length) { alert('No events to export yet.'); return; }
-  const output = events.map(ev => ({
-    url: ev.url || "",
-    artist: ev.artist,
-    venue: ev.venue || "",
-    city: ev.city || "",
-    event_date: ev.date || "",
-    face_value: ev.face,
-    us_listeners: ev.listeners || 0,
-    genre: ev.genre || "",
-    cap: ev.cap || "",
-    avail: ev.avail || "",
-    notes: ev.notes || "",
-  }));
-  const blob = new Blob([JSON.stringify(output, null, 2)], {type: 'application/json'});
-  const a = document.createElement('a');
-  a.href = URL.createObjectURL(blob);
-  a.download = 'events.json';
-  a.click();
-  URL.revokeObjectURL(a.href);
-}
-
-// ─── MARKET SUMMARY ──────────────────────────────────────────────────────────
-async function generateAISummary(forceRefresh = false) {
-  const el = document.getElementById('ai-summary');
-  const tsEl = document.getElementById('ai-timestamp');
-
-  if (!events.length || !prices.length) {
-    el.textContent = 'Add events and price data to see your market summary.';
-    return;
-  }
-
-  const lines = [];
-
-  // Build signal for each event with price data
-  const signals = events.map(ev => {
-    const pts = getPricesForEvent(ev.id).sort((a,b) => a.date.localeCompare(b.date));
-    if (!pts.length) return null;
-    const latest = pts[pts.length - 1];
-    const prev = pts.length >= 2 ? pts[pts.length - 2] : null;
-    const weekAgo = pts.length >= 7 ? pts[pts.length - 7] : pts[0];
-    const mult = latest.price / ev.face;
-    const dayChange = prev ? latest.price - prev.price : 0;
-    const weekChange = latest.price - weekAgo.price;
-    const daysUntil = ev.date ? Math.ceil((new Date(ev.date) - new Date()) / 86400000) : null;
-    const score = getScore(ev);
-    return { ev, latest, mult, dayChange, weekChange, daysUntil, score, pts };
-  }).filter(Boolean).sort((a,b) => b.score - a.score);
-
-  if (!signals.length) {
-    el.textContent = 'Not enough price data yet — check back after a few days of scraping.';
-    return;
-  }
-
-  // ── Top movers today ──
-  const moversUp = signals.filter(s => s.dayChange > 0).sort((a,b) => b.dayChange - a.dayChange);
-  const moversDown = signals.filter(s => s.dayChange < 0).sort((a,b) => a.dayChange - b.dayChange);
-
-  if (moversUp.length) {
-    const top = moversUp[0];
-    const others = moversUp.slice(1,3).map(s => s.ev.artist).join(', ');
-    lines.push(`📈 <strong>Rising today:</strong> ${top.ev.artist} +$${top.dayChange.toFixed(0)} → $${top.latest.price} (${top.mult.toFixed(2)}x)${others ? ` · also up: ${others}` : ''}`);
-  } else {
-    lines.push(`📊 <strong>No price increases today</strong> across tracked events`);
-  }
-
-  if (moversDown.length) {
-    const top = moversDown[0];
-    lines.push(`📉 <strong>Dropping:</strong> ${top.ev.artist} ${top.dayChange.toFixed(0)} → $${top.latest.price} (${top.mult.toFixed(2)}x)`);
-  }
-
-  // ── Urgent events (within 5 days) ──
-  const urgent = signals.filter(s => s.daysUntil !== null && s.daysUntil >= 0 && s.daysUntil <= 5);
-  if (urgent.length) {
-    urgent.forEach(s => {
-      const tag = s.daysUntil === 0 ? 'TODAY' : s.daysUntil === 1 ? 'TOMORROW' : `${s.daysUntil}d away`;
-      const action = s.mult >= 1.5 ? '🔥 SELL NOW' : s.mult >= 1.2 ? '⚡ WATCH' : '❄️ HOLD';
-      lines.push(`⏰ <strong>${s.ev.artist}</strong> is ${tag} — ask $${s.latest.price} (${s.mult.toFixed(2)}x) ${action}`);
-    });
-  }
-
-  // ── Best opportunity right now ──
-  const best = signals.filter(s => s.daysUntil === null || s.daysUntil > 5)[0];
-  if (best && best.mult >= 1.3) {
-    const weekTrend = best.weekChange > 0 ? `+$${best.weekChange.toFixed(0)} this week` : best.weekChange < 0 ? `$${best.weekChange.toFixed(0)} this week` : 'flat this week';
-    lines.push(`🎯 <strong>Best setup:</strong> ${best.ev.artist} at $${best.latest.price} (${best.mult.toFixed(2)}x face) — ${weekTrend}${best.daysUntil ? `, ${best.daysUntil}d out` : ''}`);
-  }
-
-  // ── Weak events to avoid ──
-  const weak = signals.filter(s => s.mult < 1.0 && (s.daysUntil === null || s.daysUntil > 3));
-  if (weak.length) {
-    lines.push(`⚠️ <strong>Below face value:</strong> ${weak.map(s => `${s.ev.artist} ($${s.latest.price} vs $${s.ev.face} face)`).join(', ')}`);
-  }
-
-  el.innerHTML = lines.map(l => `<div style="padding:4px 0;border-bottom:1px solid var(--border2);">${l}</div>`).join('');
-  el.lastElementChild.style.borderBottom = 'none';
-
-  const timeStr = new Date().toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'});
-  tsEl.textContent = 'Updated ' + timeStr;
-}
-
-function refreshDropdowns() {
-  const opts = '<option value="">— Select event —</option>'+events.map(e=>`<option value="${e.id}">${e.artist}${e.date?' ('+e.date+')':''}</option>`).join('');
-  document.getElementById('p-event').innerHTML = opts;
-  const fOpts = '<option value="">All events</option>'+events.map(e=>`<option value="${e.id}">${e.artist}</option>`).join('');
-  document.getElementById('ph-filter').innerHTML = fOpts;
-}
-
-function refreshAll() {
-  refreshDropdowns();
+// ─── DROPDOWNS ────────────────────────────────────────────────────────────────
+function refreshDropdowns(){
+  const opts='<option value="">— Select event —</option>'+events.map(e=>`<option value="${e.id}">${e.artist}${e.date?' ('+e.date+')':''}</option>`).join('');
+  document.getElementById('p-event').innerHTML=opts;
+  const fOpts='<option value="">All events</option>'+events.map(e=>`<option value="${e.id}">${e.artist}</option>`).join('');
+  document.getElementById('ph-filter').innerHTML=fOpts;
   renderEventList();
-  renderDashboard();
-  renderPriceLog();
-  renderPriceChart();
 }
+
+function refreshAll(){refreshDropdowns();renderDashboard();renderPriceLog();renderPriceChart();}
 
 // ─── INIT ─────────────────────────────────────────────────────────────────────
-document.getElementById('p-date').value = new Date().toISOString().split('T')[0];
+document.getElementById('p-date').value=new Date().toISOString().split('T')[0];
 autoSync();
-// Re-sync every 5 minutes
-setInterval(autoSync, 5 * 60 * 1000);
+setInterval(autoSync,5*60*1000);
 </script>
 </body>
 </html>
