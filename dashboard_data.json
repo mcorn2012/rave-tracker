@@ -1,5 +1,5 @@
 {
-  "exported_at": "2026-04-09T18:57:52.381783+00:00",
+  "exported_at": "2026-04-09T19:14:24.168147+00:00",
   "events": [
     {
       "id": 20,
@@ -89,7 +89,7 @@
       "avail": "low",
       "notes": "NYC sellout expected",
       "url": "https://www.crowdvolt.com/event/sidepiece-presents-horny-house-brooklyn-storehouse",
-      "event_datetime_scraped": "Fri, April 3 \u2022 10PM \u2022 Brooklyn Storehouse"
+      "event_datetime_scraped": "{\"url\": \"https://www.crowdvolt.com/event/sidepiece-presents-horny-house-brooklyn-storehouse\", \"scraped_at\": \"2026-04-02T22:57:11.250795+00:00\", \"lowest_ask\": 85.0, \"highest_bid\": 71.0, \"num_asks\": null, \"num_bids\": null, \"last_sale\": null, \"event_datetime\": \"Fri, April 3 \\u2022 10PM \\u2022 Brooklyn Storehouse\", \"error\": null}"
     },
     {
       "id": 3,
@@ -104,7 +104,7 @@
       "avail": "low",
       "notes": "",
       "url": "https://www.crowdvolt.com/event/rebuke-99-scott-main-room-sat-apr-4-new-york",
-      "event_datetime_scraped": "Sat, April 4 \u2022 10PM \u2022 99 Scott"
+      "event_datetime_scraped": "{\"url\": \"https://www.crowdvolt.com/event/rebuke-99-scott-main-room-sat-apr-4-new-york\", \"scraped_at\": \"2026-04-03T16:22:20.365136+00:00\", \"lowest_ask\": 31.0, \"highest_bid\": null, \"num_asks\": null, \"num_bids\": null, \"last_sale\": null, \"event_datetime\": \"Sat, April 4 \\u2022 10PM \\u2022 99 Scott\", \"error\": null}"
     },
     {
       "id": 22,
@@ -236,7 +236,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
-      "eventDatetime": null,
+      "eventDatetime": "{\"url\": \"https://www.crowdvolt.com/event/solomun-may-23rd-may-fulton-fish-market-new-york\", \"scraped_at\": \"2026-03-25T21:52:21.451210+00:00\", \"lowest_ask\": 102.0, \"highest_bid\": 80.0, \"num_asks\": null, \"num_bids\": null, \"last_sale\": null, \"error\": null}",
       "section": "GA",
       "qty": 1
     },
@@ -248,7 +248,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
-      "eventDatetime": null,
+      "eventDatetime": "{\"url\": \"https://www.crowdvolt.com/event/solomun-may-23rd-may-fulton-fish-market-new-york\", \"scraped_at\": \"2026-03-26T13:02:05.860078+00:00\", \"lowest_ask\": 93.0, \"highest_bid\": 80.0, \"num_asks\": null, \"num_bids\": null, \"last_sale\": null, \"error\": null}",
       "section": "GA",
       "qty": 1
     },
@@ -260,7 +260,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
-      "eventDatetime": null,
+      "eventDatetime": "{\"url\": \"https://www.crowdvolt.com/event/solomun-may-23rd-may-fulton-fish-market-new-york\", \"scraped_at\": \"2026-03-27T13:54:58.086452+00:00\", \"lowest_ask\": 101.0, \"highest_bid\": 80.0, \"num_asks\": null, \"num_bids\": null, \"last_sale\": null, \"error\": null}",
       "section": "GA",
       "qty": 1
     },
@@ -272,7 +272,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
-      "eventDatetime": null,
+      "eventDatetime": "{\"url\": \"https://www.crowdvolt.com/event/solomun-may-23rd-may-fulton-fish-market-new-york\", \"scraped_at\": \"2026-03-28T14:11:23.696130+00:00\", \"lowest_ask\": 101.0, \"highest_bid\": 80.0, \"num_asks\": null, \"num_bids\": null, \"last_sale\": null, \"error\": null}",
       "section": "GA",
       "qty": 1
     },
@@ -284,7 +284,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
-      "eventDatetime": "Sat, May 23 \u2022 3PM \u2022 Fulton Fish Market",
+      "eventDatetime": "{\"url\": \"https://www.crowdvolt.com/event/solomun-may-23rd-may-fulton-fish-market-new-york\", \"scraped_at\": \"2026-03-30T16:11:13.370291+00:00\", \"lowest_ask\": 98.0, \"highest_bid\": 80.0, \"num_asks\": null, \"num_bids\": null, \"last_sale\": null, \"event_datetime\": \"Sat, May 23 \\u2022 3PM \\u2022 Fulton Fish Market\", \"error\": null}",
       "section": "GA",
       "qty": 1
     },
@@ -296,7 +296,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
-      "eventDatetime": null,
+      "eventDatetime": "{\"url\": \"https://www.crowdvolt.com/event/solomun-may-23rd-may-fulton-fish-market-new-york\", \"scraped_at\": \"2026-03-31T13:02:30.736541+00:00\", \"lowest_ask\": 107.0, \"highest_bid\": 80.0, \"num_asks\": null, \"num_bids\": null, \"last_sale\": null, \"error\": null}",
       "section": "GA",
       "qty": 1
     },
@@ -308,7 +308,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
-      "eventDatetime": "Sat, May 23 \u2022 3PM \u2022 Fulton Fish Market",
+      "eventDatetime": "{\"url\": \"https://www.crowdvolt.com/event/solomun-may-23rd-may-fulton-fish-market-new-york\", \"scraped_at\": \"2026-04-02T22:59:00.013635+00:00\", \"lowest_ask\": 100.0, \"highest_bid\": 65.0, \"num_asks\": null, \"num_bids\": null, \"last_sale\": null, \"event_datetime\": \"Sat, May 23 \\u2022 3PM \\u2022 Fulton Fish Market\", \"error\": null}",
       "section": "GA",
       "qty": 1
     },
@@ -320,7 +320,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
-      "eventDatetime": "Sat, May 23 \u2022 3PM \u2022 Fulton Fish Market",
+      "eventDatetime": "{\"url\": \"https://www.crowdvolt.com/event/solomun-may-23rd-may-fulton-fish-market-new-york\", \"scraped_at\": \"2026-04-03T16:29:13.218353+00:00\", \"lowest_ask\": 100.0, \"highest_bid\": 65.0, \"num_asks\": null, \"num_bids\": null, \"last_sale\": null, \"event_datetime\": \"Sat, May 23 \\u2022 3PM \\u2022 Fulton Fish Market\", \"error\": null}",
       "section": "GA",
       "qty": 1
     },
@@ -332,7 +332,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
-      "eventDatetime": "Sat, May 23 \u2022 3PM \u2022 Fulton Fish Market",
+      "eventDatetime": "{\"url\": \"https://www.crowdvolt.com/event/solomun-may-23rd-may-fulton-fish-market-new-york\", \"scraped_at\": \"2026-04-07T21:19:06.044062+00:00\", \"lowest_ask\": 92.0, \"highest_bid\": 75.0, \"num_asks\": null, \"num_bids\": null, \"last_sale\": null, \"event_datetime\": \"Sat, May 23 \\u2022 3PM \\u2022 Fulton Fish Market\", \"error\": null}",
       "section": "GA",
       "qty": 1
     },
@@ -344,13 +344,25 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
-      "eventDatetime": "Sat, May 23 \u2022 3PM \u2022 Fulton Fish Market",
+      "eventDatetime": "{\"url\": \"https://www.crowdvolt.com/event/solomun-may-23rd-may-fulton-fish-market-new-york\", \"scraped_at\": \"2026-04-08T21:58:34.044585+00:00\", \"lowest_ask\": 90.0, \"highest_bid\": 75.0, \"num_asks\": null, \"num_bids\": null, \"last_sale\": null, \"event_datetime\": \"Sat, May 23 \\u2022 3PM \\u2022 Fulton Fish Market\", \"error\": null}",
       "section": "GA",
       "qty": 1
     },
     {
       "eventId": 20,
       "date": "2026-04-09",
+      "price": 100.0,
+      "highestBid": 75.0,
+      "numAsks": null,
+      "numBids": null,
+      "lastSale": null,
+      "eventDatetime": "{\"url\": \"https://www.crowdvolt.com/event/solomun-may-23rd-may-fulton-fish-market-new-york\", \"scraped_at\": \"2026-04-09T18:53:26.170387+00:00\", \"lowest_ask\": 100.0, \"highest_bid\": 75.0, \"num_asks\": null, \"num_bids\": null, \"last_sale\": null, \"event_datetime\": \"Sat, May 23 \\u2022 3PM \\u2022 Fulton Fish Market\", \"error\": null}",
+      "section": "GA",
+      "qty": 1
+    },
+    {
+      "eventId": 20,
+      "date": "2026-04-09 19:10",
       "price": 100.0,
       "highestBid": 75.0,
       "numAsks": null,
@@ -368,7 +380,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
-      "eventDatetime": null,
+      "eventDatetime": "{\"url\": \"https://www.crowdvolt.com/event/armin-van-buuren-industry-city-open-air-new-york-may-16-2026\", \"scraped_at\": \"2026-03-25T21:53:35.726563+00:00\", \"lowest_ask\": 93.0, \"highest_bid\": 55.0, \"num_asks\": null, \"num_bids\": null, \"last_sale\": null, \"error\": null}",
       "section": "GA",
       "qty": 1
     },
@@ -380,7 +392,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
-      "eventDatetime": null,
+      "eventDatetime": "{\"url\": \"https://www.crowdvolt.com/event/armin-van-buuren-industry-city-open-air-new-york-may-16-2026\", \"scraped_at\": \"2026-03-26T13:03:22.517001+00:00\", \"lowest_ask\": 93.0, \"highest_bid\": 55.0, \"num_asks\": null, \"num_bids\": null, \"last_sale\": null, \"error\": null}",
       "section": "GA",
       "qty": 1
     },
@@ -392,7 +404,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
-      "eventDatetime": null,
+      "eventDatetime": "{\"url\": \"https://www.crowdvolt.com/event/armin-van-buuren-industry-city-open-air-new-york-may-16-2026\", \"scraped_at\": \"2026-03-27T14:00:16.576975+00:00\", \"lowest_ask\": 93.0, \"highest_bid\": 55.0, \"num_asks\": null, \"num_bids\": null, \"last_sale\": null, \"error\": null}",
       "section": "GA",
       "qty": 1
     },
@@ -404,7 +416,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
-      "eventDatetime": null,
+      "eventDatetime": "{\"url\": \"https://www.crowdvolt.com/event/armin-van-buuren-industry-city-open-air-new-york-may-16-2026\", \"scraped_at\": \"2026-03-28T14:23:19.862211+00:00\", \"lowest_ask\": 93.0, \"highest_bid\": 55.0, \"num_asks\": null, \"num_bids\": null, \"last_sale\": null, \"error\": null}",
       "section": "GA",
       "qty": 1
     },
@@ -416,7 +428,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
-      "eventDatetime": "Sat, May 16 \u2022 10PM \u2022 Industry City",
+      "eventDatetime": "{\"url\": \"https://www.crowdvolt.com/event/armin-van-buuren-industry-city-open-air-new-york-may-16-2026\", \"scraped_at\": \"2026-03-30T16:12:28.005957+00:00\", \"lowest_ask\": 93.0, \"highest_bid\": 60.0, \"num_asks\": null, \"num_bids\": null, \"last_sale\": null, \"event_datetime\": \"Sat, May 16 \\u2022 10PM \\u2022 Industry City\", \"error\": null}",
       "section": "GA",
       "qty": 1
     },
@@ -428,7 +440,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
-      "eventDatetime": null,
+      "eventDatetime": "{\"url\": \"https://www.crowdvolt.com/event/armin-van-buuren-industry-city-open-air-new-york-may-16-2026\", \"scraped_at\": \"2026-03-31T13:03:45.254311+00:00\", \"lowest_ask\": 93.0, \"highest_bid\": 75.0, \"num_asks\": null, \"num_bids\": null, \"last_sale\": null, \"error\": null}",
       "section": "GA",
       "qty": 1
     },
@@ -440,7 +452,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
-      "eventDatetime": "Sat, May 16 \u2022 10PM \u2022 Industry City",
+      "eventDatetime": "{\"url\": \"https://www.crowdvolt.com/event/armin-van-buuren-industry-city-open-air-new-york-may-16-2026\", \"scraped_at\": \"2026-04-02T23:00:14.494343+00:00\", \"lowest_ask\": 93.0, \"highest_bid\": 80.0, \"num_asks\": null, \"num_bids\": null, \"last_sale\": null, \"event_datetime\": \"Sat, May 16 \\u2022 10PM \\u2022 Industry City\", \"error\": null}",
       "section": "GA",
       "qty": 1
     },
@@ -452,7 +464,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
-      "eventDatetime": "Sat, May 16 \u2022 10PM \u2022 Industry City",
+      "eventDatetime": "{\"url\": \"https://www.crowdvolt.com/event/armin-van-buuren-industry-city-open-air-new-york-may-16-2026\", \"scraped_at\": \"2026-04-03T16:38:32.217564+00:00\", \"lowest_ask\": 93.0, \"highest_bid\": 80.0, \"num_asks\": null, \"num_bids\": null, \"last_sale\": null, \"event_datetime\": \"Sat, May 16 \\u2022 10PM \\u2022 Industry City\", \"error\": null}",
       "section": "GA",
       "qty": 1
     },
@@ -464,7 +476,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
-      "eventDatetime": "Sat, May 16 \u2022 10PM \u2022 Industry City",
+      "eventDatetime": "{\"url\": \"https://www.crowdvolt.com/event/armin-van-buuren-industry-city-open-air-new-york-may-16-2026\", \"scraped_at\": \"2026-04-07T21:20:21.373713+00:00\", \"lowest_ask\": 98.0, \"highest_bid\": 80.0, \"num_asks\": null, \"num_bids\": null, \"last_sale\": null, \"event_datetime\": \"Sat, May 16 \\u2022 10PM \\u2022 Industry City\", \"error\": null}",
       "section": "GA",
       "qty": 1
     },
@@ -476,13 +488,25 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
-      "eventDatetime": "Sat, May 16 \u2022 10PM \u2022 Industry City",
+      "eventDatetime": "{\"url\": \"https://www.crowdvolt.com/event/armin-van-buuren-industry-city-open-air-new-york-may-16-2026\", \"scraped_at\": \"2026-04-08T21:59:49.772299+00:00\", \"lowest_ask\": 98.0, \"highest_bid\": 80.0, \"num_asks\": null, \"num_bids\": null, \"last_sale\": null, \"event_datetime\": \"Sat, May 16 \\u2022 10PM \\u2022 Industry City\", \"error\": null}",
       "section": "GA",
       "qty": 1
     },
     {
       "eventId": 23,
       "date": "2026-04-09",
+      "price": 98.0,
+      "highestBid": 80.0,
+      "numAsks": null,
+      "numBids": null,
+      "lastSale": null,
+      "eventDatetime": "{\"url\": \"https://www.crowdvolt.com/event/armin-van-buuren-industry-city-open-air-new-york-may-16-2026\", \"scraped_at\": \"2026-04-09T18:54:40.085350+00:00\", \"lowest_ask\": 98.0, \"highest_bid\": 80.0, \"num_asks\": null, \"num_bids\": null, \"last_sale\": null, \"event_datetime\": \"Sat, May 16 \\u2022 10PM \\u2022 Industry City\", \"error\": null}",
+      "section": "GA",
+      "qty": 1
+    },
+    {
+      "eventId": 23,
+      "date": "2026-04-09 19:11",
       "price": 98.0,
       "highestBid": 80.0,
       "numAsks": null,
@@ -500,7 +524,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
-      "eventDatetime": null,
+      "eventDatetime": "{\"url\": \"https://www.crowdvolt.com/event/agape-presents-rebekah-99-scott-new-york\", \"scraped_at\": \"2026-03-25T21:54:49.242467+00:00\", \"lowest_ask\": 42.0, \"highest_bid\": 30.0, \"num_asks\": null, \"num_bids\": null, \"last_sale\": null, \"error\": null}",
       "section": "GA",
       "qty": 1
     },
@@ -512,7 +536,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
-      "eventDatetime": null,
+      "eventDatetime": "{\"url\": \"https://www.crowdvolt.com/event/agape-presents-rebekah-99-scott-new-york\", \"scraped_at\": \"2026-03-26T13:04:36.801301+00:00\", \"lowest_ask\": 42.0, \"highest_bid\": 30.0, \"num_asks\": null, \"num_bids\": null, \"last_sale\": null, \"error\": null}",
       "section": "GA",
       "qty": 1
     },
@@ -524,7 +548,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
-      "eventDatetime": null,
+      "eventDatetime": "{\"url\": \"https://www.crowdvolt.com/event/agape-presents-rebekah-99-scott-new-york\", \"scraped_at\": \"2026-03-27T14:01:55.801125+00:00\", \"lowest_ask\": 42.0, \"highest_bid\": 30.0, \"num_asks\": null, \"num_bids\": null, \"last_sale\": null, \"error\": null}",
       "section": "GA",
       "qty": 1
     },
@@ -536,7 +560,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
-      "eventDatetime": null,
+      "eventDatetime": "{\"url\": \"https://www.crowdvolt.com/event/agape-presents-rebekah-99-scott-new-york\", \"scraped_at\": \"2026-03-28T14:37:39.307115+00:00\", \"lowest_ask\": 42.0, \"highest_bid\": 30.0, \"num_asks\": null, \"num_bids\": null, \"last_sale\": null, \"error\": null}",
       "section": "GA",
       "qty": 1
     },
@@ -548,7 +572,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
-      "eventDatetime": "Fri, April 17 \u2022 10PM \u2022 99 Scott",
+      "eventDatetime": "{\"url\": \"https://www.crowdvolt.com/event/agape-presents-rebekah-99-scott-new-york\", \"scraped_at\": \"2026-03-30T16:13:41.888048+00:00\", \"lowest_ask\": 42.0, \"highest_bid\": null, \"num_asks\": null, \"num_bids\": null, \"last_sale\": null, \"event_datetime\": \"Fri, April 17 \\u2022 10PM \\u2022 99 Scott\", \"error\": null}",
       "section": "GA",
       "qty": 1
     },
@@ -560,7 +584,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
-      "eventDatetime": null,
+      "eventDatetime": "{\"url\": \"https://www.crowdvolt.com/event/agape-presents-rebekah-99-scott-new-york\", \"scraped_at\": \"2026-03-31T13:04:59.488263+00:00\", \"lowest_ask\": 42.0, \"highest_bid\": null, \"num_asks\": null, \"num_bids\": null, \"last_sale\": null, \"error\": null}",
       "section": "GA",
       "qty": 1
     },
@@ -572,7 +596,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
-      "eventDatetime": "Fri, April 17 \u2022 10PM \u2022 99 Scott",
+      "eventDatetime": "{\"url\": \"https://www.crowdvolt.com/event/agape-presents-rebekah-99-scott-new-york\", \"scraped_at\": \"2026-04-02T23:01:28.262943+00:00\", \"lowest_ask\": 42.0, \"highest_bid\": null, \"num_asks\": null, \"num_bids\": null, \"last_sale\": null, \"event_datetime\": \"Fri, April 17 \\u2022 10PM \\u2022 99 Scott\", \"error\": null}",
       "section": "GA",
       "qty": 1
     },
@@ -584,7 +608,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
-      "eventDatetime": "Fri, April 17 \u2022 10PM \u2022 99 Scott",
+      "eventDatetime": "{\"url\": \"https://www.crowdvolt.com/event/agape-presents-rebekah-99-scott-new-york\", \"scraped_at\": \"2026-04-07T21:21:38.655212+00:00\", \"lowest_ask\": 42.0, \"highest_bid\": null, \"num_asks\": null, \"num_bids\": null, \"last_sale\": null, \"event_datetime\": \"Fri, April 17 \\u2022 10PM \\u2022 99 Scott\", \"error\": null}",
       "section": "GA",
       "qty": 1
     },
@@ -596,13 +620,25 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
-      "eventDatetime": "Fri, April 17 \u2022 10PM \u2022 99 Scott",
+      "eventDatetime": "{\"url\": \"https://www.crowdvolt.com/event/agape-presents-rebekah-99-scott-new-york\", \"scraped_at\": \"2026-04-08T22:01:04.177937+00:00\", \"lowest_ask\": 42.0, \"highest_bid\": null, \"num_asks\": null, \"num_bids\": null, \"last_sale\": null, \"event_datetime\": \"Fri, April 17 \\u2022 10PM \\u2022 99 Scott\", \"error\": null}",
       "section": "GA",
       "qty": 1
     },
     {
       "eventId": 26,
       "date": "2026-04-09",
+      "price": 42.0,
+      "highestBid": null,
+      "numAsks": null,
+      "numBids": null,
+      "lastSale": null,
+      "eventDatetime": "{\"url\": \"https://www.crowdvolt.com/event/agape-presents-rebekah-99-scott-new-york\", \"scraped_at\": \"2026-04-09T18:55:54.333450+00:00\", \"lowest_ask\": 42.0, \"highest_bid\": null, \"num_asks\": null, \"num_bids\": null, \"last_sale\": null, \"event_datetime\": \"Fri, April 17 \\u2022 10PM \\u2022 99 Scott\", \"error\": null}",
+      "section": "GA",
+      "qty": 1
+    },
+    {
+      "eventId": 26,
+      "date": "2026-04-09 19:12",
       "price": 42.0,
       "highestBid": null,
       "numAsks": null,
@@ -620,7 +656,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
-      "eventDatetime": null,
+      "eventDatetime": "{\"url\": \"https://www.crowdvolt.com/event/cid-99-scott-new-york-april-25\", \"scraped_at\": \"2026-03-25T21:55:12.928204+00:00\", \"lowest_ask\": 33.0, \"highest_bid\": null, \"num_asks\": null, \"num_bids\": null, \"last_sale\": null, \"error\": null}",
       "section": "GA",
       "qty": 1
     },
@@ -632,7 +668,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
-      "eventDatetime": null,
+      "eventDatetime": "{\"url\": \"https://www.crowdvolt.com/event/cid-99-scott-new-york-april-25\", \"scraped_at\": \"2026-03-26T13:05:00.594276+00:00\", \"lowest_ask\": 34.0, \"highest_bid\": null, \"num_asks\": null, \"num_bids\": null, \"last_sale\": null, \"error\": null}",
       "section": "GA",
       "qty": 1
     },
@@ -644,7 +680,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
-      "eventDatetime": null,
+      "eventDatetime": "{\"url\": \"https://www.crowdvolt.com/event/cid-99-scott-new-york-april-25\", \"scraped_at\": \"2026-03-27T14:02:39.630835+00:00\", \"lowest_ask\": 34.0, \"highest_bid\": null, \"num_asks\": null, \"num_bids\": null, \"last_sale\": null, \"error\": null}",
       "section": "GA",
       "qty": 1
     },
@@ -656,7 +692,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
-      "eventDatetime": null,
+      "eventDatetime": "{\"url\": \"https://www.crowdvolt.com/event/cid-99-scott-new-york-april-25\", \"scraped_at\": \"2026-03-28T14:39:45.774463+00:00\", \"lowest_ask\": 34.0, \"highest_bid\": null, \"num_asks\": null, \"num_bids\": null, \"last_sale\": null, \"error\": null}",
       "section": "GA",
       "qty": 1
     },
@@ -668,7 +704,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
-      "eventDatetime": "Sat, April 25 \u2022 10PM \u2022 99 Scott",
+      "eventDatetime": "{\"url\": \"https://www.crowdvolt.com/event/cid-99-scott-new-york-april-25\", \"scraped_at\": \"2026-03-30T16:14:05.884543+00:00\", \"lowest_ask\": 34.0, \"highest_bid\": null, \"num_asks\": null, \"num_bids\": null, \"last_sale\": null, \"event_datetime\": \"Sat, April 25 \\u2022 10PM \\u2022 99 Scott\", \"error\": null}",
       "section": "GA",
       "qty": 1
     },
@@ -680,7 +716,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
-      "eventDatetime": null,
+      "eventDatetime": "{\"url\": \"https://www.crowdvolt.com/event/cid-99-scott-new-york-april-25\", \"scraped_at\": \"2026-03-31T13:05:23.274092+00:00\", \"lowest_ask\": 34.0, \"highest_bid\": null, \"num_asks\": null, \"num_bids\": null, \"last_sale\": null, \"error\": null}",
       "section": "GA",
       "qty": 1
     },
@@ -692,7 +728,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
-      "eventDatetime": "Sat, April 25 \u2022 10PM \u2022 99 Scott",
+      "eventDatetime": "{\"url\": \"https://www.crowdvolt.com/event/cid-99-scott-new-york-april-25\", \"scraped_at\": \"2026-04-02T23:01:51.879676+00:00\", \"lowest_ask\": 37.0, \"highest_bid\": null, \"num_asks\": null, \"num_bids\": null, \"last_sale\": null, \"event_datetime\": \"Sat, April 25 \\u2022 10PM \\u2022 99 Scott\", \"error\": null}",
       "section": "GA",
       "qty": 1
     },
@@ -704,7 +740,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
-      "eventDatetime": "Sat, April 25 \u2022 10PM \u2022 99 Scott",
+      "eventDatetime": "{\"url\": \"https://www.crowdvolt.com/event/cid-99-scott-new-york-april-25\", \"scraped_at\": \"2026-04-07T21:22:02.708800+00:00\", \"lowest_ask\": 38.0, \"highest_bid\": 19.0, \"num_asks\": null, \"num_bids\": null, \"last_sale\": null, \"event_datetime\": \"Sat, April 25 \\u2022 10PM \\u2022 99 Scott\", \"error\": null}",
       "section": "GA",
       "qty": 1
     },
@@ -716,13 +752,25 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
-      "eventDatetime": "Sat, April 25 \u2022 10PM \u2022 99 Scott",
+      "eventDatetime": "{\"url\": \"https://www.crowdvolt.com/event/cid-99-scott-new-york-april-25\", \"scraped_at\": \"2026-04-08T22:01:28.237799+00:00\", \"lowest_ask\": 38.0, \"highest_bid\": 21.0, \"num_asks\": null, \"num_bids\": null, \"last_sale\": null, \"event_datetime\": \"Sat, April 25 \\u2022 10PM \\u2022 99 Scott\", \"error\": null}",
       "section": "GA",
       "qty": 1
     },
     {
       "eventId": 27,
       "date": "2026-04-09",
+      "price": 42.0,
+      "highestBid": 21.0,
+      "numAsks": null,
+      "numBids": null,
+      "lastSale": null,
+      "eventDatetime": "{\"url\": \"https://www.crowdvolt.com/event/cid-99-scott-new-york-april-25\", \"scraped_at\": \"2026-04-09T18:56:18.224958+00:00\", \"lowest_ask\": 42.0, \"highest_bid\": 21.0, \"num_asks\": null, \"num_bids\": null, \"last_sale\": null, \"event_datetime\": \"Sat, April 25 \\u2022 10PM \\u2022 99 Scott\", \"error\": null}",
+      "section": "GA",
+      "qty": 1
+    },
+    {
+      "eventId": 27,
+      "date": "2026-04-09 19:13",
       "price": 42.0,
       "highestBid": 21.0,
       "numAsks": null,
@@ -740,7 +788,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
-      "eventDatetime": null,
+      "eventDatetime": "{\"url\": \"https://www.crowdvolt.com/event/stranger-than-x-zero-present-adam-ten-industry-city-fri-mar-27-new-york\", \"scraped_at\": \"2026-03-25T21:55:37.219010+00:00\", \"lowest_ask\": 96.0, \"highest_bid\": 86.0, \"num_asks\": null, \"num_bids\": null, \"last_sale\": null, \"error\": null}",
       "section": "GA",
       "qty": 1
     },
@@ -752,7 +800,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
-      "eventDatetime": null,
+      "eventDatetime": "{\"url\": \"https://www.crowdvolt.com/event/stranger-than-x-zero-present-adam-ten-industry-city-fri-mar-27-new-york\", \"scraped_at\": \"2026-03-26T13:05:25.138198+00:00\", \"lowest_ask\": 99.0, \"highest_bid\": 85.0, \"num_asks\": null, \"num_bids\": null, \"last_sale\": null, \"error\": null}",
       "section": "GA",
       "qty": 1
     },
@@ -764,7 +812,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
-      "eventDatetime": null,
+      "eventDatetime": "{\"url\": \"https://www.crowdvolt.com/event/stranger-than-x-zero-present-adam-ten-industry-city-fri-mar-27-new-york\", \"scraped_at\": \"2026-03-27T14:03:12.866586+00:00\", \"lowest_ask\": 103.0, \"highest_bid\": 85.0, \"num_asks\": null, \"num_bids\": null, \"last_sale\": null, \"error\": null}",
       "section": "GA",
       "qty": 1
     },
@@ -776,7 +824,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
-      "eventDatetime": null,
+      "eventDatetime": "{\"url\": \"https://www.crowdvolt.com/event/stranger-than-x-zero-present-adam-ten-industry-city-fri-mar-27-new-york\", \"scraped_at\": \"2026-03-28T14:46:15.651840+00:00\", \"lowest_ask\": 120.0, \"highest_bid\": null, \"num_asks\": null, \"num_bids\": null, \"last_sale\": null, \"error\": null}",
       "section": "GA",
       "qty": 1
     },
@@ -788,7 +836,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
-      "eventDatetime": "Fri, March 27 \u2022 10PM \u2022 Industry City",
+      "eventDatetime": "{\"url\": \"https://www.crowdvolt.com/event/stranger-than-x-zero-present-adam-ten-industry-city-fri-mar-27-new-york\", \"scraped_at\": \"2026-03-30T16:14:30.424746+00:00\", \"lowest_ask\": 120.0, \"highest_bid\": null, \"num_asks\": null, \"num_bids\": null, \"last_sale\": null, \"event_datetime\": \"Fri, March 27 \\u2022 10PM \\u2022 Industry City\", \"error\": null}",
       "section": "GA",
       "qty": 1
     },
@@ -800,7 +848,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
-      "eventDatetime": null,
+      "eventDatetime": "{\"url\": \"https://www.crowdvolt.com/event/stranger-than-x-zero-present-adam-ten-industry-city-fri-mar-27-new-york\", \"scraped_at\": \"2026-03-31T13:05:47.624781+00:00\", \"lowest_ask\": 120.0, \"highest_bid\": null, \"num_asks\": null, \"num_bids\": null, \"last_sale\": null, \"error\": null}",
       "section": "GA",
       "qty": 1
     },
@@ -812,7 +860,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
-      "eventDatetime": "Fri, March 27 \u2022 10PM \u2022 Industry City",
+      "eventDatetime": "{\"url\": \"https://www.crowdvolt.com/event/stranger-than-x-zero-present-adam-ten-industry-city-fri-mar-27-new-york\", \"scraped_at\": \"2026-04-02T23:02:15.944430+00:00\", \"lowest_ask\": 120.0, \"highest_bid\": null, \"num_asks\": null, \"num_bids\": null, \"last_sale\": null, \"event_datetime\": \"Fri, March 27 \\u2022 10PM \\u2022 Industry City\", \"error\": null}",
       "section": "GA",
       "qty": 1
     },
@@ -824,7 +872,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
-      "eventDatetime": "Fri, March 27 \u2022 10PM \u2022 Industry City",
+      "eventDatetime": "{\"url\": \"https://www.crowdvolt.com/event/stranger-than-x-zero-present-adam-ten-industry-city-fri-mar-27-new-york\", \"scraped_at\": \"2026-04-07T21:22:27.843530+00:00\", \"lowest_ask\": 120.0, \"highest_bid\": null, \"num_asks\": null, \"num_bids\": null, \"last_sale\": null, \"event_datetime\": \"Fri, March 27 \\u2022 10PM \\u2022 Industry City\", \"error\": null}",
       "section": "GA",
       "qty": 1
     },
@@ -836,13 +884,25 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
-      "eventDatetime": "Fri, March 27 \u2022 10PM \u2022 Industry City",
+      "eventDatetime": "{\"url\": \"https://www.crowdvolt.com/event/stranger-than-x-zero-present-adam-ten-industry-city-fri-mar-27-new-york\", \"scraped_at\": \"2026-04-08T22:01:52.921399+00:00\", \"lowest_ask\": 120.0, \"highest_bid\": null, \"num_asks\": null, \"num_bids\": null, \"last_sale\": null, \"event_datetime\": \"Fri, March 27 \\u2022 10PM \\u2022 Industry City\", \"error\": null}",
       "section": "GA",
       "qty": 1
     },
     {
       "eventId": 28,
       "date": "2026-04-09",
+      "price": 120.0,
+      "highestBid": null,
+      "numAsks": null,
+      "numBids": null,
+      "lastSale": null,
+      "eventDatetime": "{\"url\": \"https://www.crowdvolt.com/event/stranger-than-x-zero-present-adam-ten-industry-city-fri-mar-27-new-york\", \"scraped_at\": \"2026-04-09T18:56:43.265474+00:00\", \"lowest_ask\": 120.0, \"highest_bid\": null, \"num_asks\": null, \"num_bids\": null, \"last_sale\": null, \"event_datetime\": \"Fri, March 27 \\u2022 10PM \\u2022 Industry City\", \"error\": null}",
+      "section": "GA",
+      "qty": 1
+    },
+    {
+      "eventId": 28,
+      "date": "2026-04-09 19:13",
       "price": 120.0,
       "highestBid": null,
       "numAsks": null,
@@ -860,7 +920,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
-      "eventDatetime": null,
+      "eventDatetime": "{\"url\": \"https://www.crowdvolt.com/event/sidepiece-presents-horny-house-brooklyn-storehouse\", \"scraped_at\": \"2026-03-25T21:50:43.125699+00:00\", \"lowest_ask\": 82.0, \"highest_bid\": 70.0, \"num_asks\": null, \"num_bids\": null, \"last_sale\": null, \"error\": null}",
       "section": "GA",
       "qty": 1
     },
@@ -872,7 +932,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
-      "eventDatetime": null,
+      "eventDatetime": "{\"url\": \"https://www.crowdvolt.com/event/sidepiece-presents-horny-house-brooklyn-storehouse\", \"scraped_at\": \"2026-03-26T13:00:24.040821+00:00\", \"lowest_ask\": 82.0, \"highest_bid\": 70.0, \"num_asks\": null, \"num_bids\": null, \"last_sale\": null, \"error\": null}",
       "section": "GA",
       "qty": 1
     },
@@ -884,7 +944,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
-      "eventDatetime": null,
+      "eventDatetime": "{\"url\": \"https://www.crowdvolt.com/event/sidepiece-presents-horny-house-brooklyn-storehouse\", \"scraped_at\": \"2026-03-27T13:53:06.796359+00:00\", \"lowest_ask\": 81.0, \"highest_bid\": 70.0, \"num_asks\": null, \"num_bids\": null, \"last_sale\": null, \"error\": null}",
       "section": "GA",
       "qty": 1
     },
@@ -896,7 +956,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
-      "eventDatetime": null,
+      "eventDatetime": "{\"url\": \"https://www.crowdvolt.com/event/sidepiece-presents-horny-house-brooklyn-storehouse\", \"scraped_at\": \"2026-03-28T13:10:11.533618+00:00\", \"lowest_ask\": 82.0, \"highest_bid\": 75.0, \"num_asks\": null, \"num_bids\": null, \"last_sale\": null, \"error\": null}",
       "section": "GA",
       "qty": 1
     },
@@ -908,7 +968,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
-      "eventDatetime": "Fri, April 3 \u2022 10PM \u2022 Brooklyn Storehouse",
+      "eventDatetime": "{\"url\": \"https://www.crowdvolt.com/event/sidepiece-presents-horny-house-brooklyn-storehouse\", \"scraped_at\": \"2026-03-30T16:09:34.346862+00:00\", \"lowest_ask\": 78.0, \"highest_bid\": 71.0, \"num_asks\": null, \"num_bids\": null, \"last_sale\": null, \"event_datetime\": \"Fri, April 3 \\u2022 10PM \\u2022 Brooklyn Storehouse\", \"error\": null}",
       "section": "GA",
       "qty": 1
     },
@@ -920,7 +980,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
-      "eventDatetime": null,
+      "eventDatetime": "{\"url\": \"https://www.crowdvolt.com/event/sidepiece-presents-horny-house-brooklyn-storehouse\", \"scraped_at\": \"2026-03-31T13:00:51.919860+00:00\", \"lowest_ask\": 80.0, \"highest_bid\": 74.0, \"num_asks\": null, \"num_bids\": null, \"last_sale\": null, \"error\": null}",
       "section": "GA",
       "qty": 1
     },
@@ -932,7 +992,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
-      "eventDatetime": "Fri, April 3 \u2022 10PM \u2022 Brooklyn Storehouse",
+      "eventDatetime": "{\"url\": \"https://www.crowdvolt.com/event/sidepiece-presents-horny-house-brooklyn-storehouse\", \"scraped_at\": \"2026-04-02T22:57:11.250795+00:00\", \"lowest_ask\": 85.0, \"highest_bid\": 71.0, \"num_asks\": null, \"num_bids\": null, \"last_sale\": null, \"event_datetime\": \"Fri, April 3 \\u2022 10PM \\u2022 Brooklyn Storehouse\", \"error\": null}",
       "section": "GA",
       "qty": 1
     },
@@ -944,7 +1004,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
-      "eventDatetime": null,
+      "eventDatetime": "{\"url\": \"https://www.crowdvolt.com/event/rebuke-99-scott-main-room-sat-apr-4-new-york\", \"scraped_at\": \"2026-03-25T21:51:07.949227+00:00\", \"lowest_ask\": 32.0, \"highest_bid\": null, \"num_asks\": null, \"num_bids\": null, \"last_sale\": null, \"error\": null}",
       "section": "GA",
       "qty": 1
     },
@@ -956,7 +1016,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
-      "eventDatetime": null,
+      "eventDatetime": "{\"url\": \"https://www.crowdvolt.com/event/rebuke-99-scott-main-room-sat-apr-4-new-york\", \"scraped_at\": \"2026-03-26T13:00:49.603440+00:00\", \"lowest_ask\": 32.0, \"highest_bid\": null, \"num_asks\": null, \"num_bids\": null, \"last_sale\": null, \"error\": null}",
       "section": "GA",
       "qty": 1
     },
@@ -968,7 +1028,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
-      "eventDatetime": null,
+      "eventDatetime": "{\"url\": \"https://www.crowdvolt.com/event/rebuke-99-scott-main-room-sat-apr-4-new-york\", \"scraped_at\": \"2026-03-27T13:53:31.885431+00:00\", \"lowest_ask\": 32.0, \"highest_bid\": null, \"num_asks\": null, \"num_bids\": null, \"last_sale\": null, \"error\": null}",
       "section": "GA",
       "qty": 1
     },
@@ -980,7 +1040,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
-      "eventDatetime": null,
+      "eventDatetime": "{\"url\": \"https://www.crowdvolt.com/event/rebuke-99-scott-main-room-sat-apr-4-new-york\", \"scraped_at\": \"2026-03-28T13:11:11.016038+00:00\", \"lowest_ask\": 32.0, \"highest_bid\": null, \"num_asks\": null, \"num_bids\": null, \"last_sale\": null, \"error\": null}",
       "section": "GA",
       "qty": 1
     },
@@ -992,7 +1052,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
-      "eventDatetime": "Sat, April 4 \u2022 10PM \u2022 99 Scott",
+      "eventDatetime": "{\"url\": \"https://www.crowdvolt.com/event/rebuke-99-scott-main-room-sat-apr-4-new-york\", \"scraped_at\": \"2026-03-30T16:09:59.510112+00:00\", \"lowest_ask\": 42.0, \"highest_bid\": null, \"num_asks\": null, \"num_bids\": null, \"last_sale\": null, \"event_datetime\": \"Sat, April 4 \\u2022 10PM \\u2022 99 Scott\", \"error\": null}",
       "section": "GA",
       "qty": 1
     },
@@ -1004,7 +1064,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
-      "eventDatetime": null,
+      "eventDatetime": "{\"url\": \"https://www.crowdvolt.com/event/rebuke-99-scott-main-room-sat-apr-4-new-york\", \"scraped_at\": \"2026-03-31T13:01:16.869660+00:00\", \"lowest_ask\": 42.0, \"highest_bid\": null, \"num_asks\": null, \"num_bids\": null, \"last_sale\": null, \"error\": null}",
       "section": "GA",
       "qty": 1
     },
@@ -1016,7 +1076,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
-      "eventDatetime": "Sat, April 4 \u2022 10PM \u2022 99 Scott",
+      "eventDatetime": "{\"url\": \"https://www.crowdvolt.com/event/rebuke-99-scott-main-room-sat-apr-4-new-york\", \"scraped_at\": \"2026-04-02T22:57:45.224687+00:00\", \"lowest_ask\": 31.0, \"highest_bid\": null, \"num_asks\": null, \"num_bids\": null, \"last_sale\": null, \"event_datetime\": \"Sat, April 4 \\u2022 10PM \\u2022 99 Scott\", \"error\": null}",
       "section": "GA",
       "qty": 1
     },
@@ -1028,7 +1088,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
-      "eventDatetime": "Sat, April 4 \u2022 10PM \u2022 99 Scott",
+      "eventDatetime": "{\"url\": \"https://www.crowdvolt.com/event/rebuke-99-scott-main-room-sat-apr-4-new-york\", \"scraped_at\": \"2026-04-03T16:22:20.365136+00:00\", \"lowest_ask\": 31.0, \"highest_bid\": null, \"num_asks\": null, \"num_bids\": null, \"last_sale\": null, \"event_datetime\": \"Sat, April 4 \\u2022 10PM \\u2022 99 Scott\", \"error\": null}",
       "section": "GA",
       "qty": 1
     },
@@ -1040,7 +1100,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
-      "eventDatetime": null,
+      "eventDatetime": "{\"url\": \"https://www.crowdvolt.com/event/camelphat-brooklyn-storehouse-new-york-new-york-april-10-2026\", \"scraped_at\": \"2026-03-25T21:53:10.965038+00:00\", \"lowest_ask\": 78.0, \"highest_bid\": 70.0, \"num_asks\": null, \"num_bids\": null, \"last_sale\": null, \"error\": null}",
       "section": "GA",
       "qty": 1
     },
@@ -1052,7 +1112,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
-      "eventDatetime": null,
+      "eventDatetime": "{\"url\": \"https://www.crowdvolt.com/event/camelphat-brooklyn-storehouse-new-york-new-york-april-10-2026\", \"scraped_at\": \"2026-03-26T13:02:56.594400+00:00\", \"lowest_ask\": 76.0, \"highest_bid\": 70.0, \"num_asks\": null, \"num_bids\": null, \"last_sale\": null, \"error\": null}",
       "section": "GA",
       "qty": 1
     },
@@ -1064,7 +1124,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
-      "eventDatetime": null,
+      "eventDatetime": "{\"url\": \"https://www.crowdvolt.com/event/camelphat-brooklyn-storehouse-new-york-new-york-april-10-2026\", \"scraped_at\": \"2026-03-27T13:59:08.731497+00:00\", \"lowest_ask\": 76.0, \"highest_bid\": 69.0, \"num_asks\": null, \"num_bids\": null, \"last_sale\": null, \"error\": null}",
       "section": "GA",
       "qty": 1
     },
@@ -1076,7 +1136,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
-      "eventDatetime": null,
+      "eventDatetime": "{\"url\": \"https://www.crowdvolt.com/event/camelphat-brooklyn-storehouse-new-york-new-york-april-10-2026\", \"scraped_at\": \"2026-03-28T14:17:12.961297+00:00\", \"lowest_ask\": 74.0, \"highest_bid\": 69.0, \"num_asks\": null, \"num_bids\": null, \"last_sale\": null, \"error\": null}",
       "section": "GA",
       "qty": 1
     },
@@ -1088,7 +1148,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
-      "eventDatetime": "Fri, April 10 \u2022 10PM \u2022 Brooklyn Storehouse",
+      "eventDatetime": "{\"url\": \"https://www.crowdvolt.com/event/camelphat-brooklyn-storehouse-new-york-new-york-april-10-2026\", \"scraped_at\": \"2026-03-30T16:12:03.221502+00:00\", \"lowest_ask\": 76.0, \"highest_bid\": 70.0, \"num_asks\": null, \"num_bids\": null, \"last_sale\": null, \"event_datetime\": \"Fri, April 10 \\u2022 10PM \\u2022 Brooklyn Storehouse\", \"error\": null}",
       "section": "GA",
       "qty": 1
     },
@@ -1100,7 +1160,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
-      "eventDatetime": null,
+      "eventDatetime": "{\"url\": \"https://www.crowdvolt.com/event/camelphat-brooklyn-storehouse-new-york-new-york-april-10-2026\", \"scraped_at\": \"2026-03-31T13:03:20.438803+00:00\", \"lowest_ask\": 76.0, \"highest_bid\": 66.0, \"num_asks\": null, \"num_bids\": null, \"last_sale\": null, \"error\": null}",
       "section": "GA",
       "qty": 1
     },
@@ -1112,7 +1172,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
-      "eventDatetime": "Fri, April 10 \u2022 10PM \u2022 Brooklyn Storehouse",
+      "eventDatetime": "{\"url\": \"https://www.crowdvolt.com/event/camelphat-brooklyn-storehouse-new-york-new-york-april-10-2026\", \"scraped_at\": \"2026-04-02T22:59:49.851296+00:00\", \"lowest_ask\": 79.0, \"highest_bid\": 70.0, \"num_asks\": null, \"num_bids\": null, \"last_sale\": null, \"event_datetime\": \"Fri, April 10 \\u2022 10PM \\u2022 Brooklyn Storehouse\", \"error\": null}",
       "section": "GA",
       "qty": 1
     },
@@ -1124,7 +1184,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
-      "eventDatetime": "Fri, April 10 \u2022 10PM \u2022 Brooklyn Storehouse",
+      "eventDatetime": "{\"url\": \"https://www.crowdvolt.com/event/camelphat-brooklyn-storehouse-new-york-new-york-april-10-2026\", \"scraped_at\": \"2026-04-03T16:37:45.759654+00:00\", \"lowest_ask\": 76.0, \"highest_bid\": 65.0, \"num_asks\": null, \"num_bids\": null, \"last_sale\": null, \"event_datetime\": \"Fri, April 10 \\u2022 10PM \\u2022 Brooklyn Storehouse\", \"error\": null}",
       "section": "GA",
       "qty": 1
     },
@@ -1136,7 +1196,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
-      "eventDatetime": "Fri, April 10 \u2022 10PM \u2022 Brooklyn Storehouse",
+      "eventDatetime": "{\"url\": \"https://www.crowdvolt.com/event/camelphat-brooklyn-storehouse-new-york-new-york-april-10-2026\", \"scraped_at\": \"2026-04-07T21:19:55.873269+00:00\", \"lowest_ask\": 80.0, \"highest_bid\": 70.0, \"num_asks\": null, \"num_bids\": null, \"last_sale\": null, \"event_datetime\": \"Fri, April 10 \\u2022 10PM \\u2022 Brooklyn Storehouse\", \"error\": null}",
       "section": "GA",
       "qty": 1
     },
@@ -1148,7 +1208,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
-      "eventDatetime": "Fri, April 10 \u2022 10PM \u2022 Brooklyn Storehouse",
+      "eventDatetime": "{\"url\": \"https://www.crowdvolt.com/event/camelphat-brooklyn-storehouse-new-york-new-york-april-10-2026\", \"scraped_at\": \"2026-04-08T21:59:24.399769+00:00\", \"lowest_ask\": 82.0, \"highest_bid\": 72.0, \"num_asks\": null, \"num_bids\": null, \"last_sale\": null, \"event_datetime\": \"Fri, April 10 \\u2022 10PM \\u2022 Brooklyn Storehouse\", \"error\": null}",
       "section": "GA",
       "qty": 1
     },
@@ -1156,6 +1216,18 @@
       "eventId": 22,
       "date": "2026-04-09",
       "price": 78.0,
+      "highestBid": 70.0,
+      "numAsks": null,
+      "numBids": null,
+      "lastSale": null,
+      "eventDatetime": "{\"url\": \"https://www.crowdvolt.com/event/camelphat-brooklyn-storehouse-new-york-new-york-april-10-2026\", \"scraped_at\": \"2026-04-09T18:54:15.572986+00:00\", \"lowest_ask\": 78.0, \"highest_bid\": 70.0, \"num_asks\": null, \"num_bids\": null, \"last_sale\": null, \"event_datetime\": \"Fri, April 10 \\u2022 10PM \\u2022 Brooklyn Storehouse\", \"error\": null}",
+      "section": "GA",
+      "qty": 1
+    },
+    {
+      "eventId": 22,
+      "date": "2026-04-09 19:11",
+      "price": 79.0,
       "highestBid": 70.0,
       "numAsks": null,
       "numBids": null,
@@ -1172,7 +1244,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
-      "eventDatetime": null,
+      "eventDatetime": "{\"url\": \"https://www.crowdvolt.com/event/chasewest-new-york-elsewhere-april-11-brooklyn\", \"scraped_at\": \"2026-03-25T21:54:24.728273+00:00\", \"lowest_ask\": 52.0, \"highest_bid\": null, \"num_asks\": null, \"num_bids\": null, \"last_sale\": null, \"error\": null}",
       "section": "GA",
       "qty": 1
     },
@@ -1184,7 +1256,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
-      "eventDatetime": null,
+      "eventDatetime": "{\"url\": \"https://www.crowdvolt.com/event/chasewest-new-york-elsewhere-april-11-brooklyn\", \"scraped_at\": \"2026-03-27T14:01:21.931882+00:00\", \"lowest_ask\": 49.0, \"highest_bid\": null, \"num_asks\": null, \"num_bids\": null, \"last_sale\": null, \"error\": null}",
       "section": "GA",
       "qty": 1
     },
@@ -1196,7 +1268,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
-      "eventDatetime": null,
+      "eventDatetime": "{\"url\": \"https://www.crowdvolt.com/event/chasewest-new-york-elsewhere-april-11-brooklyn\", \"scraped_at\": \"2026-03-28T14:33:34.521766+00:00\", \"lowest_ask\": 49.0, \"highest_bid\": 35.0, \"num_asks\": null, \"num_bids\": null, \"last_sale\": null, \"error\": null}",
       "section": "GA",
       "qty": 1
     },
@@ -1208,7 +1280,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
-      "eventDatetime": "Sat, April 11 \u2022 10PM \u2022 Elsewhere",
+      "eventDatetime": "{\"url\": \"https://www.crowdvolt.com/event/chasewest-new-york-elsewhere-april-11-brooklyn\", \"scraped_at\": \"2026-03-30T16:13:17.027564+00:00\", \"lowest_ask\": 49.0, \"highest_bid\": 35.0, \"num_asks\": null, \"num_bids\": null, \"last_sale\": null, \"event_datetime\": \"Sat, April 11 \\u2022 10PM \\u2022 Elsewhere\", \"error\": null}",
       "section": "GA",
       "qty": 1
     },
@@ -1220,7 +1292,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
-      "eventDatetime": null,
+      "eventDatetime": "{\"url\": \"https://www.crowdvolt.com/event/chasewest-new-york-elsewhere-april-11-brooklyn\", \"scraped_at\": \"2026-03-31T13:04:34.633289+00:00\", \"lowest_ask\": 49.0, \"highest_bid\": 35.0, \"num_asks\": null, \"num_bids\": null, \"last_sale\": null, \"error\": null}",
       "section": "GA",
       "qty": 1
     },
@@ -1232,7 +1304,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
-      "eventDatetime": "Sat, April 11 \u2022 10PM \u2022 Elsewhere",
+      "eventDatetime": "{\"url\": \"https://www.crowdvolt.com/event/chasewest-new-york-elsewhere-april-11-brooklyn\", \"scraped_at\": \"2026-04-02T23:01:03.458229+00:00\", \"lowest_ask\": 49.0, \"highest_bid\": 36.0, \"num_asks\": null, \"num_bids\": null, \"last_sale\": null, \"event_datetime\": \"Sat, April 11 \\u2022 10PM \\u2022 Elsewhere\", \"error\": null}",
       "section": "GA",
       "qty": 1
     },
@@ -1244,7 +1316,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
-      "eventDatetime": "Sat, April 11 \u2022 10PM \u2022 Elsewhere",
+      "eventDatetime": "{\"url\": \"https://www.crowdvolt.com/event/chasewest-new-york-elsewhere-april-11-brooklyn\", \"scraped_at\": \"2026-04-07T21:21:11.832882+00:00\", \"lowest_ask\": 35.0, \"highest_bid\": 36.0, \"num_asks\": null, \"num_bids\": null, \"last_sale\": null, \"event_datetime\": \"Sat, April 11 \\u2022 10PM \\u2022 Elsewhere\", \"error\": null}",
       "section": "GA",
       "qty": 1
     },
@@ -1256,7 +1328,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
-      "eventDatetime": "Sat, April 11 \u2022 10PM \u2022 Elsewhere",
+      "eventDatetime": "{\"url\": \"https://www.crowdvolt.com/event/chasewest-new-york-elsewhere-april-11-brooklyn\", \"scraped_at\": \"2026-04-08T22:00:39.165981+00:00\", \"lowest_ask\": 31.0, \"highest_bid\": 37.0, \"num_asks\": null, \"num_bids\": null, \"last_sale\": null, \"event_datetime\": \"Sat, April 11 \\u2022 10PM \\u2022 Elsewhere\", \"error\": null}",
       "section": "GA",
       "qty": 1
     },
@@ -1264,6 +1336,18 @@
       "eventId": 25,
       "date": "2026-04-09",
       "price": 35.0,
+      "highestBid": 20.0,
+      "numAsks": null,
+      "numBids": null,
+      "lastSale": null,
+      "eventDatetime": "{\"url\": \"https://www.crowdvolt.com/event/chasewest-new-york-elsewhere-april-11-brooklyn\", \"scraped_at\": \"2026-04-09T18:55:29.592670+00:00\", \"lowest_ask\": 35.0, \"highest_bid\": 20.0, \"num_asks\": null, \"num_bids\": null, \"last_sale\": null, \"event_datetime\": \"Sat, April 11 \\u2022 10PM \\u2022 Elsewhere\", \"error\": null}",
+      "section": "GA",
+      "qty": 1
+    },
+    {
+      "eventId": 25,
+      "date": "2026-04-09 19:12",
+      "price": 36.0,
       "highestBid": 20.0,
       "numAsks": null,
       "numBids": null,
@@ -1280,7 +1364,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
-      "eventDatetime": null,
+      "eventDatetime": "{\"url\": \"https://www.crowdvolt.com/event/teksupport-max-styler-brooklyn-storehouse-sat-may-9-new-york\", \"scraped_at\": \"2026-03-25T21:51:32.051212+00:00\", \"lowest_ask\": 60.0, \"highest_bid\": 53.0, \"num_asks\": null, \"num_bids\": null, \"last_sale\": null, \"error\": null}",
       "section": "GA",
       "qty": 1
     },
@@ -1292,7 +1376,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
-      "eventDatetime": null,
+      "eventDatetime": "{\"url\": \"https://www.crowdvolt.com/event/teksupport-max-styler-brooklyn-storehouse-sat-may-9-new-york\", \"scraped_at\": \"2026-03-26T13:01:13.708839+00:00\", \"lowest_ask\": 62.0, \"highest_bid\": 50.0, \"num_asks\": null, \"num_bids\": null, \"last_sale\": null, \"error\": null}",
       "section": "GA",
       "qty": 1
     },
@@ -1304,7 +1388,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
-      "eventDatetime": null,
+      "eventDatetime": "{\"url\": \"https://www.crowdvolt.com/event/teksupport-max-styler-brooklyn-storehouse-sat-may-9-new-york\", \"scraped_at\": \"2026-03-27T13:53:57.363718+00:00\", \"lowest_ask\": 62.0, \"highest_bid\": 50.0, \"num_asks\": null, \"num_bids\": null, \"last_sale\": null, \"error\": null}",
       "section": "GA",
       "qty": 1
     },
@@ -1316,7 +1400,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
-      "eventDatetime": null,
+      "eventDatetime": "{\"url\": \"https://www.crowdvolt.com/event/teksupport-max-styler-brooklyn-storehouse-sat-may-9-new-york\", \"scraped_at\": \"2026-03-28T13:26:40.486763+00:00\", \"lowest_ask\": 66.0, \"highest_bid\": 58.0, \"num_asks\": null, \"num_bids\": null, \"last_sale\": null, \"error\": null}",
       "section": "GA",
       "qty": 1
     },
@@ -1328,7 +1412,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
-      "eventDatetime": "Sat, May 9 \u2022 10PM \u2022 Brooklyn Storehouse",
+      "eventDatetime": "{\"url\": \"https://www.crowdvolt.com/event/teksupport-max-styler-brooklyn-storehouse-sat-may-9-new-york\", \"scraped_at\": \"2026-03-30T16:10:23.360178+00:00\", \"lowest_ask\": 67.0, \"highest_bid\": 50.0, \"num_asks\": null, \"num_bids\": null, \"last_sale\": null, \"event_datetime\": \"Sat, May 9 \\u2022 10PM \\u2022 Brooklyn Storehouse\", \"error\": null}",
       "section": "GA",
       "qty": 1
     },
@@ -1340,7 +1424,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
-      "eventDatetime": null,
+      "eventDatetime": "{\"url\": \"https://www.crowdvolt.com/event/teksupport-max-styler-brooklyn-storehouse-sat-may-9-new-york\", \"scraped_at\": \"2026-03-31T13:01:40.782736+00:00\", \"lowest_ask\": 65.0, \"highest_bid\": 40.0, \"num_asks\": null, \"num_bids\": null, \"last_sale\": null, \"error\": null}",
       "section": "GA",
       "qty": 1
     },
@@ -1352,7 +1436,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
-      "eventDatetime": "Sat, May 9 \u2022 10PM \u2022 Brooklyn Storehouse",
+      "eventDatetime": "{\"url\": \"https://www.crowdvolt.com/event/teksupport-max-styler-brooklyn-storehouse-sat-may-9-new-york\", \"scraped_at\": \"2026-04-02T22:58:10.295208+00:00\", \"lowest_ask\": 67.0, \"highest_bid\": 58.0, \"num_asks\": null, \"num_bids\": null, \"last_sale\": null, \"event_datetime\": \"Sat, May 9 \\u2022 10PM \\u2022 Brooklyn Storehouse\", \"error\": null}",
       "section": "GA",
       "qty": 1
     },
@@ -1364,7 +1448,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
-      "eventDatetime": "Sat, May 9 \u2022 10PM \u2022 Brooklyn Storehouse",
+      "eventDatetime": "{\"url\": \"https://www.crowdvolt.com/event/teksupport-max-styler-brooklyn-storehouse-sat-may-9-new-york\", \"scraped_at\": \"2026-04-03T16:22:44.760374+00:00\", \"lowest_ask\": 67.0, \"highest_bid\": 58.0, \"num_asks\": null, \"num_bids\": null, \"last_sale\": null, \"event_datetime\": \"Sat, May 9 \\u2022 10PM \\u2022 Brooklyn Storehouse\", \"error\": null}",
       "section": "GA",
       "qty": 1
     },
@@ -1376,7 +1460,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
-      "eventDatetime": "Sat, May 9 \u2022 10PM \u2022 Brooklyn Storehouse",
+      "eventDatetime": "{\"url\": \"https://www.crowdvolt.com/event/teksupport-max-styler-brooklyn-storehouse-sat-may-9-new-york\", \"scraped_at\": \"2026-04-07T21:18:16.129335+00:00\", \"lowest_ask\": 65.0, \"highest_bid\": 52.0, \"num_asks\": null, \"num_bids\": null, \"last_sale\": null, \"event_datetime\": \"Sat, May 9 \\u2022 10PM \\u2022 Brooklyn Storehouse\", \"error\": null}",
       "section": "GA",
       "qty": 1
     },
@@ -1388,13 +1472,25 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
-      "eventDatetime": "Sat, May 9 \u2022 10PM \u2022 Brooklyn Storehouse",
+      "eventDatetime": "{\"url\": \"https://www.crowdvolt.com/event/teksupport-max-styler-brooklyn-storehouse-sat-may-9-new-york\", \"scraped_at\": \"2026-04-08T21:57:43.449912+00:00\", \"lowest_ask\": 65.0, \"highest_bid\": 58.0, \"num_asks\": null, \"num_bids\": null, \"last_sale\": null, \"event_datetime\": \"Sat, May 9 \\u2022 10PM \\u2022 Brooklyn Storehouse\", \"error\": null}",
       "section": "GA",
       "qty": 1
     },
     {
       "eventId": 1,
       "date": "2026-04-09",
+      "price": 65.0,
+      "highestBid": 59.0,
+      "numAsks": null,
+      "numBids": null,
+      "lastSale": null,
+      "eventDatetime": "{\"url\": \"https://www.crowdvolt.com/event/teksupport-max-styler-brooklyn-storehouse-sat-may-9-new-york\", \"scraped_at\": \"2026-04-09T18:52:36.548068+00:00\", \"lowest_ask\": 65.0, \"highest_bid\": 59.0, \"num_asks\": null, \"num_bids\": null, \"last_sale\": null, \"event_datetime\": \"Sat, May 9 \\u2022 10PM \\u2022 Brooklyn Storehouse\", \"error\": null}",
+      "section": "GA",
+      "qty": 1
+    },
+    {
+      "eventId": 1,
+      "date": "2026-04-09 19:09",
       "price": 65.0,
       "highestBid": 59.0,
       "numAsks": null,
@@ -1412,7 +1508,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
-      "eventDatetime": null,
+      "eventDatetime": "{\"url\": \"https://www.crowdvolt.com/event/chris-lake-under-the-k-bridge-sat-jun-6-new-york\", \"scraped_at\": \"2026-03-25T21:56:25.704017+00:00\", \"lowest_ask\": 128.0, \"highest_bid\": 105.0, \"num_asks\": null, \"num_bids\": null, \"last_sale\": null, \"error\": null}",
       "section": "GA",
       "qty": 1
     },
@@ -1424,7 +1520,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
-      "eventDatetime": null,
+      "eventDatetime": "{\"url\": \"https://www.crowdvolt.com/event/chris-lake-under-the-k-bridge-sat-jun-6-new-york\", \"scraped_at\": \"2026-03-27T14:04:26.727338+00:00\", \"lowest_ask\": 124.0, \"highest_bid\": 107.0, \"num_asks\": null, \"num_bids\": null, \"last_sale\": null, \"error\": null}",
       "section": "GA",
       "qty": 1
     },
@@ -1436,7 +1532,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
-      "eventDatetime": null,
+      "eventDatetime": "{\"url\": \"https://www.crowdvolt.com/event/chris-lake-under-the-k-bridge-sat-jun-6-new-york\", \"scraped_at\": \"2026-03-28T14:57:20.553251+00:00\", \"lowest_ask\": 129.0, \"highest_bid\": 107.0, \"num_asks\": null, \"num_bids\": null, \"last_sale\": null, \"error\": null}",
       "section": "GA",
       "qty": 1
     },
@@ -1448,7 +1544,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
-      "eventDatetime": "Sat, June 6 \u2022 7PM \u2022 Under the K Bridge",
+      "eventDatetime": "{\"url\": \"https://www.crowdvolt.com/event/chris-lake-under-the-k-bridge-sat-jun-6-new-york\", \"scraped_at\": \"2026-03-30T16:15:17.894397+00:00\", \"lowest_ask\": 128.0, \"highest_bid\": 102.0, \"num_asks\": null, \"num_bids\": null, \"last_sale\": null, \"event_datetime\": \"Sat, June 6 \\u2022 7PM \\u2022 Under the K Bridge\", \"error\": null}",
       "section": "GA",
       "qty": 1
     },
@@ -1460,7 +1556,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
-      "eventDatetime": null,
+      "eventDatetime": "{\"url\": \"https://www.crowdvolt.com/event/chris-lake-under-the-k-bridge-sat-jun-6-new-york\", \"scraped_at\": \"2026-03-31T13:06:35.178078+00:00\", \"lowest_ask\": 124.0, \"highest_bid\": 102.0, \"num_asks\": null, \"num_bids\": null, \"last_sale\": null, \"error\": null}",
       "section": "GA",
       "qty": 1
     },
@@ -1472,7 +1568,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
-      "eventDatetime": "Sat, June 6 \u2022 7PM \u2022 Under the K Bridge",
+      "eventDatetime": "{\"url\": \"https://www.crowdvolt.com/event/chris-lake-under-the-k-bridge-sat-jun-6-new-york\", \"scraped_at\": \"2026-04-02T23:03:03.108039+00:00\", \"lowest_ask\": 131.0, \"highest_bid\": 110.0, \"num_asks\": null, \"num_bids\": null, \"last_sale\": null, \"event_datetime\": \"Sat, June 6 \\u2022 7PM \\u2022 Under the K Bridge\", \"error\": null}",
       "section": "GA",
       "qty": 1
     },
@@ -1484,7 +1580,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
-      "eventDatetime": "Sat, June 6 \u2022 7PM \u2022 Under the K Bridge",
+      "eventDatetime": "{\"url\": \"https://www.crowdvolt.com/event/chris-lake-under-the-k-bridge-sat-jun-6-new-york\", \"scraped_at\": \"2026-04-03T17:16:43.234875+00:00\", \"lowest_ask\": 131.0, \"highest_bid\": 110.0, \"num_asks\": null, \"num_bids\": null, \"last_sale\": null, \"event_datetime\": \"Sat, June 6 \\u2022 7PM \\u2022 Under the K Bridge\", \"error\": null}",
       "section": "GA",
       "qty": 1
     },
@@ -1496,7 +1592,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
-      "eventDatetime": "Sat, June 6 \u2022 7PM \u2022 Under the K Bridge",
+      "eventDatetime": "{\"url\": \"https://www.crowdvolt.com/event/chris-lake-under-the-k-bridge-sat-jun-6-new-york\", \"scraped_at\": \"2026-04-07T21:23:15.699913+00:00\", \"lowest_ask\": 129.0, \"highest_bid\": 115.0, \"num_asks\": null, \"num_bids\": null, \"last_sale\": null, \"event_datetime\": \"Sat, June 6 \\u2022 7PM \\u2022 Under the K Bridge\", \"error\": null}",
       "section": "GA",
       "qty": 1
     },
@@ -1508,13 +1604,25 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
-      "eventDatetime": "Sat, June 6 \u2022 7PM \u2022 Under the K Bridge",
+      "eventDatetime": "{\"url\": \"https://www.crowdvolt.com/event/chris-lake-under-the-k-bridge-sat-jun-6-new-york\", \"scraped_at\": \"2026-04-08T22:02:41.344435+00:00\", \"lowest_ask\": 129.0, \"highest_bid\": 115.0, \"num_asks\": null, \"num_bids\": null, \"last_sale\": null, \"event_datetime\": \"Sat, June 6 \\u2022 7PM \\u2022 Under the K Bridge\", \"error\": null}",
       "section": "GA",
       "qty": 1
     },
     {
       "eventId": 30,
       "date": "2026-04-09",
+      "price": 128.0,
+      "highestBid": 115.0,
+      "numAsks": null,
+      "numBids": null,
+      "lastSale": null,
+      "eventDatetime": "{\"url\": \"https://www.crowdvolt.com/event/chris-lake-under-the-k-bridge-sat-jun-6-new-york\", \"scraped_at\": \"2026-04-09T18:57:30.732623+00:00\", \"lowest_ask\": 128.0, \"highest_bid\": 115.0, \"num_asks\": null, \"num_bids\": null, \"last_sale\": null, \"event_datetime\": \"Sat, June 6 \\u2022 7PM \\u2022 Under the K Bridge\", \"error\": null}",
+      "section": "GA",
+      "qty": 1
+    },
+    {
+      "eventId": 30,
+      "date": "2026-04-09 19:14",
       "price": 128.0,
       "highestBid": 115.0,
       "numAsks": null,
@@ -1532,7 +1640,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
-      "eventDatetime": null,
+      "eventDatetime": "{\"url\": \"https://www.crowdvolt.com/event/teksupport-beltran-all-night-long-jun-20-2026\", \"scraped_at\": \"2026-03-25T21:51:56.903747+00:00\", \"lowest_ask\": 89.0, \"highest_bid\": 62.0, \"num_asks\": null, \"num_bids\": null, \"last_sale\": null, \"error\": null}",
       "section": "GA",
       "qty": 1
     },
@@ -1544,7 +1652,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
-      "eventDatetime": null,
+      "eventDatetime": "{\"url\": \"https://www.crowdvolt.com/event/teksupport-beltran-all-night-long-jun-20-2026\", \"scraped_at\": \"2026-03-26T13:01:38.860399+00:00\", \"lowest_ask\": 88.0, \"highest_bid\": 62.0, \"num_asks\": null, \"num_bids\": null, \"last_sale\": null, \"error\": null}",
       "section": "GA",
       "qty": 1
     },
@@ -1556,7 +1664,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
-      "eventDatetime": null,
+      "eventDatetime": "{\"url\": \"https://www.crowdvolt.com/event/teksupport-beltran-all-night-long-jun-20-2026\", \"scraped_at\": \"2026-03-27T13:54:22.106239+00:00\", \"lowest_ask\": 86.0, \"highest_bid\": 62.0, \"num_asks\": null, \"num_bids\": null, \"last_sale\": null, \"error\": null}",
       "section": "GA",
       "qty": 1
     },
@@ -1568,7 +1676,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
-      "eventDatetime": null,
+      "eventDatetime": "{\"url\": \"https://www.crowdvolt.com/event/teksupport-beltran-all-night-long-jun-20-2026\", \"scraped_at\": \"2026-03-28T13:42:01.795113+00:00\", \"lowest_ask\": 78.0, \"highest_bid\": 62.0, \"num_asks\": null, \"num_bids\": null, \"last_sale\": null, \"error\": null}",
       "section": "GA",
       "qty": 1
     },
@@ -1580,7 +1688,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
-      "eventDatetime": "Sat, June 20 \u2022 10PM \u2022 Brooklyn Storehouse",
+      "eventDatetime": "{\"url\": \"https://www.crowdvolt.com/event/teksupport-beltran-all-night-long-jun-20-2026\", \"scraped_at\": \"2026-03-30T16:10:48.262865+00:00\", \"lowest_ask\": 86.0, \"highest_bid\": 65.0, \"num_asks\": null, \"num_bids\": null, \"last_sale\": null, \"event_datetime\": \"Sat, June 20 \\u2022 10PM \\u2022 Brooklyn Storehouse\", \"error\": null}",
       "section": "GA",
       "qty": 1
     },
@@ -1592,7 +1700,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
-      "eventDatetime": null,
+      "eventDatetime": "{\"url\": \"https://www.crowdvolt.com/event/teksupport-beltran-all-night-long-jun-20-2026\", \"scraped_at\": \"2026-03-31T13:02:05.741024+00:00\", \"lowest_ask\": 86.0, \"highest_bid\": 65.0, \"num_asks\": null, \"num_bids\": null, \"last_sale\": null, \"error\": null}",
       "section": "GA",
       "qty": 1
     },
@@ -1604,7 +1712,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
-      "eventDatetime": "Sat, June 20 \u2022 10PM \u2022 Brooklyn Storehouse",
+      "eventDatetime": "{\"url\": \"https://www.crowdvolt.com/event/teksupport-beltran-all-night-long-jun-20-2026\", \"scraped_at\": \"2026-04-02T22:58:35.169044+00:00\", \"lowest_ask\": 80.0, \"highest_bid\": 70.0, \"num_asks\": null, \"num_bids\": null, \"last_sale\": null, \"event_datetime\": \"Sat, June 20 \\u2022 10PM \\u2022 Brooklyn Storehouse\", \"error\": null}",
       "section": "GA",
       "qty": 1
     },
@@ -1616,7 +1724,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
-      "eventDatetime": "Sat, June 20 \u2022 10PM \u2022 Brooklyn Storehouse",
+      "eventDatetime": "{\"url\": \"https://www.crowdvolt.com/event/teksupport-beltran-all-night-long-jun-20-2026\", \"scraped_at\": \"2026-04-03T16:24:42.424022+00:00\", \"lowest_ask\": 83.0, \"highest_bid\": 72.0, \"num_asks\": null, \"num_bids\": null, \"last_sale\": null, \"event_datetime\": \"Sat, June 20 \\u2022 10PM \\u2022 Brooklyn Storehouse\", \"error\": null}",
       "section": "GA",
       "qty": 1
     },
@@ -1628,7 +1736,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
-      "eventDatetime": "Sat, June 20 \u2022 10PM \u2022 Brooklyn Storehouse",
+      "eventDatetime": "{\"url\": \"https://www.crowdvolt.com/event/teksupport-beltran-all-night-long-jun-20-2026\", \"scraped_at\": \"2026-04-07T21:18:41.152255+00:00\", \"lowest_ask\": 82.0, \"highest_bid\": 40.0, \"num_asks\": null, \"num_bids\": null, \"last_sale\": null, \"event_datetime\": \"Sat, June 20 \\u2022 10PM \\u2022 Brooklyn Storehouse\", \"error\": null}",
       "section": "GA",
       "qty": 1
     },
@@ -1640,13 +1748,25 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
-      "eventDatetime": "Sat, June 20 \u2022 10PM \u2022 Brooklyn Storehouse",
+      "eventDatetime": "{\"url\": \"https://www.crowdvolt.com/event/teksupport-beltran-all-night-long-jun-20-2026\", \"scraped_at\": \"2026-04-08T21:58:08.516502+00:00\", \"lowest_ask\": 72.0, \"highest_bid\": 40.0, \"num_asks\": null, \"num_bids\": null, \"last_sale\": null, \"event_datetime\": \"Sat, June 20 \\u2022 10PM \\u2022 Brooklyn Storehouse\", \"error\": null}",
       "section": "GA",
       "qty": 1
     },
     {
       "eventId": 19,
       "date": "2026-04-09",
+      "price": 72.0,
+      "highestBid": 45.0,
+      "numAsks": null,
+      "numBids": null,
+      "lastSale": null,
+      "eventDatetime": "{\"url\": \"https://www.crowdvolt.com/event/teksupport-beltran-all-night-long-jun-20-2026\", \"scraped_at\": \"2026-04-09T18:53:01.396859+00:00\", \"lowest_ask\": 72.0, \"highest_bid\": 45.0, \"num_asks\": null, \"num_bids\": null, \"last_sale\": null, \"event_datetime\": \"Sat, June 20 \\u2022 10PM \\u2022 Brooklyn Storehouse\", \"error\": null}",
+      "section": "GA",
+      "qty": 1
+    },
+    {
+      "eventId": 19,
+      "date": "2026-04-09 19:09",
       "price": 72.0,
       "highestBid": 45.0,
       "numAsks": null,
@@ -1664,7 +1784,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
-      "eventDatetime": null,
+      "eventDatetime": "{\"url\": \"https://www.crowdvolt.com/event/chris-stussy-new-york-27th-jun-brooklyn-army-terminal-pier-4\", \"scraped_at\": \"2026-03-25T21:52:46.361808+00:00\", \"lowest_ask\": 101.0, \"highest_bid\": 79.0, \"num_asks\": null, \"num_bids\": null, \"last_sale\": null, \"error\": null}",
       "section": "GA",
       "qty": 1
     },
@@ -1676,7 +1796,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
-      "eventDatetime": null,
+      "eventDatetime": "{\"url\": \"https://www.crowdvolt.com/event/chris-stussy-new-york-27th-jun-brooklyn-army-terminal-pier-4\", \"scraped_at\": \"2026-03-26T13:02:30.994304+00:00\", \"lowest_ask\": 101.0, \"highest_bid\": 79.0, \"num_asks\": null, \"num_bids\": null, \"last_sale\": null, \"error\": null}",
       "section": "GA",
       "qty": 1
     },
@@ -1688,7 +1808,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
-      "eventDatetime": null,
+      "eventDatetime": "{\"url\": \"https://www.crowdvolt.com/event/chris-stussy-new-york-27th-jun-brooklyn-army-terminal-pier-4\", \"scraped_at\": \"2026-03-27T13:55:27.741028+00:00\", \"lowest_ask\": 101.0, \"highest_bid\": 78.0, \"num_asks\": null, \"num_bids\": null, \"last_sale\": null, \"error\": null}",
       "section": "GA",
       "qty": 1
     },
@@ -1700,7 +1820,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
-      "eventDatetime": null,
+      "eventDatetime": "{\"url\": \"https://www.crowdvolt.com/event/chris-stussy-new-york-27th-jun-brooklyn-army-terminal-pier-4\", \"scraped_at\": \"2026-03-28T14:16:42.355032+00:00\", \"lowest_ask\": 110.0, \"highest_bid\": 80.0, \"num_asks\": null, \"num_bids\": null, \"last_sale\": null, \"error\": null}",
       "section": "GA",
       "qty": 1
     },
@@ -1712,7 +1832,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
-      "eventDatetime": "Sat, June 27 \u2022 4PM \u2022 Brooklyn Army Terminal",
+      "eventDatetime": "{\"url\": \"https://www.crowdvolt.com/event/chris-stussy-new-york-27th-jun-brooklyn-army-terminal-pier-4\", \"scraped_at\": \"2026-03-30T16:11:38.291067+00:00\", \"lowest_ask\": 103.0, \"highest_bid\": 80.0, \"num_asks\": null, \"num_bids\": null, \"last_sale\": null, \"event_datetime\": \"Sat, June 27 \\u2022 4PM \\u2022 Brooklyn Army Terminal\", \"error\": null}",
       "section": "GA",
       "qty": 1
     },
@@ -1724,7 +1844,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
-      "eventDatetime": null,
+      "eventDatetime": "{\"url\": \"https://www.crowdvolt.com/event/chris-stussy-new-york-27th-jun-brooklyn-army-terminal-pier-4\", \"scraped_at\": \"2026-03-31T13:02:55.663246+00:00\", \"lowest_ask\": 103.0, \"highest_bid\": 85.0, \"num_asks\": null, \"num_bids\": null, \"last_sale\": null, \"error\": null}",
       "section": "GA",
       "qty": 1
     },
@@ -1736,7 +1856,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
-      "eventDatetime": "Sat, June 27 \u2022 4PM \u2022 Brooklyn Army Terminal",
+      "eventDatetime": "{\"url\": \"https://www.crowdvolt.com/event/chris-stussy-new-york-27th-jun-brooklyn-army-terminal-pier-4\", \"scraped_at\": \"2026-04-02T22:59:24.788474+00:00\", \"lowest_ask\": 103.0, \"highest_bid\": 90.0, \"num_asks\": null, \"num_bids\": null, \"last_sale\": null, \"event_datetime\": \"Sat, June 27 \\u2022 4PM \\u2022 Brooklyn Army Terminal\", \"error\": null}",
       "section": "GA",
       "qty": 1
     },
@@ -1748,7 +1868,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
-      "eventDatetime": "Sat, June 27 \u2022 4PM \u2022 Brooklyn Army Terminal",
+      "eventDatetime": "{\"url\": \"https://www.crowdvolt.com/event/chris-stussy-new-york-27th-jun-brooklyn-army-terminal-pier-4\", \"scraped_at\": \"2026-04-03T16:31:33.034823+00:00\", \"lowest_ask\": 113.0, \"highest_bid\": 90.0, \"num_asks\": null, \"num_bids\": null, \"last_sale\": null, \"event_datetime\": \"Sat, June 27 \\u2022 4PM \\u2022 Brooklyn Army Terminal\", \"error\": null}",
       "section": "GA",
       "qty": 1
     },
@@ -1760,7 +1880,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
-      "eventDatetime": "Sat, June 27 \u2022 4PM \u2022 Brooklyn Army Terminal",
+      "eventDatetime": "{\"url\": \"https://www.crowdvolt.com/event/chris-stussy-new-york-27th-jun-brooklyn-army-terminal-pier-4\", \"scraped_at\": \"2026-04-07T21:19:30.750212+00:00\", \"lowest_ask\": 124.0, \"highest_bid\": 100.0, \"num_asks\": null, \"num_bids\": null, \"last_sale\": null, \"event_datetime\": \"Sat, June 27 \\u2022 4PM \\u2022 Brooklyn Army Terminal\", \"error\": null}",
       "section": "GA",
       "qty": 1
     },
@@ -1772,13 +1892,25 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
-      "eventDatetime": "Sat, June 27 \u2022 4PM \u2022 Brooklyn Army Terminal",
+      "eventDatetime": "{\"url\": \"https://www.crowdvolt.com/event/chris-stussy-new-york-27th-jun-brooklyn-army-terminal-pier-4\", \"scraped_at\": \"2026-04-08T21:58:59.447472+00:00\", \"lowest_ask\": 121.0, \"highest_bid\": 100.0, \"num_asks\": null, \"num_bids\": null, \"last_sale\": null, \"event_datetime\": \"Sat, June 27 \\u2022 4PM \\u2022 Brooklyn Army Terminal\", \"error\": null}",
       "section": "GA",
       "qty": 1
     },
     {
       "eventId": 21,
       "date": "2026-04-09",
+      "price": 124.0,
+      "highestBid": 103.0,
+      "numAsks": null,
+      "numBids": null,
+      "lastSale": null,
+      "eventDatetime": "{\"url\": \"https://www.crowdvolt.com/event/chris-stussy-new-york-27th-jun-brooklyn-army-terminal-pier-4\", \"scraped_at\": \"2026-04-09T18:53:50.849990+00:00\", \"lowest_ask\": 124.0, \"highest_bid\": 103.0, \"num_asks\": null, \"num_bids\": null, \"last_sale\": null, \"event_datetime\": \"Sat, June 27 \\u2022 4PM \\u2022 Brooklyn Army Terminal\", \"error\": null}",
+      "section": "GA",
+      "qty": 1
+    },
+    {
+      "eventId": 21,
+      "date": "2026-04-09 19:10",
       "price": 124.0,
       "highestBid": 103.0,
       "numAsks": null,
@@ -1796,7 +1928,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
-      "eventDatetime": null,
+      "eventDatetime": "{\"url\": \"https://www.crowdvolt.com/event/riordan-jul-10-2026\", \"scraped_at\": \"2026-03-25T21:54:00.052703+00:00\", \"lowest_ask\": 45.0, \"highest_bid\": null, \"num_asks\": null, \"num_bids\": null, \"last_sale\": null, \"error\": null}",
       "section": "GA",
       "qty": 1
     },
@@ -1808,7 +1940,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
-      "eventDatetime": null,
+      "eventDatetime": "{\"url\": \"https://www.crowdvolt.com/event/riordan-jul-10-2026\", \"scraped_at\": \"2026-03-26T13:03:48.384722+00:00\", \"lowest_ask\": 46.0, \"highest_bid\": null, \"num_asks\": null, \"num_bids\": null, \"last_sale\": null, \"error\": null}",
       "section": "GA",
       "qty": 1
     },
@@ -1820,7 +1952,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
-      "eventDatetime": null,
+      "eventDatetime": "{\"url\": \"https://www.crowdvolt.com/event/riordan-jul-10-2026\", \"scraped_at\": \"2026-03-27T14:00:57.342679+00:00\", \"lowest_ask\": 46.0, \"highest_bid\": null, \"num_asks\": null, \"num_bids\": null, \"last_sale\": null, \"error\": null}",
       "section": "GA",
       "qty": 1
     },
@@ -1832,7 +1964,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
-      "eventDatetime": null,
+      "eventDatetime": "{\"url\": \"https://www.crowdvolt.com/event/riordan-jul-10-2026\", \"scraped_at\": \"2026-03-28T14:28:08.825705+00:00\", \"lowest_ask\": 46.0, \"highest_bid\": null, \"num_asks\": null, \"num_bids\": null, \"last_sale\": null, \"error\": null}",
       "section": "GA",
       "qty": 1
     },
@@ -1844,7 +1976,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
-      "eventDatetime": "Fri, July 10 \u2022 10PM \u2022 Knockdown Center",
+      "eventDatetime": "{\"url\": \"https://www.crowdvolt.com/event/riordan-jul-10-2026\", \"scraped_at\": \"2026-03-30T16:12:52.453133+00:00\", \"lowest_ask\": 46.0, \"highest_bid\": null, \"num_asks\": null, \"num_bids\": null, \"last_sale\": null, \"event_datetime\": \"Fri, July 10 \\u2022 10PM \\u2022 Knockdown Center\", \"error\": null}",
       "section": "GA",
       "qty": 1
     },
@@ -1856,7 +1988,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
-      "eventDatetime": null,
+      "eventDatetime": "{\"url\": \"https://www.crowdvolt.com/event/riordan-jul-10-2026\", \"scraped_at\": \"2026-03-31T13:04:09.929509+00:00\", \"lowest_ask\": 46.0, \"highest_bid\": null, \"num_asks\": null, \"num_bids\": null, \"last_sale\": null, \"error\": null}",
       "section": "GA",
       "qty": 1
     },
@@ -1868,7 +2000,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
-      "eventDatetime": "Fri, July 10 \u2022 10PM \u2022 Knockdown Center",
+      "eventDatetime": "{\"url\": \"https://www.crowdvolt.com/event/riordan-jul-10-2026\", \"scraped_at\": \"2026-04-02T23:00:38.876549+00:00\", \"lowest_ask\": 45.0, \"highest_bid\": 35.0, \"num_asks\": null, \"num_bids\": null, \"last_sale\": null, \"event_datetime\": \"Fri, July 10 \\u2022 10PM \\u2022 Knockdown Center\", \"error\": null}",
       "section": "GA",
       "qty": 1
     },
@@ -1880,7 +2012,7 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
-      "eventDatetime": "Fri, July 10 \u2022 10PM \u2022 Knockdown Center",
+      "eventDatetime": "{\"url\": \"https://www.crowdvolt.com/event/riordan-jul-10-2026\", \"scraped_at\": \"2026-04-07T21:20:46.157288+00:00\", \"lowest_ask\": 44.0, \"highest_bid\": 35.0, \"num_asks\": null, \"num_bids\": null, \"last_sale\": null, \"event_datetime\": \"Fri, July 10 \\u2022 10PM \\u2022 Knockdown Center\", \"error\": null}",
       "section": "GA",
       "qty": 1
     },
@@ -1892,13 +2024,25 @@
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
-      "eventDatetime": "Fri, July 10 \u2022 10PM \u2022 Knockdown Center",
+      "eventDatetime": "{\"url\": \"https://www.crowdvolt.com/event/riordan-jul-10-2026\", \"scraped_at\": \"2026-04-08T22:00:14.381004+00:00\", \"lowest_ask\": 42.0, \"highest_bid\": null, \"num_asks\": null, \"num_bids\": null, \"last_sale\": null, \"event_datetime\": \"Fri, July 10 \\u2022 10PM \\u2022 Knockdown Center\", \"error\": null}",
       "section": "GA",
       "qty": 1
     },
     {
       "eventId": 24,
       "date": "2026-04-09",
+      "price": 42.0,
+      "highestBid": null,
+      "numAsks": null,
+      "numBids": null,
+      "lastSale": null,
+      "eventDatetime": "{\"url\": \"https://www.crowdvolt.com/event/riordan-jul-10-2026\", \"scraped_at\": \"2026-04-09T18:55:04.835484+00:00\", \"lowest_ask\": 42.0, \"highest_bid\": null, \"num_asks\": null, \"num_bids\": null, \"last_sale\": null, \"event_datetime\": \"Fri, July 10 \\u2022 10PM \\u2022 Knockdown Center\", \"error\": null}",
+      "section": "GA",
+      "qty": 1
+    },
+    {
+      "eventId": 24,
+      "date": "2026-04-09 19:11",
       "price": 42.0,
       "highestBid": null,
       "numAsks": null,
