@@ -1,5 +1,5 @@
 {
-  "exported_at": "2026-04-09T08:00:33.864110+00:00",
+  "exported_at": "2026-04-09T11:27:42.610903+00:00",
   "events": [
     {
       "id": 20,
@@ -1155,8 +1155,8 @@
     {
       "eventId": 22,
       "date": "2026-04-09",
-      "price": 83.0,
-      "highestBid": 75.0,
+      "price": 82.0,
+      "highestBid": 73.0,
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
@@ -1637,18 +1637,6 @@
       "date": "2026-04-08",
       "price": 72.0,
       "highestBid": 40.0,
-      "numAsks": null,
-      "numBids": null,
-      "lastSale": null,
-      "eventDatetime": "Sat, June 20 \u2022 10PM \u2022 Brooklyn Storehouse",
-      "section": "GA",
-      "qty": 1
-    },
-    {
-      "eventId": 19,
-      "date": "2026-04-09",
-      "price": 72.0,
-      "highestBid": 58.0,
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
