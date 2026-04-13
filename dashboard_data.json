@@ -1,5 +1,5 @@
 {
-  "exported_at": "2026-04-13T20:03:01.421637+00:00",
+  "exported_at": "2026-04-13T22:43:14.446777+00:00",
   "events": [
     {
       "id": 20,
@@ -448,7 +448,7 @@
       "eventId": 20,
       "date": "2026-04-13",
       "price": 101.0,
-      "highestBid": 87.0,
+      "highestBid": 90.0,
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
@@ -2464,7 +2464,7 @@
       "eventId": 30,
       "date": "2026-04-13",
       "price": 128.0,
-      "highestBid": 115.0,
+      "highestBid": null,
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
@@ -2715,7 +2715,7 @@
     {
       "eventId": 19,
       "date": "2026-04-13",
-      "price": 75.0,
+      "price": 67.0,
       "highestBid": 60.0,
       "numAsks": null,
       "numBids": null,
@@ -2967,7 +2967,7 @@
     {
       "eventId": 21,
       "date": "2026-04-13",
-      "price": 124.0,
+      "price": 119.0,
       "highestBid": 110.0,
       "numAsks": null,
       "numBids": null,
