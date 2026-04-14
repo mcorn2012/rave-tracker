@@ -1,5 +1,5 @@
 {
-  "exported_at": "2026-04-14T02:58:53.036496+00:00",
+  "exported_at": "2026-04-14T05:36:37.293371+00:00",
   "events": [
     {
       "id": 20,
@@ -782,6 +782,18 @@
     },
     {
       "eventId": 23,
+      "date": "2026-04-14",
+      "price": 96.0,
+      "highestBid": 80.0,
+      "numAsks": null,
+      "numBids": null,
+      "lastSale": null,
+      "eventDatetime": "Sat, May 16 \u2022 10PM \u2022 Industry City",
+      "section": "GA",
+      "qty": 1
+    },
+    {
+      "eventId": 23,
       "date": "2026-04-14 02:56",
       "price": 96.0,
       "highestBid": 80.0,
@@ -1037,6 +1049,18 @@
       "date": "2026-04-13 22:58",
       "price": 40.0,
       "highestBid": 34.0,
+      "numAsks": null,
+      "numBids": null,
+      "lastSale": null,
+      "eventDatetime": "Fri, April 17 \u2022 10PM \u2022 99 Scott",
+      "section": "GA",
+      "qty": 1
+    },
+    {
+      "eventId": 26,
+      "date": "2026-04-14",
+      "price": 40.0,
+      "highestBid": 35.0,
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
@@ -1310,6 +1334,18 @@
     },
     {
       "eventId": 27,
+      "date": "2026-04-14",
+      "price": 40.0,
+      "highestBid": 35.0,
+      "numAsks": null,
+      "numBids": null,
+      "lastSale": null,
+      "eventDatetime": "Sat, April 25 \u2022 10PM \u2022 99 Scott",
+      "section": "GA",
+      "qty": 1
+    },
+    {
+      "eventId": 27,
       "date": "2026-04-14 02:57",
       "price": 40.0,
       "highestBid": 35.0,
@@ -1563,6 +1599,18 @@
     {
       "eventId": 28,
       "date": "2026-04-13 22:59",
+      "price": 120.0,
+      "highestBid": null,
+      "numAsks": null,
+      "numBids": null,
+      "lastSale": null,
+      "eventDatetime": "Fri, March 27 \u2022 10PM \u2022 Industry City",
+      "section": "GA",
+      "qty": 1
+    },
+    {
+      "eventId": 28,
+      "date": "2026-04-14",
       "price": 120.0,
       "highestBid": null,
       "numAsks": null,
@@ -2355,7 +2403,7 @@
     {
       "eventId": 1,
       "date": "2026-04-14",
-      "price": 69.0,
+      "price": 68.0,
       "highestBid": 65.0,
       "numAsks": null,
       "numBids": null,
@@ -2439,6 +2487,18 @@
     {
       "eventId": 29,
       "date": "2026-04-13 22:59",
+      "price": 72.0,
+      "highestBid": null,
+      "numAsks": null,
+      "numBids": null,
+      "lastSale": null,
+      "eventDatetime": "Sat, June 6 \u2022 5PM \u2022 Summer Stage in Central Park",
+      "section": "GA",
+      "qty": 1
+    },
+    {
+      "eventId": 29,
+      "date": "2026-04-14",
       "price": 72.0,
       "highestBid": null,
       "numAsks": null,
@@ -3543,6 +3603,18 @@
     {
       "eventId": 24,
       "date": "2026-04-13 22:58",
+      "price": 45.0,
+      "highestBid": 30.0,
+      "numAsks": null,
+      "numBids": null,
+      "lastSale": null,
+      "eventDatetime": "Fri, July 10 \u2022 10PM \u2022 Knockdown Center",
+      "section": "GA",
+      "qty": 1
+    },
+    {
+      "eventId": 24,
+      "date": "2026-04-14",
       "price": 45.0,
       "highestBid": 30.0,
       "numAsks": null,
