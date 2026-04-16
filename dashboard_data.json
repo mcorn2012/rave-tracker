@@ -1,5 +1,5 @@
 {
-  "exported_at": "2026-04-16T06:44:45.709147+00:00",
+  "exported_at": "2026-04-16T09:37:36.121397+00:00",
   "events": [
     {
       "id": 20,
@@ -4395,7 +4395,7 @@
     {
       "eventId": 19,
       "date": "2026-04-16",
-      "price": 75.0,
+      "price": 80.0,
       "highestBid": 65.0,
       "numAsks": null,
       "numBids": null,
