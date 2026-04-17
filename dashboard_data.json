@@ -1,5 +1,5 @@
 {
-  "exported_at": "2026-04-17T14:06:18.155194+00:00",
+  "exported_at": "2026-04-17T23:50:20.590992+00:00",
   "events": [
     {
       "id": 20,
@@ -723,7 +723,7 @@
     {
       "eventId": 20,
       "date": "2026-04-17",
-      "price": 98.0,
+      "price": 101.0,
       "highestBid": 90.0,
       "numAsks": null,
       "numBids": null,
@@ -1239,7 +1239,7 @@
     {
       "eventId": 23,
       "date": "2026-04-17",
-      "price": 93.0,
+      "price": 98.0,
       "highestBid": 80.0,
       "numAsks": null,
       "numBids": null,
@@ -1731,8 +1731,8 @@
     {
       "eventId": 26,
       "date": "2026-04-17",
-      "price": 43.0,
-      "highestBid": 38.0,
+      "price": 46.0,
+      "highestBid": 42.0,
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
@@ -2223,8 +2223,8 @@
     {
       "eventId": 27,
       "date": "2026-04-17",
-      "price": 41.0,
-      "highestBid": 34.0,
+      "price": 42.0,
+      "highestBid": 36.0,
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
@@ -3736,7 +3736,7 @@
       "eventId": 1,
       "date": "2026-04-17",
       "price": 69.0,
-      "highestBid": 57.0,
+      "highestBid": 55.0,
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
@@ -5044,7 +5044,7 @@
       "eventId": 19,
       "date": "2026-04-17",
       "price": 78.0,
-      "highestBid": 72.0,
+      "highestBid": 70.0,
       "numAsks": null,
       "numBids": null,
       "lastSale": null,
@@ -6051,7 +6051,7 @@
     {
       "eventId": 24,
       "date": "2026-04-17",
-      "price": 42.0,
+      "price": 45.0,
       "highestBid": 36.0,
       "numAsks": null,
       "numBids": null,
