@@ -1,5 +1,5 @@
 {
-  "exported_at": "2026-04-23T15:22:43.910683+00:00",
+  "exported_at": "2026-04-23T18:19:56.036898+00:00",
   "events": [
     {
       "id": 20,
@@ -901,6 +901,18 @@
       "qty": 1
     },
     {
+      "eventId": 20,
+      "date": "2026-04-23 18:16",
+      "price": 93.0,
+      "highestBid": 65.0,
+      "numAsks": null,
+      "numBids": null,
+      "lastSale": null,
+      "eventDatetime": "Sat, May 23 \u2022 3PM \u2022 Fulton Fish Market",
+      "section": "GA",
+      "qty": 1
+    },
+    {
       "eventId": 23,
       "date": "2026-03-25",
       "price": 93.0,
@@ -1573,6 +1585,18 @@
       "qty": 1
     },
     {
+      "eventId": 23,
+      "date": "2026-04-23 18:17",
+      "price": 99.0,
+      "highestBid": 60.0,
+      "numAsks": null,
+      "numBids": null,
+      "lastSale": null,
+      "eventDatetime": "Sat, May 16 \u2022 10PM \u2022 Industry City",
+      "section": "GA",
+      "qty": 1
+    },
+    {
       "eventId": 26,
       "date": "2026-03-25",
       "price": 42.0,
@@ -2223,6 +2247,18 @@
     {
       "eventId": 26,
       "date": "2026-04-22 20:34",
+      "price": 94.0,
+      "highestBid": null,
+      "numAsks": null,
+      "numBids": null,
+      "lastSale": null,
+      "eventDatetime": "Fri, April 17 \u2022 10PM \u2022 99 Scott",
+      "section": "GA",
+      "qty": 1
+    },
+    {
+      "eventId": 26,
+      "date": "2026-04-23 18:18",
       "price": 94.0,
       "highestBid": null,
       "numAsks": null,
@@ -2893,6 +2929,18 @@
       "qty": 1
     },
     {
+      "eventId": 27,
+      "date": "2026-04-23 18:18",
+      "price": 60.0,
+      "highestBid": 46.0,
+      "numAsks": null,
+      "numBids": null,
+      "lastSale": null,
+      "eventDatetime": "Sat, April 25 \u2022 10PM \u2022 99 Scott",
+      "section": "GA",
+      "qty": 1
+    },
+    {
       "eventId": 28,
       "date": "2026-03-25",
       "price": 96.0,
@@ -3543,6 +3591,18 @@
     {
       "eventId": 28,
       "date": "2026-04-23 15:21",
+      "price": 120.0,
+      "highestBid": null,
+      "numAsks": null,
+      "numBids": null,
+      "lastSale": null,
+      "eventDatetime": "Fri, March 27 \u2022 10PM \u2022 Industry City",
+      "section": "GA",
+      "qty": 1
+    },
+    {
+      "eventId": 28,
+      "date": "2026-04-23 18:19",
       "price": 120.0,
       "highestBid": null,
       "numAsks": null,
@@ -4729,6 +4789,18 @@
       "qty": 1
     },
     {
+      "eventId": 1,
+      "date": "2026-04-23 18:15",
+      "price": 69.0,
+      "highestBid": 50.0,
+      "numAsks": null,
+      "numBids": null,
+      "lastSale": null,
+      "eventDatetime": "Sat, May 9 \u2022 10PM \u2022 Brooklyn Storehouse",
+      "section": "GA",
+      "qty": 1
+    },
+    {
       "eventId": 29,
       "date": "2026-04-12",
       "price": 72.0,
@@ -5211,6 +5283,18 @@
     {
       "eventId": 29,
       "date": "2026-04-23 15:22",
+      "price": 57.0,
+      "highestBid": null,
+      "numAsks": null,
+      "numBids": null,
+      "lastSale": null,
+      "eventDatetime": "Sat, June 6 \u2022 5PM \u2022 Summer Stage in Central Park",
+      "section": "GA",
+      "qty": 1
+    },
+    {
+      "eventId": 29,
+      "date": "2026-04-23 18:19",
       "price": 57.0,
       "highestBid": null,
       "numAsks": null,
@@ -5847,6 +5931,18 @@
     {
       "eventId": 30,
       "date": "2026-04-23 15:22",
+      "price": 135.0,
+      "highestBid": 115.0,
+      "numAsks": null,
+      "numBids": null,
+      "lastSale": null,
+      "eventDatetime": "Sat, June 6 \u2022 7PM \u2022 Under the K Bridge",
+      "section": "GA",
+      "qty": 1
+    },
+    {
+      "eventId": 30,
+      "date": "2026-04-23 18:19",
       "price": 135.0,
       "highestBid": 115.0,
       "numAsks": null,
@@ -6529,6 +6625,18 @@
       "qty": 1
     },
     {
+      "eventId": 19,
+      "date": "2026-04-23 18:16",
+      "price": 80.0,
+      "highestBid": 60.0,
+      "numAsks": null,
+      "numBids": null,
+      "lastSale": null,
+      "eventDatetime": "Sat, June 20 \u2022 10PM \u2022 Brooklyn Storehouse",
+      "section": "GA",
+      "qty": 1
+    },
+    {
       "eventId": 21,
       "date": "2026-03-25",
       "price": 101.0,
@@ -7189,6 +7297,18 @@
       "qty": 1
     },
     {
+      "eventId": 21,
+      "date": "2026-04-23 18:17",
+      "price": 124.0,
+      "highestBid": 90.0,
+      "numAsks": null,
+      "numBids": null,
+      "lastSale": null,
+      "eventDatetime": "Sat, June 27 \u2022 4PM \u2022 Brooklyn Army Terminal",
+      "section": "GA",
+      "qty": 1
+    },
+    {
       "eventId": 24,
       "date": "2026-03-25",
       "price": 45.0,
@@ -7839,6 +7959,18 @@
     {
       "eventId": 24,
       "date": "2026-04-22 20:34",
+      "price": 44.0,
+      "highestBid": 30.0,
+      "numAsks": null,
+      "numBids": null,
+      "lastSale": null,
+      "eventDatetime": "Fri, July 10 \u2022 10PM \u2022 Knockdown Center",
+      "section": "GA",
+      "qty": 1
+    },
+    {
+      "eventId": 24,
+      "date": "2026-04-23 18:17",
       "price": 44.0,
       "highestBid": 30.0,
       "numAsks": null,
