@@ -149,6 +149,7 @@ input[type=range]{background:var(--bg4);border:none;height:3px;padding:0;accent-
     <button class="nav-tab" onclick="showTab('events',this)">Events</button>
     <button class="nav-tab" onclick="showTab('prices',this)">Prices</button>
     <button class="nav-tab" onclick="showTab('analyze',this)">Analyze</button>
+    <button class="nav-tab" onclick="showTab('sales',this)">💰 Sales</button>
   </div>
   <div class="nav-right">
     <span class="sync-dot" id="sync-dot"></span>
@@ -353,6 +354,7 @@ function showTab(id,btn){
   if(id==='dashboard') renderDashboard();
   if(id==='prices'){renderPriceChart();renderPriceLog();}
   if(id==='analyze') renderAnalysisDropdown();
+  if(id==='sales') onSalesTabShow();
 }
 
 // ─── HELPERS ─────────────────────────────────────────────────────────────────
@@ -882,8 +884,388 @@ function refreshAll(){refreshDropdowns();renderDashboard();renderPriceLog();rend
 
 // ─── INIT ─────────────────────────────────────────────────────────────────────
 document.getElementById('p-date').value=new Date().toISOString().split('T')[0];
+document.getElementById('s-buy-date').value=new Date().toISOString().split('T')[0];
+document.getElementById('s-sell-date').value=new Date().toISOString().split('T')[0];
+loadSalesData();
 autoSync();
 setInterval(autoSync,5*60*1000);
+
+<!-- ══════════════════════ SALES (password protected) ══════════════════════ -->
+<div id="tab-sales" class="tab">
+  <!-- Lock screen -->
+  <div id="sales-lock" style="display:flex;align-items:center;justify-content:center;min-height:60vh;">
+    <div class="card" style="width:320px;text-align:center;">
+      <div style="font-size:32px;margin-bottom:12px;">🔒</div>
+      <div style="font-weight:800;font-size:18px;margin-bottom:4px;">Sales Tracker</div>
+      <div style="font-size:12px;color:var(--muted);margin-bottom:20px;">Enter password to view P&L data</div>
+      <input type="password" id="sales-pw" placeholder="Password" style="text-align:center;margin-bottom:10px;" onkeydown="if(event.key==='Enter')checkPW()">
+      <button class="btn btn-primary fw" onclick="checkPW()">Unlock</button>
+      <div id="pw-error" style="color:var(--red);font-size:11px;margin-top:8px;display:none;">Incorrect password</div>
+    </div>
+  </div>
+
+  <!-- Sales content (hidden until unlocked) -->
+  <div id="sales-content" style="display:none;">
+
+    <!-- P&L Metrics -->
+    <div class="metrics" style="grid-template-columns:repeat(5,1fr);" id="sales-metrics">
+      <div class="metric"><div class="metric-label">Total Invested</div><div class="metric-val c-amber" id="s-invested">$0</div></div>
+      <div class="metric"><div class="metric-label">Total Revenue</div><div class="metric-val c-cyan" id="s-revenue">$0</div></div>
+      <div class="metric"><div class="metric-label">Total Profit</div><div class="metric-val" id="s-profit">$0</div></div>
+      <div class="metric"><div class="metric-label">Avg ROI</div><div class="metric-val" id="s-roi">—</div></div>
+      <div class="metric"><div class="metric-label">Unsold Value</div><div class="metric-val c-purple" id="s-unsold">$0</div></div>
+    </div>
+
+    <div class="two-col" style="margin-bottom:14px;">
+      <!-- Log a purchase -->
+      <div class="card">
+        <div class="card-title">Log Ticket Purchase</div>
+        <div class="mb10">
+          <label>Event</label>
+          <select id="s-event-select" onchange="onSaleEventChange()">
+            <option value="">— Select or create new —</option>
+            <option value="__new__">+ Add new event</option>
+          </select>
+        </div>
+
+        <!-- New event fields (shown when creating new) -->
+        <div id="s-new-event-fields" style="display:none;background:var(--bg4);border-radius:8px;padding:12px;margin-bottom:10px;border:1px solid var(--border);">
+          <div style="font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:10px;">New Event Details</div>
+          <div class="mb10"><label>Artist</label><input id="s-new-artist" type="text" placeholder="e.g. Chris Lake"></div>
+          <div class="grid2">
+            <div><label>Venue</label><input id="s-new-venue" type="text" placeholder="Brooklyn Mirage"></div>
+            <div><label>Date</label><input id="s-new-date" type="date"></div>
+          </div>
+          <div class="grid2">
+            <div><label>Genre</label>
+              <select id="s-new-genre"><option value="">Select</option><option>Techno</option><option>House</option><option>Trance</option><option>Drum & Bass</option><option>Other</option></select>
+            </div>
+            <div><label>Crowdvolt URL</label><input id="s-new-url" type="text" placeholder="crowdvolt.com/event/..."></div>
+          </div>
+          <div class="grid2">
+            <div><label>Capacity</label>
+              <select id="s-new-cap"><option value="">Unknown</option><option value="small">Small</option><option value="medium">Medium</option><option value="large">Large</option><option value="festival">Festival</option></select>
+            </div>
+            <div><label>US Listeners</label><input id="s-new-listeners" type="number" placeholder="500000"></div>
+          </div>
+        </div>
+
+        <!-- Purchase details -->
+        <div class="grid2">
+          <div><label>Tickets Bought</label><input id="s-qty" type="number" placeholder="2" min="1" value="1"></div>
+          <div><label>Price Paid Each ($)</label><input id="s-buy-price" type="number" placeholder="45" min="0"></div>
+        </div>
+        <div class="grid2">
+          <div><label>Purchase Date</label><input id="s-buy-date" type="date"></div>
+          <div><label>Fees ($, total)</label><input id="s-fees" type="number" placeholder="0" min="0" value="0"></div>
+        </div>
+        <div class="mb10"><label>Notes</label><input id="s-notes" type="text" placeholder="e.g. bought early, GA floor"></div>
+        <button class="btn btn-primary fw" onclick="logPurchase()">+ Log Purchase</button>
+      </div>
+
+      <!-- Log a sale -->
+      <div class="card">
+        <div class="card-title">Log Ticket Sale</div>
+        <div class="mb10"><label>Purchase to Sell From</label><select id="s-sale-purchase"></select></div>
+        <div class="grid2">
+          <div><label>Tickets Sold</label><input id="s-sell-qty" type="number" placeholder="1" min="1" value="1"></div>
+          <div><label>Sale Price Each ($)</label><input id="s-sell-price" type="number" placeholder="120" min="0"></div>
+        </div>
+        <div class="grid2">
+          <div><label>Sale Date</label><input id="s-sell-date" type="date"></div>
+          <div><label>Platform Fees ($)</label><input id="s-sell-fees" type="number" placeholder="0" min="0" value="0"></div>
+        </div>
+        <div class="mb10"><label>Buyer / Notes</label><input id="s-sell-notes" type="text" placeholder="e.g. sold on Crowdvolt"></div>
+        <button class="btn btn-primary fw" onclick="logSale()">+ Log Sale</button>
+      </div>
+    </div>
+
+    <!-- P&L Chart -->
+    <div class="hero-chart-wrap" style="margin-bottom:14px;">
+      <div class="hero-chart-header">
+        <div>
+          <div class="hero-chart-title">Profit by Event</div>
+          <div class="hero-chart-sub">Realized profit vs unrealized inventory value</div>
+        </div>
+      </div>
+      <div class="chart-wrap" style="height:220px;"><canvas id="sales-chart"></canvas></div>
+    </div>
+
+    <!-- Purchases table -->
+    <div class="card">
+      <div class="card-title">Purchase Ledger</div>
+      <div id="purchases-table" style="overflow-x:auto;"></div>
+    </div>
+
+  </div><!-- /sales-content -->
+</div>
+
+<script>
+// ─── PASSWORD ────────────────────────────────────────────────────────────────
+const PW_HASH='e2b261b0611b1951767be041be1ed30c4e6dd0d84b0db3623f82e85d16c2fb3d'; // SHA-256 of your password
+// To change password: run python3 -c "import hashlib;print(hashlib.sha256('NEWPASSWORD'.encode()).hexdigest())" and replace the hash above
+
+async function hashStr(s){
+  const buf=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));
+  return Array.from(new Uint8Array(buf)).map(b=>b.toString(16).padStart(2,'0')).join('');
+}
+async function checkPW(){
+  const val=document.getElementById('sales-pw').value;
+  const h=await hashStr(val);
+  if(h===PW_HASH){
+    document.getElementById('sales-lock').style.display='none';
+    document.getElementById('sales-content').style.display='block';
+    sessionStorage.setItem('sales_unlocked','1');
+    renderSales();
+  } else {
+    document.getElementById('pw-error').style.display='block';
+    document.getElementById('sales-pw').value='';
+  }
+}
+
+// ─── SALES STATE ─────────────────────────────────────────────────────────────
+let purchases=[]; // {id, eventId, qty, buyPrice, fees, date, notes}
+let sales=[];     // {id, purchaseId, qty, sellPrice, fees, date, notes}
+
+function saveSalesData(){
+  try{localStorage.setItem('rt_purchases',JSON.stringify(purchases));localStorage.setItem('rt_sales',JSON.stringify(sales));}catch(e){}
+}
+function loadSalesData(){
+  try{
+    const p=localStorage.getItem('rt_purchases');if(p) purchases=JSON.parse(p);
+    const s=localStorage.getItem('rt_sales');if(s) sales=JSON.parse(s);
+  }catch(e){}
+}
+
+// ─── SALES TAB SHOW ───────────────────────────────────────────────────────────
+function onSalesTabShow(){
+  loadSalesData();
+  if(sessionStorage.getItem('sales_unlocked')==='1'){
+    document.getElementById('sales-lock').style.display='none';
+    document.getElementById('sales-content').style.display='block';
+    renderSales();
+  }
+}
+
+function onSaleEventChange(){
+  const val=document.getElementById('s-event-select').value;
+  document.getElementById('s-new-event-fields').style.display=val==='__new__'?'block':'none';
+}
+
+// ─── LOG PURCHASE ─────────────────────────────────────────────────────────────
+function logPurchase(){
+  let eventId=document.getElementById('s-event-select').value;
+  const qty=parseInt(document.getElementById('s-qty').value)||1;
+  const buyPrice=parseFloat(document.getElementById('s-buy-price').value);
+  const date=document.getElementById('s-buy-date').value;
+  if(!buyPrice||!date){alert('Price and date required.');return;}
+
+  // Create new event if needed
+  if(eventId==='__new__'){
+    const artist=document.getElementById('s-new-artist').value.trim();
+    if(!artist){alert('Artist name required for new event.');return;}
+    const newEv={
+      id:Date.now(),artist,
+      venue:document.getElementById('s-new-venue').value.trim(),
+      city:'New York, NY',
+      date:document.getElementById('s-new-date').value,
+      face:buyPrice, // use buy price as face value baseline
+      listeners:parseInt(document.getElementById('s-new-listeners').value)||0,
+      genre:document.getElementById('s-new-genre').value,
+      cap:document.getElementById('s-new-cap').value,
+      avail:'low',
+      url:document.getElementById('s-new-url').value.trim(),
+      notes:'Added from sales tracker',
+    };
+    events.push(newEv);
+    eventId=newEv.id;
+    refreshAll();
+  } else {
+    eventId=parseInt(eventId);
+    // Update face value to lowest buy price across all purchases for this event
+    const existing=purchases.filter(p=>p.eventId===eventId);
+    const lowestBuy=existing.length?Math.min(...existing.map(p=>p.buyPrice),buyPrice):buyPrice;
+    const ev=events.find(e=>e.id===eventId);
+    if(ev) ev.face=lowestBuy;
+  }
+
+  if(!eventId){alert('Select an event.');return;}
+
+  purchases.push({
+    id:Date.now(),eventId,qty,buyPrice,
+    fees:parseFloat(document.getElementById('s-fees').value)||0,
+    date,notes:document.getElementById('s-notes').value.trim(),
+  });
+  saveSalesData();
+  ['s-qty','s-buy-price','s-fees','s-notes'].forEach(id=>document.getElementById(id).value='');
+  document.getElementById('s-buy-date').value=new Date().toISOString().split('T')[0];
+  document.getElementById('s-event-select').value='';
+  document.getElementById('s-new-event-fields').style.display='none';
+  renderSales();
+}
+
+// ─── LOG SALE ────────────────────────────────────────────────────────────────
+function logSale(){
+  const purchaseId=parseInt(document.getElementById('s-sale-purchase').value);
+  const qty=parseInt(document.getElementById('s-sell-qty').value)||1;
+  const sellPrice=parseFloat(document.getElementById('s-sell-price').value);
+  const date=document.getElementById('s-sell-date').value;
+  if(!purchaseId||!sellPrice||!date){alert('Purchase, price, and date required.');return;}
+
+  const purchase=purchases.find(p=>p.id===purchaseId);
+  if(!purchase){alert('Purchase not found.');return;}
+  const soldAlready=sales.filter(s=>s.purchaseId===purchaseId).reduce((t,s)=>t+s.qty,0);
+  if(soldAlready+qty>purchase.qty){alert(`Only ${purchase.qty-soldAlready} tickets remaining from this purchase.`);return;}
+
+  sales.push({
+    id:Date.now(),purchaseId,qty,sellPrice,
+    fees:parseFloat(document.getElementById('s-sell-fees').value)||0,
+    date,notes:document.getElementById('s-sell-notes').value.trim(),
+  });
+  saveSalesData();
+  ['s-sell-qty','s-sell-price','s-sell-fees','s-sell-notes'].forEach(id=>document.getElementById(id).value='');
+  document.getElementById('s-sell-date').value=new Date().toISOString().split('T')[0];
+  renderSales();
+}
+
+function deletePurchase(id){
+  if(!confirm('Delete this purchase and all its sales?')) return;
+  purchases=purchases.filter(p=>p.id!==id);
+  sales=sales.filter(s=>s.purchaseId!==id);
+  saveSalesData(); renderSales();
+}
+
+function deleteSale(id){
+  if(!confirm('Delete this sale?')) return;
+  sales=sales.filter(s=>s.id!==id);
+  saveSalesData(); renderSales();
+}
+
+// ─── RENDER SALES ────────────────────────────────────────────────────────────
+let salesChart=null;
+function renderSales(){
+  // Refresh event dropdown
+  const sel=document.getElementById('s-event-select');
+  const cur=sel.value;
+  sel.innerHTML='<option value="">— Select or create new —</option><option value="__new__">+ Add new event</option>'+
+    events.map(e=>`<option value="${e.id}">${e.artist}${e.date?' ('+e.date+')':''}</option>`).join('');
+  if(cur) sel.value=cur;
+
+  // Refresh purchase dropdown for sales
+  const purSel=document.getElementById('s-sale-purchase');
+  purSel.innerHTML='<option value="">— Select purchase —</option>'+purchases.map(p=>{
+    const ev=events.find(e=>e.id===p.eventId);
+    const sold=sales.filter(s=>s.purchaseId===p.id).reduce((t,s)=>t+s.qty,0);
+    const rem=p.qty-sold;
+    return`<option value="${p.id}">${ev?ev.artist:'?'} — $${p.buyPrice} x${p.qty} (${rem} left) ${p.date}</option>`;
+  }).join('');
+
+  // Compute metrics
+  let totalInvested=0,totalRevenue=0,totalFeesBuy=0,totalFeesSell=0,totalUnsoldValue=0;
+  const eventPL={};
+
+  purchases.forEach(p=>{
+    totalInvested+=p.buyPrice*p.qty+p.fees;
+    totalFeesBuy+=p.fees;
+    const ev=events.find(e=>e.id===p.eventId);
+    if(!eventPL[p.eventId]) eventPL[p.eventId]={artist:ev?ev.artist:'?',invested:0,revenue:0,unsold:0};
+    eventPL[p.eventId].invested+=p.buyPrice*p.qty+p.fees;
+    const sold=sales.filter(s=>s.purchaseId===p.id).reduce((t,s)=>t+s.qty,0);
+    const rem=p.qty-sold;
+    // Unsold: value at current ask price if available, else buy price
+    const pts=ev?getPrices(ev.id):[];
+    const curAsk=pts.length?pts[pts.length-1].price:p.buyPrice;
+    eventPL[p.eventId].unsold+=rem*curAsk;
+    totalUnsoldValue+=rem*curAsk;
+  });
+
+  sales.forEach(s=>{
+    const p=purchases.find(p=>p.id===s.purchaseId);
+    if(!p) return;
+    totalRevenue+=s.sellPrice*s.qty-s.fees;
+    totalFeesSell+=s.fees;
+    if(eventPL[p.eventId]) eventPL[p.eventId].revenue+=s.sellPrice*s.qty-s.fees;
+  });
+
+  const totalProfit=totalRevenue-totalInvested+totalUnsoldValue; // includes unrealized
+  const realizedProfit=totalRevenue-totalInvested; // only sold
+  const roi=totalInvested>0?((totalRevenue/totalInvested-1)*100):0;
+
+  // Update metric cards
+  document.getElementById('s-invested').textContent='$'+totalInvested.toFixed(0);
+  document.getElementById('s-revenue').textContent='$'+totalRevenue.toFixed(0);
+  const profEl=document.getElementById('s-profit');
+  profEl.textContent=(realizedProfit>=0?'+':'')+' $'+realizedProfit.toFixed(0);
+  profEl.className='metric-val '+(realizedProfit>=0?'c-green':'c-red');
+  const roiEl=document.getElementById('s-roi');
+  roiEl.textContent=(roi>=0?'+':'')+roi.toFixed(1)+'%';
+  roiEl.className='metric-val '+(roi>=0?'c-green':'c-red');
+  document.getElementById('s-unsold').textContent='$'+totalUnsoldValue.toFixed(0);
+
+  // Chart
+  const labels=Object.values(eventPL).map(e=>e.artist);
+  const profitData=Object.values(eventPL).map(e=>+(e.revenue-e.invested).toFixed(0));
+  const unsoldData=Object.values(eventPL).map(e=>+e.unsold.toFixed(0));
+  const canvas=document.getElementById('sales-chart');
+  if(salesChart) salesChart.destroy();
+  if(labels.length){
+    salesChart=new Chart(canvas,{
+      type:'bar',
+      data:{labels,datasets:[
+        {label:'Realized P&L',data:profitData,backgroundColor:profitData.map(v=>v>=0?'rgba(57,217,138,.7)':'rgba(255,92,124,.7)'),borderRadius:4},
+        {label:'Unsold Value',data:unsoldData,backgroundColor:'rgba(155,109,255,.4)',borderRadius:4},
+      ]},
+      options:{responsive:true,maintainAspectRatio:false,
+        plugins:{legend:{labels:{color:'#7d8590',font:{size:11},boxWidth:10}}},
+        scales:{x:{ticks:{color:'#7d8590',font:{size:10}},grid:{color:'rgba(255,255,255,.04)'}},
+          y:{ticks:{color:'#7d8590',callback:v=>'$'+v,font:{size:10}},grid:{color:'rgba(255,255,255,.06)'}}}}
+    });
+  }
+
+  // Purchases table
+  const tbl=document.getElementById('purchases-table');
+  if(!purchases.length){tbl.innerHTML='<div class="empty">No purchases logged yet.</div>';return;}
+  tbl.innerHTML=`<table style="width:100%;border-collapse:collapse;font-size:12px;">
+    <thead><tr>
+      <th style="text-align:left;padding:8px;color:var(--muted);font-weight:600;font-size:10px;text-transform:uppercase;letter-spacing:.08em;border-bottom:1px solid var(--border)">Event</th>
+      <th style="text-align:right;padding:8px;color:var(--muted);font-weight:600;font-size:10px;text-transform:uppercase;border-bottom:1px solid var(--border)">Qty</th>
+      <th style="text-align:right;padding:8px;color:var(--muted);font-weight:600;font-size:10px;text-transform:uppercase;border-bottom:1px solid var(--border)">Buy Price</th>
+      <th style="text-align:right;padding:8px;color:var(--muted);font-weight:600;font-size:10px;text-transform:uppercase;border-bottom:1px solid var(--border)">Total Cost</th>
+      <th style="text-align:right;padding:8px;color:var(--muted);font-weight:600;font-size:10px;text-transform:uppercase;border-bottom:1px solid var(--border)">Sold</th>
+      <th style="text-align:right;padding:8px;color:var(--muted);font-weight:600;font-size:10px;text-transform:uppercase;border-bottom:1px solid var(--border)">Revenue</th>
+      <th style="text-align:right;padding:8px;color:var(--muted);font-weight:600;font-size:10px;text-transform:uppercase;border-bottom:1px solid var(--border)">P&L</th>
+      <th style="padding:8px;border-bottom:1px solid var(--border)"></th>
+    </tr></thead>
+    <tbody>${purchases.map(p=>{
+      const ev=events.find(e=>e.id===p.eventId);
+      const pSales=sales.filter(s=>s.purchaseId===p.id);
+      const soldQty=pSales.reduce((t,s)=>t+s.qty,0);
+      const revenue=pSales.reduce((t,s)=>t+s.sellPrice*s.qty-s.fees,0);
+      const cost=p.buyPrice*p.qty+p.fees;
+      const pl=revenue-cost;
+      const rem=p.qty-soldQty;
+      const plColor=pl>=0?'var(--green)':'var(--red)';
+      const salesRows=pSales.map(s=>`
+        <tr style="background:rgba(0,0,0,.2)">
+          <td style="padding:5px 8px 5px 24px;color:var(--muted);font-size:11px" colspan="2">↳ Sold ${s.qty}x on ${s.date}${s.notes?' — '+s.notes:''}</td>
+          <td style="padding:5px 8px;text-align:right;color:var(--muted);font-size:11px">$${s.sellPrice}</td>
+          <td style="padding:5px 8px;text-align:right;color:var(--muted);font-size:11px">${s.fees>0?'-$'+s.fees+' fees':''}</td>
+          <td style="padding:5px 8px;text-align:right;font-family:var(--mono);font-size:11px;color:var(--green)">$${(s.sellPrice*s.qty-s.fees).toFixed(0)}</td>
+          <td colspan="2" style="padding:5px 8px;text-align:right">
+            <button class="btn btn-danger" onclick="deleteSale(${s.id})">✕</button>
+          </td>
+        </tr>`).join('');
+      return`<tr style="border-bottom:1px solid var(--border)">
+        <td style="padding:10px 8px"><div style="font-weight:700">${ev?ev.artist:'?'}</div><div style="font-size:10px;color:var(--muted)">${p.date}${p.notes?' · '+p.notes:''}</div></td>
+        <td style="padding:10px 8px;text-align:right;font-family:var(--mono)">${p.qty}</td>
+        <td style="padding:10px 8px;text-align:right;font-family:var(--mono);color:var(--amber)">$${p.buyPrice}</td>
+        <td style="padding:10px 8px;text-align:right;font-family:var(--mono)">$${cost.toFixed(0)}</td>
+        <td style="padding:10px 8px;text-align:right;font-family:var(--mono)">${soldQty}/${p.qty} <span style="color:var(--muted);font-size:10px">(${rem} left)</span></td>
+        <td style="padding:10px 8px;text-align:right;font-family:var(--mono);color:var(--green)">${revenue>0?'$'+revenue.toFixed(0):'—'}</td>
+        <td style="padding:10px 8px;text-align:right;font-family:var(--mono);font-weight:700;color:${plColor}">${soldQty>0?(pl>=0?'+':'')+' $'+pl.toFixed(0):'—'}</td>
+        <td style="padding:10px 8px;text-align:right"><button class="btn btn-danger" onclick="deletePurchase(${p.id})">✕</button></td>
+      </tr>${salesRows}`;
+    }).join('')}</tbody>
+  </table>`;
+}
 </script>
-</body>
-</html>
