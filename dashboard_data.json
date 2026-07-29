@@ -1,5 +1,5 @@
 {
-  "exported_at": "2026-07-27T22:27:47.416522+00:00",
+  "exported_at": "2026-07-29T12:08:35.303781+00:00",
   "events": [
     {
       "id": 20,
@@ -1573,6 +1573,18 @@
       "qty": 1
     },
     {
+      "eventId": 20,
+      "date": "2026-07-29 11:36",
+      "price": 16.0,
+      "highestBid": null,
+      "numAsks": null,
+      "numBids": null,
+      "lastSale": null,
+      "eventDatetime": "Sat, May 23 \u2022 3PM \u2022 Fulton Fish Market",
+      "section": "GA",
+      "qty": 1
+    },
+    {
       "eventId": 23,
       "date": "2026-03-25",
       "price": 93.0,
@@ -2917,6 +2929,18 @@
       "qty": 1
     },
     {
+      "eventId": 23,
+      "date": "2026-07-29 11:52",
+      "price": 99.0,
+      "highestBid": null,
+      "numAsks": null,
+      "numBids": null,
+      "lastSale": null,
+      "eventDatetime": "Sat, May 16 \u2022 10PM \u2022 Industry City",
+      "section": "GA",
+      "qty": 1
+    },
+    {
       "eventId": 26,
       "date": "2026-03-25",
       "price": 42.0,
@@ -4237,6 +4261,18 @@
       "qty": 1
     },
     {
+      "eventId": 26,
+      "date": "2026-07-29 11:53",
+      "price": 94.0,
+      "highestBid": null,
+      "numAsks": null,
+      "numBids": null,
+      "lastSale": null,
+      "eventDatetime": "Fri, April 17 \u2022 10PM \u2022 99 Scott",
+      "section": "GA",
+      "qty": 1
+    },
+    {
       "eventId": 27,
       "date": "2026-03-25",
       "price": 33.0,
@@ -5535,6 +5571,18 @@
     {
       "eventId": 27,
       "date": "2026-07-27 22:27",
+      "price": 63.0,
+      "highestBid": null,
+      "numAsks": null,
+      "numBids": null,
+      "lastSale": null,
+      "eventDatetime": "Sat, April 25 \u2022 10PM \u2022 99 Scott",
+      "section": "GA",
+      "qty": 1
+    },
+    {
+      "eventId": 27,
+      "date": "2026-07-29 12:00",
       "price": 63.0,
       "highestBid": null,
       "numAsks": null,
@@ -6855,6 +6903,18 @@
     {
       "eventId": 28,
       "date": "2026-07-27 22:27",
+      "price": 120.0,
+      "highestBid": null,
+      "numAsks": null,
+      "numBids": null,
+      "lastSale": null,
+      "eventDatetime": "Fri, March 27 \u2022 10PM \u2022 Industry City",
+      "section": "GA",
+      "qty": 1
+    },
+    {
+      "eventId": 28,
+      "date": "2026-07-29 12:08",
       "price": 120.0,
       "highestBid": null,
       "numAsks": null,
